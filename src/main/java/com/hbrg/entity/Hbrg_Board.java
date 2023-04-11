@@ -30,8 +30,8 @@ public class Hbrg_Board {
     @Column(name="vC", nullable = false)
     private Long vC; // 조회수
 
-    @Column(name="like", nullable = false)
-    private Long like; // 좋아요
+    @Column(name="bLike", nullable = false)
+    private Long bLike; // 좋아요
 
     @Column(name="cDate")
     private LocalDateTime cDate; // 생성 날짜
