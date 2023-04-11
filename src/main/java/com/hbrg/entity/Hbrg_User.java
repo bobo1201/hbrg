@@ -11,17 +11,8 @@ import javax.persistence.*;
 @Getter
 @Setter
 @ToString
-public class User {
+public class Hbrg_User {
 
-<<<<<<< HEAD:src/main/java/com/hbrg/entity/User.java
-    @Column(name="IdNum")
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long IdNum; // 아이디 순서
-
-    @Id
-    @Column(name="Id", nullable = false)
-    private String Id; // 로그인 ID
-=======
     @Column(name="userId")
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long userId; // 아이디 순서
@@ -29,7 +20,7 @@ public class User {
     @Id
     @Column(name="id", nullable = false)
     private String id; // 로그인 ID
->>>>>>> main:src/main/java/com/hbrg/entity/Hbrg_User.java
+
 
     @Column(name="pw", nullable = false)
     private String pw; // 로그인 PW

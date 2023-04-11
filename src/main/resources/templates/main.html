@@ -3,6 +3,26 @@
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="~{layouts/layout1}">
 
-<div layout:fragment="content">
-    <h1>메인페이지입니다.</h1>
+
+<div layout:fragment="content" class="text-center" style="margin-top: 50px;">
+    <form class="form-inline justify-content-center">
+        <div class="input-group">
+            <div class="input-group-prepend">
+                <button class="btn btn-outline-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Filter
+                </button>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                    <a class="dropdown-item" href="#">제목</a>
+                    <a class="dropdown-item" href="#">본문</a>
+                </div>
+            </div>
+            <input name="searchQuery" class="form-control mr-sm-2"
+                   type="search" placeholder="Search" aria-label="Search"
+                   style="width: 450px;">
+            <button class="btn btn-outline-success my-2 my-sm-0"
+                    type="submit">Search</button>
+        </div>
+    </form>
 </div>
+
+

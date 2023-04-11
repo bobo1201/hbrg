@@ -6,6 +6,8 @@ html {
 body {
     min-height: 100%;
 }
+
+
 .footer {
     position: absolute;
     left: 0;
@@ -21,3 +23,16 @@ body {
     margin-left:200px;
     margin-right:200px;
 }
+
+.navbar-form {
+        display: flex;
+        justify-content: center;
+    }
+
+    .navbar-form .form-group {
+        margin: 0 auto;
+    }
+
+    .navbar-form input[type=text] {
+        width: 300px;
+    }
