@@ -6,11 +6,11 @@ import lombok.Setter;
 @Getter
 @Setter
 public class Hbrg_UserDto {
-    private Long HbrgIdNum;
-    private String HbrgId;
-    private String HbrgPw;
-    private String HbrgEm;
-    private String HbrgNic;
-    private Long HbrgPh;
-    private String HbrgAd;
+    private Long UserId;
+    private String Id;
+    private String Pw;
+    private String Em;
+    private String Nic;
+    private Long Ph;
+    private String Ad;
 }
