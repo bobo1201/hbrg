@@ -12,7 +12,7 @@ public class Hbrg_BoardDto {
     private String id;
     private String title;
     private Long vC;
-    private Long like;
+    private Long bLike;
     private LocalDateTime cDate;
     private LocalDateTime uDate;
     private String txt;
