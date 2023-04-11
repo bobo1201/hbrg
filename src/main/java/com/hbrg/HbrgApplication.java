@@ -16,6 +16,6 @@ public class HbrgApplication {
 
 	@GetMapping(value = "/")
 	public String HelloWorld(){
-		return "머고이거";
+		return "Hello World";
 	}
 }

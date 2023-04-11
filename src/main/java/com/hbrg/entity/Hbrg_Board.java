@@ -17,7 +17,7 @@ public class Hbrg_Board {
     @Id
     @Column(name="boardId")
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long boardId; // 게시글 순서
+    private Long boardId; // 게시물 번호
 
 //    @OneToMany
     @JoinColumn(name="id")
@@ -30,8 +30,8 @@ public class Hbrg_Board {
     @Column(name="vC", nullable = false)
     private Long vC; // 조회수
 
-    @Column(name="bLike", nullable = false)
-    private Long bLike; // 좋아요
+    @Column(name="like", nullable = false)
+    private Long like; // 좋아요
 
     @Column(name="cDate")
     private LocalDateTime cDate; // 생성 날짜
@@ -41,5 +41,4 @@ public class Hbrg_Board {
 
     @Column(name="txt")
     private String txt;  // 본문
-
 }
