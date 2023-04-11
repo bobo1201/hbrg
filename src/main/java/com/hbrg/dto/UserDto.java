@@ -5,7 +5,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class Hbrg_UserDto {
+public class UserDto {
     private Long HbrgIdNum;
     private String HbrgId;
     private String HbrgPw;

@@ -11,15 +11,15 @@ import javax.persistence.*;
 @Getter
 @Setter
 @ToString
-public class Hbrg_User {
+public class User {
 
-    @Column(name="HbrgIdNum")
+    @Column(name="IdNum")
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long HbrgIdNum; // 아이디 순서
+    private Long IdNum; // 아이디 순서
 
     @Id
-    @Column(name="HbrgId", nullable = false)
-    private String HbrgId; // 로그인 ID
+    @Column(name="Id", nullable = false)
+    private String Id; // 로그인 ID
 
     @Column(name="HbrgPw", nullable = false)
     private String HbrgPw; // 로그인 PW
