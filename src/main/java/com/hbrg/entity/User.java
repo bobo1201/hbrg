@@ -13,6 +13,7 @@ import javax.persistence.*;
 @ToString
 public class User {
 
+<<<<<<< HEAD:src/main/java/com/hbrg/entity/User.java
     @Column(name="IdNum")
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long IdNum; // 아이디 순서
@@ -20,17 +21,28 @@ public class User {
     @Id
     @Column(name="Id", nullable = false)
     private String Id; // 로그인 ID
+=======
+    @Column(name="userId")
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long userId; // 아이디 순서
 
-    @Column(name="HbrgPw", nullable = false)
-    private String HbrgPw; // 로그인 PW
+    @Id
+    @Column(name="id", nullable = false)
+    private String id; // 로그인 ID
+>>>>>>> main:src/main/java/com/hbrg/entity/Hbrg_User.java
 
-    @Column(name="HbrgEm", nullable = false)
-    private String HbrgEm; // 회원가입 이메일
+    @Column(name="pw", nullable = false)
+    private String pw; // 로그인 PW
 
-    @Column(name="HbrgNic", nullable = false)
-    private String HbrgNic; // 회원가입 닉네임
+    @Column(name="em", nullable = false)
+    private String em; // 회원가입 이메일
 
-    private Long HbrgPh; // 회원가입 전화번호
+    @Column(name="nic", nullable = false)
+    private String nic; // 회원가입 닉네임
 
-    private String HbrgAd; // 회원가입 주소
+    @Column(name="ph")
+    private Long ph; // 회원가입 전화번호
+
+    @Column(name="ad")
+    private String ad; // 회원가입 주소
 }
