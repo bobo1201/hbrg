@@ -17,7 +17,7 @@ public class Hbrg_Board {
     @Id
     @Column(name="boardId")
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long boardId; // 게시글 순서
+    private Long boardId; // 게시물 번호
 
 //    @OneToMany
     @JoinColumn(name="id")
@@ -41,5 +41,4 @@ public class Hbrg_Board {
 
     @Column(name="txt")
     private String txt;  // 본문
-
 }
