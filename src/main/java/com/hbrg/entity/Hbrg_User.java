@@ -13,26 +13,26 @@ import javax.persistence.*;
 @ToString
 public class Hbrg_User {
 
-    @Column(name="UserId")
+    @Column(name="userId")
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long UserId; // 아이디 순서
+    private Long userId; // 아이디 순서
 
     @Id
-    @Column(name="Id", nullable = false)
-    private String Id; // 로그인 ID
+    @Column(name="id", nullable = false)
+    private String id; // 로그인 ID
 
-    @Column(name="Pw", nullable = false)
-    private String Pw; // 로그인 PW
+    @Column(name="pw", nullable = false)
+    private String pw; // 로그인 PW
 
-    @Column(name="Em", nullable = false)
-    private String Em; // 회원가입 이메일
+    @Column(name="em", nullable = false)
+    private String em; // 회원가입 이메일
 
-    @Column(name="Nic", nullable = false)
-    private String Nic; // 회원가입 닉네임
+    @Column(name="nic", nullable = false)
+    private String nic; // 회원가입 닉네임
 
-    @Column(name="Ph")
-    private Long Ph; // 회원가입 전화번호
+    @Column(name="ph")
+    private Long ph; // 회원가입 전화번호
 
-    @Column(name="Ad")
-    private String Ad; // 회원가입 주소
+    @Column(name="ad")
+    private String ad; // 회원가입 주소
 }

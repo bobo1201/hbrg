@@ -15,31 +15,31 @@ import java.time.LocalDateTime;
 public class Hbrg_Board {
 
     @Id
-    @Column(name="BoardId")
+    @Column(name="boardId")
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long BoardId; // 게시글 순서
+    private Long boardId; // 게시글 순서
 
 //    @OneToMany
-    @JoinColumn(name="Id")
-    @Column(name="Id", nullable = false)
-    private String Id; // 로그인 ID
+    @JoinColumn(name="id")
+    @Column(name="id", nullable = false)
+    private String id; // 로그인 ID
 
-    @Column(name="Title", nullable = false)
-    private String Title; // 주제
+    @Column(name="title", nullable = false)
+    private String title; // 주제
 
-    @Column(name="VC", nullable = false)
-    private Long VC; // 조회수
+    @Column(name="vC", nullable = false)
+    private Long vC; // 조회수
 
-    @Column(name="Like", nullable = false)
-    private Long Like; // 좋아요
+    @Column(name="like", nullable = false)
+    private Long like; // 좋아요
 
-    @Column(name="CDate")
-    private LocalDateTime CDate; // 생성 날짜
+    @Column(name="cDate")
+    private LocalDateTime cDate; // 생성 날짜
 
-    @Column(name="UDate")
-    private LocalDateTime UDate; // 수정 날짜
+    @Column(name="uDate")
+    private LocalDateTime uDate; // 수정 날짜
 
-    @Column(name="Txt")
-    private String Txt;  // 본문
+    @Column(name="txt")
+    private String txt;  // 본문
 
 }

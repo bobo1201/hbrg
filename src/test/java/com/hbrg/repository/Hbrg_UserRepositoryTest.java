@@ -17,7 +17,7 @@ class Hbrg_UserRepositoryTest {
     @DisplayName("테이블 연결 테스트")
     public void createUserTest(){
         Hbrg_User hbrg_user = new Hbrg_User();
-//        hbrg_user.setHbrgIdNum(1L);
+        hbrg_user.setUserId(1L);
         hbrg_user.setId("hbrg");
         hbrg_user.setPw("hbrg1234");
         hbrg_user.setEm("hbrg@naver.com");
