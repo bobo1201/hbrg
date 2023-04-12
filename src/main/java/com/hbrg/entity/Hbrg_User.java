@@ -21,6 +21,7 @@ public class Hbrg_User {
     @Column(name="id", nullable = false)
     private String id; // 로그인 ID
 
+
     @Column(name="pw", nullable = false)
     private String pw; // 로그인 PW
 
