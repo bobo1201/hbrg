@@ -13,4 +13,5 @@ public class Hbrg_UserDto {
     private String nic;
     private Long ph;
     private String ad;
+
 }
