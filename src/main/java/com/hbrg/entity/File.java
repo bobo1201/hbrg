@@ -7,11 +7,11 @@ import lombok.ToString;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "Hbrg_File")
+@Table(name = "File")
 @Getter
 @Setter
 @ToString
-public class Hbrg_File {
+public class File {
 
     @Id
     @Column(name="fileId")

@@ -6,7 +6,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 @RequestMapping(value="/Hbrg")
-public class Hbrg_BoardController {
+public class BoardController {
+
 
     @GetMapping(value = "/Board")
     public String Board() {

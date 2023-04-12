@@ -5,7 +5,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class Hbrg_TagDto {
+public class TagDto {
     private Long tagId;
     private String tagNm;
 }

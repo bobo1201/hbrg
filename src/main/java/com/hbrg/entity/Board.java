@@ -8,21 +8,17 @@ import javax.persistence.*;
 import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "Hbrg_Board")
+@Table(name = "Board")
 @Getter
 @Setter
 @ToString
-public class Hbrg_Board {
+public class Board {
 
     @Id
     @Column(name="boardId")
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long boardId; // 게시물 번호
-<<<<<<< HEAD
 
-=======
->>>>>>> origin/Jin
-    
 //    @OneToMany
     @JoinColumn(name="id")
     @Column(name="id", nullable = false)

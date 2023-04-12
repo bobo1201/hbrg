@@ -5,7 +5,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class Hbrg_FileDto {
+public class FileDto {
     private Long fileId;
     private String id;
     private Long boardId;
