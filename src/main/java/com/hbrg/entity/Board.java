@@ -9,11 +9,11 @@ import javax.persistence.*;
 import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "Hbrg_Board")
+@Table(name = "Board")
 @Getter
 @Setter
 @ToString
-public class Hbrg_Board {
+public class Board {
 
     @Id
     @Column(name="boardId")

@@ -20,7 +20,8 @@ import java.util.List;
 
 @Controller
 @RequestMapping(value="/Hbrg")
-public class Hbrg_BoardController {
+public class BoardController {
+
 
     public Hbrg_BoardController(Hbrg_BoardService hbrg_boardService) {
         this.Hbrg_BoardService = hbrg_boardService;
