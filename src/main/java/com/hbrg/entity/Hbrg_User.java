@@ -1,8 +1,11 @@
 package com.hbrg.entity;
 
+import com.hbrg.dto.Hbrg_UserFormDto;
+import com.hbrg.service.Hbrg_UserService;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 import javax.persistence.*;
 
@@ -36,4 +39,15 @@ public class Hbrg_User {
 
     @Column(name="ad")
     private String ad; // 회원가입 주소
+
+    public static Hbrg_User createHbrg_User(Hbrg_UserFormDto hbrg_userFormDto, PasswordEncoder passwordEncoder){
+        Hbrg_User hbrg_user = new Hbrg_User();
+        hbrg_user.setId(hbrg_userFormDto.getId());
+        hbrg_user.setEm(hbrg_userFormDto.getEm());
+        hbrg_user.setAd(hbrg_userFormDto.getAd());
+
+        String pw = passwordEncoder.encode(hbrg_userFormDto.getPw());
+        hbrg_user.setPw(pw);
+        return hbrg_user;
+    }
 }

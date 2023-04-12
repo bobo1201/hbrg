@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import javax.validation.Valid;
 
-@RequestMapping("/users")
+@RequestMapping("/user")
 @Controller
 @RequiredArgsConstructor
 public class UserController {
@@ -21,27 +21,36 @@ public class UserController {
     private final Hbrg_UserService hbrg_userService;
     private final PasswordEncoder passwordEncoder;
 
-    @GetMapping("/users/new")
+    @GetMapping("/new")
     public String newUserForm(Model model) {
-        Hbrg_UserFormDto hbrg_userFormDto = new Hbrg_UserFormDto();
-        model.addAttribute("hbrg_userFormDto", hbrg_userFormDto);
-        return "user/userForm";
+        model.addAttribute("hbrg_userFormDto", new Hbrg_UserFormDto());
+        return "users/userForm";
     }
 
     @PostMapping(value="/new")
     public String newUser(@Valid Hbrg_UserFormDto hbrg_userFormDto, BindingResult bindingResult, Model model){
         if(bindingResult.hasErrors()){
-            return "user/userForm";
+            return "users/userForm";
         }
 
         try{
             Hbrg_User hbrg_user = Hbrg_User.createHbrg_User(hbrg_userFormDto, passwordEncoder);
+            hbrg_userService.saveHbrg_User(hbrg_user);
         }catch(IllegalStateException e){
             model.addAttribute("errorMessage", e.getMessage());
-            return "user/userForm";
         }
 
         return "redirect:/";
     }
 
+    @GetMapping(value="/login")
+    public  String loginHbrg_User() {
+        return "/users/userLoginForm";
+    }
+
+    @GetMapping(value="/login/error")
+    public String loginError(Model model){
+        model.addAttribute("loginErrorMsg", "아이디 또는 비밀번호를 확인해 주세요.");
+        return "/users/userLoginForm";
+    }
 }

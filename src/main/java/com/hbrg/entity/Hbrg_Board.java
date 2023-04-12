@@ -18,11 +18,7 @@ public class Hbrg_Board {
     @Column(name="boardId")
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long boardId; // 게시물 번호
-<<<<<<< HEAD
 
-=======
->>>>>>> origin/Jin
-    
 //    @OneToMany
     @JoinColumn(name="id")
     @Column(name="id", nullable = false)
