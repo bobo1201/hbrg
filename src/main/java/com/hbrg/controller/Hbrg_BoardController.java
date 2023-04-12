@@ -2,6 +2,7 @@ package com.hbrg.controller;
 
 import com.hbrg.dto.Hbrg_BoardDto;
 import com.hbrg.entity.Hbrg_Board;
+import com.hbrg.repository.Hbrg_BoardRepository;
 import com.hbrg.service.Hbrg_BoardService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -14,6 +15,9 @@ import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
+import javax.validation.constraints.Negative;
+import java.util.List;
+
 @Controller
 @RequestMapping(value="/Hbrg")
 public class Hbrg_BoardController {
@@ -24,6 +28,16 @@ public class Hbrg_BoardController {
 
     @Autowired
     private Hbrg_BoardService Hbrg_BoardService;
+
+    @Autowired
+    private Hbrg_BoardRepository hbrg_boardRepository;
+
+    @GetMapping(value = "")
+    public String getBoardList(Model model) {
+        List<Hbrg_Board> hbrg_boardList = hbrg_boardRepository.findAll();
+        model.addAttribute("hbrg_boardList", hbrg_boardList);
+        return "main";
+    }
 
     @GetMapping("/list")
     public String list(Model model, @RequestParam(value="page", defaultValue="0") int page) {
