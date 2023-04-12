@@ -1,5 +1,6 @@
 package com.hbrg.entity;
 
+import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -41,4 +42,12 @@ public class Hbrg_Board {
 
     @Column(name="txt")
     private String txt;  // 본문
+
+    @Builder
+    public Hbrg_Board(String id, String title, String txt) {
+        this.id = id;
+        this.title = title;
+        this.txt = txt;
+    }
 }
+

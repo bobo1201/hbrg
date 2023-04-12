@@ -26,6 +26,7 @@
 
     <!-- 테이블 부분 -->
         <div class="table-responsive" style="margin-top: 50px;">
+            <button class="btn btn-primary float-right">글쓰기</button>
             <table class="table table-striped">
                 <thead>
                 <tr>
@@ -63,6 +64,22 @@
                         </div>
                     </th>
                 </tr>
+               <!-- <tr class="text-center" th:each="post : ${postList}">
+                    <th scope="row">
+                        <span th:text="${post.id}"></span>
+                    </th>
+                    <td>
+                        <a th:href="@{'/post/' + ${post.id}}">
+                            <span th:text="${post.title}"></span>
+                        </a>
+                    </td>
+                    <td>
+                        <span th:text="${post.author}"></span>
+                    </td>
+                    <td>
+                        <span th:text="${#temporals.format(post.createdDate, 'yyyy-MM-dd HH:mm')}"></span>
+                    </td>
+                </tr>-->
                 </thead>
                 <tbody>
                 <tr>
@@ -89,9 +106,30 @@
                 </tbody>
             </table>
         </div>
+        <div class="pagination justify-content-center" style="margin-top: 100px;">
+            <nav aria-label="Page navigation example">
+                <ul class="pagination">
+                    <li class="page-item disabled">
+                        <a class="page-link" href="#" tabindex="-1">이전</a>
+                    </li>
+                    <li class="page-item"><a class="page-link" href="#">1</a></li>
+                    <li class="page-item"><a class="page-link" href="#">2</a></li>
+                    <li class="page-item"><a class="page-link" href="#">3</a></li>
+                    <li class="page-item"><a class="page-link" href="#">4</a></li>
+                    <li class="page-item"><a class="page-link" href="#">5</a></li>
+                    <li class="page-item"><a class="page-link" href="#">6</a></li>
+                    <li class="page-item"><a class="page-link" href="#">7</a></li>
+                    <li class="page-item"><a class="page-link" href="#">8</a></li>
+                    <li class="page-item">
+                        <a class="page-link" href="#">다음</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
 
 
 
     </div>
+</div>
 </html>
 
