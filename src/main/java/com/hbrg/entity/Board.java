@@ -40,14 +40,14 @@ public class Board {
     @Column(name="uDate")
     private LocalDateTime uDate; // 수정 날짜
 
-    @Column(name="txt")
-    private String txt;  // 본문
+    @Column(name="content")
+    private String content;  // 본문
 
     @Builder
-    public Hbrg_Board(String id, String title, String txt) {
+    public Board(String id, String title, String content) {
         this.id = id;
         this.title = title;
-        this.txt = txt;
+        this.content = content;
     }
 }
 

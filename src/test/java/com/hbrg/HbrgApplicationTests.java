@@ -1,6 +1,6 @@
 package com.hbrg;
 
-import com.hbrg.service.Hbrg_BoardService;
+import com.hbrg.service.BoardService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -11,7 +11,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 class HbrgApplicationTests {
 
     @Autowired
-    private Hbrg_BoardService hbrg_boardService;
+    private BoardService hbrg_boardService;
 
     @Test
     void testJpa() {

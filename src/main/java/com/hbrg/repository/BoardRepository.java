@@ -1,6 +1,6 @@
 package com.hbrg.repository;
 
-import com.hbrg.entity.Hbrg_Board;
+import com.hbrg.entity.Board;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -10,12 +10,12 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface Hbrg_BoardRepository extends JpaRepository<Hbrg_Board, Long> {
+public interface BoardRepository extends JpaRepository<Board, Long> {
 
-    Hbrg_Board findByTitle(String title);
-    Hbrg_Board findByTitleAndTxt(String title, String Txt);
-    List<Hbrg_Board> findByTitleLike(String title);
+    Board findByTitle(String title);
+    Board findByTitleAndContent(String title, String Content);
+    List<Board> findByTitleLike(String title);
 
-    Page<Hbrg_Board> findAll(Pageable pageable);
+    Page<Board> findAll(Pageable pageable);
 
 }

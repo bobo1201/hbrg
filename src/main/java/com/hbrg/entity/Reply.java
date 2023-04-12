@@ -31,6 +31,6 @@ public class Reply {
     @Column(name="reCDate")
     private LocalDateTime reCDate; // 댓글 생성 날짜
 
-    @Column(name="reTxt")
-    private String reTxt; // 댓글 내용
+    @Column(name="reContent")
+    private String reContent; // 댓글 내용
 }

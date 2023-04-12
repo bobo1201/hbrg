@@ -31,6 +31,6 @@ public class ReReply {
     @Column(name="reReCDate")
     private LocalDateTime reReCDate; // 대댓글 생성 날짜
 
-    @Column(name="reReTxt")
-    private String reReTxt; // 대댓글 내용
+    @Column(name="reReContent")
+    private String reReContent; // 대댓글 내용
 }

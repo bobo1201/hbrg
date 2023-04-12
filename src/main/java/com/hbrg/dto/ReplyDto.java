@@ -12,5 +12,5 @@ public class ReplyDto {
     private Long boardId;
     private String id;
     private LocalDateTime reCDate;
-    private String reTxt;
+    private String reContent;
 }
