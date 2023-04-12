@@ -7,11 +7,11 @@ import lombok.ToString;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "Hbrg_Tag")
+@Table(name = "Tag")
 @Getter
 @Setter
 @ToString
-public class Hbrg_Tag {
+public class Tag {
 
     @Id
     @Column(name="tagId")

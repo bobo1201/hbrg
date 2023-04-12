@@ -12,11 +12,11 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "Hbrg_User")
+@Table(name = "HUser")
 @Getter
 @Setter
 @ToString
-public class Hbrg_User {
+public class HUser {
 
 //    @Column(name="userId")
 //    @GeneratedValue(strategy = GenerationType.AUTO)
