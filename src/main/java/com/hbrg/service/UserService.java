@@ -1,7 +1,7 @@
 package com.hbrg.service;
 
-import com.hbrg.entity.Hbrg_User;
-import com.hbrg.repository.Hbrg_UserRepository;
+import com.hbrg.entity.HUser;
+import com.hbrg.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -13,34 +13,34 @@ import org.springframework.transaction.annotation.Transactional;
 @Service
 @Transactional
 @RequiredArgsConstructor
-public class Hbrg_UserService implements UserDetailsService {
+public class UserService implements UserDetailsService {
 
-    private final Hbrg_UserRepository hbrg_UserRepository;
+    private final UserRepository userRepository;
 
-    public Hbrg_User saveHbrg_User(Hbrg_User hbrg_User){
-        validateDuplicateHbrg_User(hbrg_User);
-        return hbrg_UserRepository.save(hbrg_User);
+    public HUser saveHUser(HUser hUser){
+        validateDuplicateHUser(hUser);
+        return userRepository.save(hUser);
     }
 
     //이미 가입된 회원 이메일로 검사
-    private void validateDuplicateHbrg_User(Hbrg_User hbrg_User){
-        Hbrg_User findHbrg_User = hbrg_UserRepository.findById(hbrg_User.getId());
-        if (findHbrg_User != null){
+    private void validateDuplicateHUser(HUser hUser){
+        HUser findhUser = userRepository.findById(hUser.getId());
+        if (findhUser != null){
             throw new IllegalStateException("이미 가입된 회원입니다.");
         }
     }
 
     @Override
     public UserDetails loadUserByUsername(String id) throws UsernameNotFoundException{
-        Hbrg_User hbrg_user = hbrg_UserRepository.findById(id);
-        if(hbrg_user==null){
+        HUser hUser = userRepository.findById(id);
+        if(hUser==null){
             throw new UsernameNotFoundException(id);
         }
 
         return User.builder()
-                .username(hbrg_user.getId())
-                .password(hbrg_user.getPw())
-                .roles(hbrg_user.getRole().toString())
+                .username(hUser.getId())
+                .password(hUser.getPw())
+                .roles(hUser.getRole().toString())
                 .build();
     }
 }

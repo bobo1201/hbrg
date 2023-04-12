@@ -11,6 +11,6 @@ public class BoardController {
 
     @GetMapping(value = "/Board")
     public String Board() {
-        return "Board/Txt";
+        return "Content";
     }
 }

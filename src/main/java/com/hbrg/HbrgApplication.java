@@ -13,5 +13,4 @@ public class HbrgApplication {
 		SpringApplication.run(HbrgApplication.class, args);
 	}
 
-
 }

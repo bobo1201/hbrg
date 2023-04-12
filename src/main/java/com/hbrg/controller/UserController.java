@@ -1,8 +1,8 @@
 package com.hbrg.controller;
 
-import com.hbrg.dto.Hbrg_UserFormDto;
-import com.hbrg.entity.Hbrg_User;
-import com.hbrg.service.Hbrg_UserService;
+import com.hbrg.dto.UserFormDto;
+import com.hbrg.entity.HUser;
+import com.hbrg.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -18,43 +18,42 @@ import javax.validation.Valid;
 @RequiredArgsConstructor
 public class UserController {
 
-    private final Hbrg_UserService hbrg_userService;
+    private final UserService userService;
     private final PasswordEncoder passwordEncoder;
 
     @GetMapping("/new")
-    public String newUserForm(Model model) {
-        model.addAttribute("hbrg_userFormDto", new Hbrg_UserFormDto());
+    public String userForm(Model model) {
+        model.addAttribute("userFormDto", new UserFormDto());
         return "users/userForm";
     }
 
 //    @PostMapping(value="/new")
-//    public String newHbrg_User(Hbrg_UserFormDto hbrg_userFormDto){
+//    public String newHbrg_User(UserFormDto userFormDto){
 //
-//        Hbrg_User hbrg_user = Hbrg_User.createHbrg_User(hbrg_userFormDto, passwordEncoder);
+//        UserFormDto userFormDto = UserFormDto.createHUser(userFormDto, passwordEncoder);
 //        hbrg_userService.saveHbrg_User(hbrg_user);
 //
 //        return "redirect:/";
 //    }
 
     @PostMapping(value="/new")
-    public String newUser(@Valid Hbrg_UserFormDto hbrg_userFormDto, BindingResult bindingResult, Model model){
+    public String newUser(@Valid UserFormDto userFormDto, BindingResult bindingResult, Model model){
         if(bindingResult.hasErrors()){
             return "users/userForm";
         }
 
         try{
-            Hbrg_User hbrg_user = Hbrg_User.createHbrg_User(hbrg_userFormDto, passwordEncoder);
-            hbrg_userService.saveHbrg_User(hbrg_user);
+            HUser hUser = HUser.createHUser(userFormDto, passwordEncoder);
+            userService.saveHUser(hUser);
         }catch(IllegalStateException e){
             model.addAttribute("errorMessage", e.getMessage());
-            return "users/userForm";
         }
 
         return "redirect:/";
     }
 
     @GetMapping(value="/login")
-    public  String loginHbrg_User() {
+    public  String loginHUser() {
         return "/users/userLoginForm";
     }
 

@@ -10,7 +10,7 @@ import javax.validation.constraints.NotEmpty;
 
 @Getter
 @Setter
-public class Hbrg_UserFormDto {
+public class UserFormDto {
 
     @NotBlank(message="아이디는 필수 입력 값 입니다.")
     private  String id;
@@ -28,7 +28,6 @@ public class Hbrg_UserFormDto {
 
     @NotEmpty(message = "주소는 필수 입력 값입니다.")
     private String ad;
-
-
+    
     private Long ph;
 }

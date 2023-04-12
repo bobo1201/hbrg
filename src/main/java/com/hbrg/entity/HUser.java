@@ -1,8 +1,7 @@
 package com.hbrg.entity;
 
 import com.hbrg.constant.Role;
-import com.hbrg.dto.Hbrg_UserFormDto;
-import com.hbrg.service.Hbrg_UserService;
+import com.hbrg.dto.UserFormDto;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -26,7 +25,6 @@ public class HUser {
     @Column(name="id", nullable = false)
     private String id; // 로그인 ID
 
-
     @Column(name="pw", nullable = false)
     private String pw; // 로그인 PW
 
@@ -45,20 +43,20 @@ public class HUser {
     @Enumerated(EnumType.STRING)
     private Role role;
 
-    public static Hbrg_User createHbrg_User (Hbrg_UserFormDto hbrg_userFormDto, PasswordEncoder passwordEncoder){
-        Hbrg_User hbrg_user = new Hbrg_User();
-        hbrg_user.setId(hbrg_userFormDto.getId());
-        hbrg_user.setPw(hbrg_userFormDto.getPw());
-        hbrg_user.setEm(hbrg_userFormDto.getEm());
-        hbrg_user.setNic(hbrg_userFormDto.getNic());
-        hbrg_user.setPh(hbrg_userFormDto.getPh());
-        hbrg_user.setAd(hbrg_userFormDto.getAd());
-        hbrg_user.setRole(Role.USER);
+    public static HUser createHUser (UserFormDto userFormDto, PasswordEncoder passwordEncoder){
+        HUser hUser = new HUser();
+        hUser.setId(userFormDto.getId());
+        hUser.setPw(userFormDto.getPw());
+        hUser.setEm(userFormDto.getEm());
+        hUser.setNic(userFormDto.getNic());
+        hUser.setPh(userFormDto.getPh());
+        hUser.setAd(userFormDto.getAd());
+        hUser.setRole(Role.USER);
 
         //SecurityConfig의 BCryptPasswordEncoder Bean을 파라미터로 넘겨서 비밀번호 암호화
-        String Password = passwordEncoder.encode(hbrg_userFormDto.getPw());
-        hbrg_user.setPw(Password);
+        String Password = passwordEncoder.encode(userFormDto.getPw());
+        hUser.setPw(Password);
 
-        return hbrg_user;
+        return hUser;
     }
 }
