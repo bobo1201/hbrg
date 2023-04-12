@@ -8,8 +8,5 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping(value="/Hbrg")
 public class Hbrg_BoardController {
 
-    @GetMapping(value = "/Board")
-    public String Board() {
-        return "Board/Txt";
-    }
+
 }
