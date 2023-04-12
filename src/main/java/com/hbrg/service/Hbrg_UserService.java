@@ -38,8 +38,9 @@ public class Hbrg_UserService implements UserDetailsService {
         }
 
         return User.builder()
-                .username(hbrg_user.getEm())
+                .username(hbrg_user.getId())
                 .password(hbrg_user.getPw())
+                .roles(hbrg_user.getRole().toString())
                 .build();
     }
 }

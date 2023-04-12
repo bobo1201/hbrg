@@ -27,6 +27,15 @@ public class UserController {
         return "users/userForm";
     }
 
+//    @PostMapping(value="/new")
+//    public String newHbrg_User(Hbrg_UserFormDto hbrg_userFormDto){
+//
+//        Hbrg_User hbrg_user = Hbrg_User.createHbrg_User(hbrg_userFormDto, passwordEncoder);
+//        hbrg_userService.saveHbrg_User(hbrg_user);
+//
+//        return "redirect:/";
+//    }
+
     @PostMapping(value="/new")
     public String newUser(@Valid Hbrg_UserFormDto hbrg_userFormDto, BindingResult bindingResult, Model model){
         if(bindingResult.hasErrors()){
@@ -38,6 +47,7 @@ public class UserController {
             hbrg_userService.saveHbrg_User(hbrg_user);
         }catch(IllegalStateException e){
             model.addAttribute("errorMessage", e.getMessage());
+            return "users/userForm";
         }
 
         return "redirect:/";
