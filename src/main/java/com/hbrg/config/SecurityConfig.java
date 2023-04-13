@@ -1,4 +1,4 @@
-package com.hbrg.confing;
+package com.hbrg.config;
 
 import com.hbrg.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
