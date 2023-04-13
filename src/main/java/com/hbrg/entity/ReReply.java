@@ -8,11 +8,11 @@ import javax.persistence.*;
 import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "Hbrg_ReReply")
+@Table(name = "ReReply")
 @Getter
 @Setter
 @ToString
-public class Hbrg_ReReply {
+public class ReReply {
 
     @Id
     @Column(name="reReId")

@@ -7,11 +7,11 @@ import lombok.ToString;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "Hbrg_User")
+@Table(name = "HUser")
 @Getter
 @Setter
 @ToString
-public class Hbrg_User {
+public class HUser {
 
     @Column(name="userId")
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -20,6 +20,7 @@ public class Hbrg_User {
     @Id
     @Column(name="id", nullable = false)
     private String id; // 로그인 ID
+
 
     @Column(name="pw", nullable = false)
     private String pw; // 로그인 PW

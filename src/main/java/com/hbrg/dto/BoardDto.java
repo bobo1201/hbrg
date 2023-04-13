@@ -1,7 +1,9 @@
 package com.hbrg.dto;
 
+import com.hbrg.entity.Hbrg_Board;
 import lombok.Getter;
 import lombok.Setter;
+import org.modelmapper.ModelMapper;
 
 import java.time.LocalDateTime;
 
@@ -16,4 +18,5 @@ public class Hbrg_BoardDto {
     private LocalDateTime cDate;
     private LocalDateTime uDate;
     private String txt;
+
 }

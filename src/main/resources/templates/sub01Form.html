@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+layout:decorate="~{layouts/layout1}">
+<div layout:fragment="content">
+  <h1>링크 이동</h1>
+
+  <div>
+    <button type="button" onclick="location.href='/list'">메인페이지 이동</button>
+    <a th:href="@{/list}"> 메인페이지 이동</a>
+  </div>
+  <table border="1">
+    <thead>
+    <tr>
+      <td>게시물순서</td>
+      <td>사용자명</td>
+      <td>제목</td>
+      <td>본문</td>
+      <td>조회수</td>
+      <td>좋아요</td>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="boardDto, status: ${boardList}">
+      <td th:text="${boardDto.boardId}"></td>
+      <td th:text="${boardDto.id}"></td>
+      <td th:text="${boardDto.title}"></td>
+      <td th:text="${boardDto.txt}"></td>
+      <td th:text="${boardDto.vC}"></td>
+      <td th:text="${boardDto.bLike}"></td>
+    </tr>
+    </tbody>
+  </table>
+
+</div>
+</html>
