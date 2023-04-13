@@ -1,11 +1,15 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layouts/layout1}">
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/layout1}">
 <head>
     <meta charset="UTF-8" />
     <title>게시판 - 글쓰기</title>
-    <link rel="stylesheet" href="/webjars/bootstrap/4.5.0/css/bootstrap.min.css" />
+    <link rel=stylesheet"stylesheet" href="/webjars/bootstrap/4.5.0/css/bootstrap.min.css" />
+
     <style>
         .form-container {
+            background-color: white;
             border: 1px solid #ccc;
             padding: 20px;
             border-radius: 5px;
@@ -36,10 +40,28 @@
         .btn-remove {
             cursor: pointer;
         }
+
+     body {
+        background-image: url("/img/bg.jpg");
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center center;
+        }
+        .bg-img {
+            width: 100%;
+            height: auto;
+        }
+        .table-container {
+        display: flex;
+        justify-content: center;
+        }
     </style>
+
 </head>
 <body>
 <header th:insert="fragments/header.html"></header>
+
+<img src="/img/bg.jpg" alt="background image" class="bg-img">
 
 <div layout:fragment="content">
     <div class="container">
@@ -67,7 +89,9 @@
                             <div class="file-container">
                                 <input type="text" name="file-path" class="form-control file-path" id="inputFile" readonly />
                                 <button type="button" class="btn btn-primary btn-file">파일 첨부</button>
+
                                 <button type="button" class="btn btn-danger btn-remove">-</button>
+                                <button type="button" class="btn btn-primary btn-add">+</button>
                             </div>
                         </div>
                         <div class="form-group text-center">

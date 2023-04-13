@@ -3,118 +3,131 @@
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="~{layouts/layout1}">
 
+<head>
+
+</head>
+<body>
+<img src="/img/bg.jpg" alt="background image" class="bg-img">
+
+
     <!-- 검색창 부분 -->
-    <div layout:fragment="content" class="text-center" style="margin-top: 50px;">
-        <form class="form-inline justify-content-center">
-            <div class="input-group">
-                <div class="input-group-prepend">
-                    <button class="btn btn-outline-secondary dropdown-toggle" type="button"
-                            id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        정렬</button>
-                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                        <a class="dropdown-item" href="#">제목</a>
-                        <a class="dropdown-item" href="#">본문</a>
+    <div layout:fragment="content" class="text-center" style="margin-top: 100px;">
+            <form class="form-inline justify-content-center">
+
+                    <div class="input-group">
+                    <div class="input-group-prepend">
+                        <button class="btn btn-outline-secondary dropdown-toggle" type="button"
+                                id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            정렬</button>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                            <a class="dropdown-item" href="#">제목</a>
+                            <a class="dropdown-item" href="#">본문</a>
+                        </div>
+                    </div>
+                    <input name="searchQuery" class="form-control mr-sm-2"
+                           type="search" placeholder="검색어를 입력하세요." aria-label="Search"
+                           style="width: 450px;">
+                    <button class="btn btn-outline-success my-2 my-sm-0"
+                            type="submit">검색</button>
+                </div>
+            </form>
+
+        <!-- 테이블 부분 -->
+        <div class="table-container">
+            <div class="row justify-content-center">
+                <div class="col-md-8">
+                    <div class="table-responsive" style="margin-top: 50px;">
+                        <button class="btn btn-primary float-right">글쓰기</button>
+                        <table class="table table-striped">
+                            <thead>
+                            <tr>
+                                <th>
+                                    <div class="dropdown">
+                                        <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenuButton1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            번호
+                                        </button>
+                                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                            <a class="dropdown-item" href="#">오름차순</a>
+                                            <a class="dropdown-item" href="#">내림차순</a>
+                                        </div>
+                                    </div>
+                                </th>
+                                <th><div class="dropdown">
+                                    <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenuButton2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        제목
+                                    </button>
+                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton2">
+                                        <a class="dropdown-item" href="#">오름차순</a>
+                                        <a class="dropdown-item" href="#">내림차순</a>
+                                    </div>
+                                </div></th>
+                                <th>조회수</th>
+                                <th>좋아요</th>
+                                <th>
+                                    <div class="dropdown">
+                                        <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenuButton3" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            생성일
+                                        </button>
+                                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton3">
+                                            <a class="dropdown-item" href="#">오름차순</a>
+                                            <a class="dropdown-item" href="#">내림차순</a>
+                                        </div>
+                                    </div>
+                                </th>
+                            </tr>
+
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <td>1</td>
+                                <td>테스트 제목1</td>
+                                <td>10</td>
+                                <td>5</td>
+                                <td>2022-04-01</td>
+                            </tr>
+                            <tr>
+                                <td>2</td>
+                                <td>테스트 제목2</td>
+                                <td>15</td>
+                                <td>3</td>
+                                <td>2022-04-02</td>
+                            </tr>
+                            <tr>
+                                <td>3</td>
+                                <td>테스트 제목3</td>
+                                <td>20</td>
+                                <td>7</td>
+                                <td>2022-04-03</td>
+                            </tr>
+                            </tbody>
+                        </table>
                     </div>
                 </div>
-                <input name="searchQuery" class="form-control mr-sm-2"
-                       type="search" placeholder="검색어를 입력하세요." aria-label="Search"
-                       style="width: 450px;">
-                <button class="btn btn-outline-success my-2 my-sm-0"
-                        type="submit">검색</button>
+                <!-- 페이지 버튼 -->
+                    <div class="pagination justify-content-center" style="margin-top: 100px;">
+                        <nav aria-label="Page navigation example">
+                            <ul class="pagination">
+                                <li class="page-item disabled">
+                                    <a class="page-link" href="#" tabindex="-1">이전</a>
+                                </li>
+                                <li class="page-item"><a class="page-link" href="#">1</a></li>
+                                <li class="page-item"><a class="page-link" href="#">2</a></li>
+                                <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                <li class="page-item"><a class="page-link" href="#">4</a></li>
+                                <li class="page-item"><a class="page-link" href="#">5</a></li>
+                                <li class="page-item"><a class="page-link" href="#">6</a></li>
+                                <li class="page-item"><a class="page-link" href="#">7</a></li>
+                                <li class="page-item"><a class="page-link" href="#">8</a></li>
+                                <li class="page-item">
+                                    <a class="page-link" href="#">다음</a>
+                                </li>
+                            </ul>
+                        </nav>
+                    </div>
+
             </div>
-        </form>
-
-    <!-- 테이블 부분 -->
-        <div class="table-responsive" style="margin-top: 50px;">
-            <button class="btn btn-primary float-right">글쓰기</button>
-            <table class="table table-striped">
-                <thead>
-                <tr>
-                    <th>
-                        <div class="dropdown">
-                            <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenuButton1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                번호
-                            </button>
-                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                                <a class="dropdown-item" href="#">오름차순</a>
-                                <a class="dropdown-item" href="#">내림차순</a>
-                            </div>
-                        </div>
-                    </th>
-                    <th><div class="dropdown">
-                        <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenuButton2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            제목
-                        </button>
-                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton2">
-                            <a class="dropdown-item" href="#">오름차순</a>
-                            <a class="dropdown-item" href="#">내림차순</a>
-                        </div>
-                    </div></th>
-                    <th>조회수</th>
-                    <th>좋아요</th>
-                    <th>
-                        <div class="dropdown">
-                            <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenuButton3" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                생성일
-                            </button>
-                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton3">
-                                <a class="dropdown-item" href="#">오름차순</a>
-                                <a class="dropdown-item" href="#">내림차순</a>
-                            </div>
-                        </div>
-                    </th>
-                </tr>
-
-                </thead>
-                <tbody>
-                <tr>
-                    <td>1</td>
-                    <td>테스트 제목1</td>
-                    <td>10</td>
-                    <td>5</td>
-                    <td>2022-04-01</td>
-                </tr>
-                <tr>
-                    <td>2</td>
-                    <td>테스트 제목2</td>
-                    <td>15</td>
-                    <td>3</td>
-                    <td>2022-04-02</td>
-                </tr>
-                <tr>
-                    <td>3</td>
-                    <td>테스트 제목3</td>
-                    <td>20</td>
-                    <td>7</td>
-                    <td>2022-04-03</td>
-                </tr>
-                </tbody>
-            </table>
         </div>
-        <div class="pagination justify-content-center" style="margin-top: 100px;">
-            <nav aria-label="Page navigation example">
-                <ul class="pagination">
-                    <li class="page-item disabled">
-                        <a class="page-link" href="#" tabindex="-1">이전</a>
-                    </li>
-                    <li class="page-item"><a class="page-link" href="#">1</a></li>
-                    <li class="page-item"><a class="page-link" href="#">2</a></li>
-                    <li class="page-item"><a class="page-link" href="#">3</a></li>
-                    <li class="page-item"><a class="page-link" href="#">4</a></li>
-                    <li class="page-item"><a class="page-link" href="#">5</a></li>
-                    <li class="page-item"><a class="page-link" href="#">6</a></li>
-                    <li class="page-item"><a class="page-link" href="#">7</a></li>
-                    <li class="page-item"><a class="page-link" href="#">8</a></li>
-                    <li class="page-item">
-                        <a class="page-link" href="#">다음</a>
-                    </li>
-                </ul>
-            </nav>
-        </div>
-
-
-
     </div>
-</div>
+</body>
 </html>
 
