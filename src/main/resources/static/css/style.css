@@ -1,0 +1,76 @@
+/* content.html css 부분*/
+
+.form-container {
+            background-color: white;
+            border: 1px solid #ccc;
+            padding: 20px;
+            border-radius: 5px;
+            margin-top: 50px;
+        }
+        .hashtag-container {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 10px;
+        }
+        .hashtag-input {
+            width: 150px;
+        }
+        .file-container {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-top: 10px;
+        }
+        .file-path {
+            flex: 1;
+            margin-right: 10px;
+        }
+        .btn-add {
+            cursor: pointer;
+        }
+        .btn-remove {
+            cursor: pointer;
+        }
+
+     body {
+        background-image: url("/img/bg.jpg");
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center center;
+        }
+        .bg-img {
+            width: 100%;
+            height: auto;
+        }
+        .table-container {
+        display: flex;
+        justify-content: center;
+        }
+
+
+
+/* main.html css 부분 */
+
+.table-striped tbody tr:nth-of-type(even) {
+    background-color: white;
+}
+.table {
+    background-color: white;
+}
+
+
+ body {
+        background-image: url("/img/bg.jpg");
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center center;
+        }
+        .bg-img {
+            width: 100%;
+            height: auto;
+        }
+        .table-container {
+        display: flex;
+        justify-content: center;
+        }
