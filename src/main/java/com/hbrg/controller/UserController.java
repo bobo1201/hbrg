@@ -27,15 +27,6 @@ public class UserController {
         return "users/userForm";
     }
 
-//    @PostMapping(value="/new")
-//    public String newUser(UserFormDto userFormDto){
-//
-//        UserFormDto userFormDto = UserFormDto.createHUser(userFormDto, passwordEncoder);
-//        userService.saveHUser(user);
-//
-//        return "redirect:/";
-//    }
-
     @PostMapping(value="/new")
     public String newUser(@Valid UserFormDto userFormDto, BindingResult bindingResult, Model model){
         if(bindingResult.hasErrors()){
@@ -54,12 +45,12 @@ public class UserController {
 
     @GetMapping(value="/login")
     public  String loginHUser() {
-        return "/users/userLoginForm";
+        return "users/userLoginForm";
     }
 
     @GetMapping(value="/login/error")
     public String loginError(Model model){
         model.addAttribute("loginErrorMsg", "아이디 또는 비밀번호를 확인해 주세요.");
-        return "/users/userLoginForm";
+        return "users/userLoginForm";
     }
 }
