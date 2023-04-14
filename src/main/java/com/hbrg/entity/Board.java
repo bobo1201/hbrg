@@ -1,13 +1,13 @@
 package com.hbrg.entity;
 
-import lombok.*;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
-import java.util.List;
 
-@NoArgsConstructor
-@AllArgsConstructor
 @Entity
 @Table(name = "Board")
 @Getter
@@ -17,27 +17,22 @@ public class Board {
 
     @Id
     @Column(name="boardId")
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long boardId; // 게시물 번호
 
-//    @OneToMany
+    //    @OneToMany
     @JoinColumn(name="id")
-    @ManyToOne(fetch = FetchType.LAZY)
+    @Column(name="id", nullable = false)
     private String id; // 로그인 ID
 
-    @Column(length = 500, nullable = false)
+    @Column(name="title", nullable = false)
     private String title; // 주제
 
-    @Column(columnDefinition = "TEXT", nullable = false)
-    private String content;  // 본문
-
-    @Column(columnDefinition = "integer default 0")
+    @Column(name="vC", nullable = false)
     private Long vC; // 조회수
 
-
+    @Column(name="bLike", nullable = false)
     private Long bLike; // 좋아요
-
-    private String writer; // 작성자
 
     @Column(name="cDate")
     private LocalDateTime cDate; // 생성 날짜
@@ -45,9 +40,8 @@ public class Board {
     @Column(name="uDate")
     private LocalDateTime uDate; // 수정 날짜
 
-    @OneToMany(mappedBy = "Board", fetch=FetchType.EAGER, cascade = CascadeType.REMOVE)
-    @OrderBy("boardId asc") // 댓글 정렬
-    private List<Reply> reply;
+    @Column(name="content")
+    private String content;  // 본문
 
     @Builder
     public Board(String id, String title, String content) {
@@ -56,4 +50,3 @@ public class Board {
         this.content = content;
     }
 }
-
