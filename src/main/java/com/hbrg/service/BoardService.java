@@ -1,8 +1,11 @@
 package com.hbrg.service;
 
 import com.hbrg.dto.BoardDto;
+import com.hbrg.dto.BoardFormDto;
 import com.hbrg.entity.Board;
+import com.hbrg.entity.HFile;
 import com.hbrg.repository.BoardRepository;
+import com.hbrg.repository.FileRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -10,6 +13,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,50 +23,54 @@ import java.util.List;
 @RequiredArgsConstructor
 public class BoardService {
 
-    @Autowired
-    private BoardRepository boardRepository;
-
-    /* Paging */
-//    public Page<Board> getList(int page) {
-//        Pageable pageable = PageRequest.of(page, 10);
-//        return this.boardRepository.findAll(pageable);
-//    }
-
-   /* public void create(String title, String content) {
-        Board hb = new Board();
-        hb.setTitle(title);
-        hb.setContent(content);
-        this.boardRepository.save(hb);
-    }*/
+    private final BoardRepository boardRepository;
+    private final FileAddService fileAddService;
+    private final FileRepository fileRepository;
 
 
+    public Long saveBoard(BoardFormDto boardFormDto, List<MultipartFile> fileList) throws Exception{
 
-//    public BoardService(BoardRepository boardRepository) {
-//        this.boardRepository = boardRepository;
-//    }
+        // 게시물 등록
+        Board board = boardFormDto.createBoard();
+        boardRepository.save(board);
+
+        // 이미지 등록
+        for (int i=0; i<fileList.size(); i++){
+            HFile hFile = new HFile();
+            hFile.setBoard(board);
+            if (i == 0)
+                hFile.setRepImgYn("Y");
+            else
+                hFile.setRepImgYn("N");
+            fileAddService.saveFile(hFile, fileList.get(i));
+        }
+        return board.getBoardId();
+    }
+
+    @Transactional(readOnly = true)
+    public BoardFormDto getBoardDtl(Long boardId){
+//        List<HFile> fileList =  fileRepository.findByBoardIdOrderByFileIdAsc(boardId);
+//        List<FileDto> fileDtoList = new ArrayList<>();
+//        for (HFile hFile : fileList){
+//            FileDto fileDto = FileDto.of(hFile);
+//            fileDtoList.add(fileDto);
+//        }
+
+        Board board = boardRepository.findByBoardId(boardId);
+        BoardFormDto boardFormDto = BoardFormDto.of(board);
+//        boardFormDto.setFileDtoList(fileDtoList);
+        return boardFormDto;
+    }
+
 
     @Transactional
     public String savePost(BoardDto boardDto) {
         return boardRepository.save(boardDto.toEntity()).getId();
     }
 
-//    @Transactional
-//    public List<BoardDto> getBoardList() {
-//        List<Board> boardList = boardRepository.findAll();
-//        List<BoardDto> boardDtoList = new ArrayList<>();
-//
-//        for(Board board : boardList) {
-//            BoardDto boardDto = BoardDto.builder()
-//                    .id(board.getId())
-//                    .title(board.getTitle())
-//                    .content(board.getContent())
-//                    .cDate(board.getCDate())
-//                    .build();
-//            boardDtoList.add(boardDto);
-//        }
-//        return boardDtoList;
-//    }
-
+    public void boardDelete(Long boardId){
+        boardRepository.deleteByBoardId(boardId);
+    }
 
     public void Content(Board board){
 
