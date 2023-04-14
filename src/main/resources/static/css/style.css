@@ -60,17 +60,13 @@
 }
 
 
- body {
-        background-image: url("/img/bg.jpg");
-        background-size: cover;
-        background-repeat: no-repeat;
-        background-position: center center;
+/* userForm */
+.fieldError {
+            color: #bd2130;
         }
-        .bg-img {
-            width: 100%;
-            height: auto;
-        }
-        .table-container {
-        display: flex;
-        justify-content: center;
-        }
+
+
+/* userLoginForm */
+ .error{
+      color:#bd2130;
+    }
