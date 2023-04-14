@@ -1,9 +1,10 @@
 package com.hbrg.entity;
 
-import lombok.Builder;
+import com.hbrg.dto.BoardFormDto;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
+import org.hibernate.annotations.ColumnDefault;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -16,37 +17,38 @@ import java.time.LocalDateTime;
 public class Board {
 
     @Id
-    @Column(name="boardId")
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long boardId; // 게시물 번호
 
-    //    @OneToMany
-    @JoinColumn(name="id")
-    @Column(name="id", nullable = false)
+    //    @ManyToOne
+    @JoinColumn(name="huser_id")
     private String id; // 로그인 ID
 
-    @Column(name="title", nullable = false)
     private String title; // 주제
 
-    @Column(name="vC", nullable = false)
+    @ColumnDefault("0")
     private Long vC; // 조회수
 
-    @Column(name="bLike", nullable = false)
+    @ColumnDefault("0")
     private Long bLike; // 좋아요
 
-    @Column(name="cDate")
     private LocalDateTime cDate; // 생성 날짜
 
-    @Column(name="uDate")
     private LocalDateTime uDate; // 수정 날짜
 
-    @Column(name="content")
     private String content;  // 본문
 
-    @Builder
-    public Board(String id, String title, String content) {
+    public void updateBoard(String id, String title, String txt){
         this.id = id;
         this.title = title;
         this.content = content;
     }
+
+    public static Board createBoard(BoardFormDto boardFormDto){
+        Board board = new Board();
+        board.setContent(boardFormDto.getContent());
+        board.setTitle(boardFormDto.getTitle());
+        return board;
+    }
+
 }

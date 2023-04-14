@@ -28,10 +28,10 @@ public class UserController {
     }
 
 //    @PostMapping(value="/new")
-//    public String newHbrg_User(UserFormDto userFormDto){
+//    public String newUser(UserFormDto userFormDto){
 //
 //        UserFormDto userFormDto = UserFormDto.createHUser(userFormDto, passwordEncoder);
-//        hbrg_userService.saveHbrg_User(hbrg_user);
+//        userService.saveHUser(user);
 //
 //        return "redirect:/";
 //    }

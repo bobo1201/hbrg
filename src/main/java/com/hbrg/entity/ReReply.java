@@ -15,22 +15,17 @@ import java.time.LocalDateTime;
 public class ReReply {
 
     @Id
-    @Column(name="reReId")
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long reReId; // 대댓글 번호
 
     @JoinColumn(name="reId")
-    @Column(name="reId", nullable = false)
     private Long reId; // 댓글 번호
 
 //    @OneToMany
     @JoinColumn(name="id")
-    @Column(name="id", nullable = false)
     private String id; // 로그인 ID
 
-    @Column(name="reReCDate")
     private LocalDateTime reReCDate; // 대댓글 생성 날짜
 
-    @Column(name="reReContent")
-    private String reReContent; // 대댓글 내용
+    private String reReTxt; // 대댓글 내용
 }

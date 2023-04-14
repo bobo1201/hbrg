@@ -63,21 +63,6 @@
                th:errors="*{em}" class="fieldError">Incorrect data</p>
         </div>
 
-        <div class="form-group">
-            <label th:for="ad">주소</label>
-            <input type="text" th:field="*{ad}" class="form-control"
-                   placeholder="주소를 입력하세요.">
-            <p th:if="${#fields.hasErrors('ad')}"
-               th:errors="*{ad}" class="fieldError">Incorrect data</p>
-        </div>
-
-        <div class="form-group">
-            <label th:for="ph">연락처</label>
-            <input type="number" th:field="*{ph}" class="form-control"
-                   placeholder="연락처를 입력하세요.">
-            <p th:if="${#fields.hasErrors('ph')}"
-               th:errors="*{ph}" class="fieldError">Incorrect data</p>
-        </div>
 
         <div style="text-align:center">
             <button type="submit" class="btn btn-primary" style="">확인</button>

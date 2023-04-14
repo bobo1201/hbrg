@@ -17,10 +17,6 @@ import javax.persistence.*;
 @ToString
 public class HUser {
 
-//    @Column(name="userId")
-//    @GeneratedValue(strategy = GenerationType.AUTO)
-//    private Long userId; // 아이디 순서
-
     @Id
     @Column(name="id", nullable = false)
     private String id; // 로그인 ID
@@ -34,11 +30,6 @@ public class HUser {
     @Column(name="nic", nullable = false)
     private String nic; // 회원가입 닉네임
 
-    @Column(name="ph")
-    private Long ph; // 회원가입 전화번호
-
-    @Column(name="ad")
-    private String ad; // 회원가입 주소
 
     @Enumerated(EnumType.STRING)
     private Role role;
@@ -46,11 +37,8 @@ public class HUser {
     public static HUser createHUser (UserFormDto userFormDto, PasswordEncoder passwordEncoder){
         HUser hUser = new HUser();
         hUser.setId(userFormDto.getId());
-        hUser.setPw(userFormDto.getPw());
         hUser.setEm(userFormDto.getEm());
         hUser.setNic(userFormDto.getNic());
-        hUser.setPh(userFormDto.getPh());
-        hUser.setAd(userFormDto.getAd());
         hUser.setRole(Role.USER);
 
         //SecurityConfig의 BCryptPasswordEncoder Bean을 파라미터로 넘겨서 비밀번호 암호화
