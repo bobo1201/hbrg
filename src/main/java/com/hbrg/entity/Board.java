@@ -36,17 +36,17 @@ public class Board {
 
     private LocalDateTime uDate; // 수정 날짜
 
-    private String txt;  // 본문
+    private String content;  // 본문
 
     public void updateBoard(String id, String title, String txt){
         this.id = id;
         this.title = title;
-        this.txt = txt;
+        this.content = content;
     }
 
     public static Board createBoard(BoardFormDto boardFormDto){
         Board board = new Board();
-        board.setTxt(boardFormDto.getTxt());
+        board.setContent(boardFormDto.getContent());
         board.setTitle(boardFormDto.getTitle());
         return board;
     }

@@ -15,7 +15,7 @@ public class BoardFormDto {
 
     private String title;
 
-    private String txt;
+    private String content;
 
     private List<FileDto> fileDtoList = new ArrayList<>();
 
