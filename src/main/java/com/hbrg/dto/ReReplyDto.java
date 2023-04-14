@@ -12,5 +12,5 @@ public class ReReplyDto {
     private Long reId;
     private String id;
     private LocalDateTime reReCDate;
-    private String reReTxt;
+    private String reReContent;
 }
