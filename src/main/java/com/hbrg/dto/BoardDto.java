@@ -16,5 +16,4 @@ public class BoardDto {
     private LocalDateTime cDate;
     private LocalDateTime uDate;
     private String txt;
-
 }

@@ -20,11 +20,10 @@ public class Board {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long boardId; // 게시물 번호
 
-//    @ManyToOne
-    @JoinColumn(name="huserid")
+    //    @ManyToOne
+    @JoinColumn(name="huser_id")
     private String id; // 로그인 ID
 
-    @Column()
     private String title; // 주제
 
     @ColumnDefault("0")

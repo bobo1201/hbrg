@@ -1,6 +1,5 @@
 package com.hbrg.dto;
 
-import com.hbrg.entity.Board;
 import lombok.Getter;
 import lombok.Setter;
 import org.modelmapper.ModelMapper;
@@ -24,11 +23,4 @@ public class BoardFormDto {
 
     private static ModelMapper modelMapper = new ModelMapper();
 
-    public Board createBoard(){
-        return modelMapper.map(this, Board.class);
-    }
-
-    public static BoardFormDto of(Board board){
-        return modelMapper.map(board, BoardFormDto.class);
-    }
 }

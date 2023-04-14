@@ -14,8 +14,4 @@ public class HbrgApplication {
 		SpringApplication.run(HbrgApplication.class, args);
 	}
 
-//	@GetMapping(value = "/")
-//	public String HelloWorld(){
-//		return "Hello World";
-//	}
 }
