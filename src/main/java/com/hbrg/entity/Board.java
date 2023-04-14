@@ -38,7 +38,7 @@ public class Board {
 
     private String content;  // 본문
 
-    public void updateBoard(String id, String title, String txt){
+    public void updateBoard(String id, String title, String content){
         this.id = id;
         this.title = title;
         this.content = content;
