@@ -15,17 +15,15 @@ import java.time.LocalDateTime;
 public class Reply {
 
     @Id
-    @Column(name="reId")
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long reId; // 댓글 번호
 
+//    @ManyToOne
     @JoinColumn(name="boardId")
-    @Column(name="boardId", nullable = false)
     private Long boardId; // 게시물 번호
 
-//    @OneToMany
-    @JoinColumn(name="id")
-    @Column(name="id", nullable = false)
+//    @ManyToOne
+    @JoinColumn(name="huserid")
     private String id; // 로그인 ID
 
     @Column(name="reCDate")

@@ -1,15 +1,18 @@
 package com.hbrg.repository;
 
-import com.hbrg.entity.Hbrg_Board;
-import com.hbrg.entity.Hbrg_User;
+import com.hbrg.dto.BoardFormDto;
+import com.hbrg.entity.Board;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
 
-public interface Hbrg_BoardRepository extends JpaRepository<Hbrg_Board, Long> {
-     List<Hbrg_Board> findAll();
+public interface BoardRepository extends JpaRepository<Board, Long> {
+     List<Board> findAll();
 
-     List<Hbrg_Board> findById(String id);
+     List<Board> findById(String id);
 
-     List<Hbrg_Board> findByBoardId(Long boardId);
+
+     void deleteByBoardId(Long boardId);
+
+    Board findByBoardId(Long boardId);
 }

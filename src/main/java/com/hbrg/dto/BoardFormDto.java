@@ -1,20 +1,34 @@
 package com.hbrg.dto;
 
+import com.hbrg.entity.Board;
 import lombok.Getter;
 import lombok.Setter;
+import org.modelmapper.ModelMapper;
 
-import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @Getter
 @Setter
-public class BoardDto {
+public class BoardFormDto {
+
     private Long boardId;
-    private String id;
+
     private String title;
-    private Long vC;
-    private Long bLike;
-    private LocalDateTime cDate;
-    private LocalDateTime uDate;
+
     private String txt;
 
+    private List<FileDto> fileDtoList = new ArrayList<>();
+
+    private List<Long> fileIds = new ArrayList<>();
+
+    private static ModelMapper modelMapper = new ModelMapper();
+
+    public Board createBoard(){
+        return modelMapper.map(this, Board.class);
+    }
+
+    public static BoardFormDto of(Board board){
+        return modelMapper.map(board, BoardFormDto.class);
+    }
 }

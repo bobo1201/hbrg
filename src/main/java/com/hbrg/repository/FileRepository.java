@@ -1,8 +1,12 @@
 package com.hbrg.repository;
 
+import com.hbrg.entity.HFile;
 import com.hbrg.entity.HUser;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface UserRepository extends JpaRepository<HUser, Long> {
+import java.util.List;
+
+public interface FileRepository extends JpaRepository<HFile, Long> {
+    List<HFile> findByBoardIdOrderByFileIdAsc(Long boardId);
 
 }

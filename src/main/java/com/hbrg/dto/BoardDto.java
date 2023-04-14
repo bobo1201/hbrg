@@ -1,15 +1,13 @@
 package com.hbrg.dto;
 
-import com.hbrg.entity.Hbrg_Board;
 import lombok.Getter;
 import lombok.Setter;
-import org.modelmapper.ModelMapper;
 
 import java.time.LocalDateTime;
 
 @Getter
 @Setter
-public class Hbrg_BoardDto {
+public class BoardDto {
     private Long boardId;
     private String id;
     private String title;

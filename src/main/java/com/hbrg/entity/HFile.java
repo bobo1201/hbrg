@@ -10,7 +10,7 @@ import javax.persistence.*;
 @Table(name = "File")
 @Getter @Setter
 @ToString
-public class File {
+public class HFile {
 
     @Id
     @Column(name="fileId")

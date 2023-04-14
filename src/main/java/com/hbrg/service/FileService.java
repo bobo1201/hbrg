@@ -1,4 +1,4 @@
-package com.shop.service;
+package com.hbrg.service;
 
 import lombok.extern.java.Log;
 import org.springframework.stereotype.Service;

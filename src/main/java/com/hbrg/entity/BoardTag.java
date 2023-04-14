@@ -20,7 +20,7 @@ public class BoardTag {
 
     @JoinColumn(name="boardId")
     @Column(name="boardId", nullable = false)
-    private String boardId; // 게시물 번호
+    private Long boardId; // 게시물 번호
 
     @Column(name="tagId", nullable = false)
     private String tagId; // 해시태그 번호

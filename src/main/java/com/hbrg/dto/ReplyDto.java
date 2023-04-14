@@ -7,7 +7,7 @@ import java.time.LocalDateTime;
 
 @Getter
 @Setter
-public class Hbrg_ReplyDto {
+public class ReplyDto {
     private Long reId;
     private Long boardId;
     private String id;

@@ -1,37 +1,46 @@
 package com.hbrg.service;
 
-import lombok.extern.java.Log;
+import com.hbrg.entity.HFile;
+import com.hbrg.repository.FileRepository;
+import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
-
-import java.io.File;
-import java.io.FileOutputStream;
-import java.util.UUID;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.multipart.MultipartFile;
+import org.thymeleaf.util.StringUtils;
 
 @Service
-@Log
-public class FileService {
+@RequiredArgsConstructor
+@Transactional
+public class FileAddService {
 
-    public String uploadFile(String uploadPath, String originalFileName, byte[] fileData) throws Exception {
-        UUID uuid = UUID.randomUUID();
-        String extension = originalFileName.substring(originalFileName.lastIndexOf("."));
-        String savedFileName = uuid.toString() + extension;
-        String fileUploadFullUrl = uploadPath + "/" + savedFileName;
-        FileOutputStream fos = new FileOutputStream(fileUploadFullUrl);
-        fos.write(fileData);
-        fos.close();
-        return savedFileName;
+    // @Value 어노테이션을 통해 application.properties 파일에 등록한
+    // itemImgLocation을 불러와 itemImgLocation 변수에 넣어줌
+    @Value("${itemImgLocation}")
+    private String itemImgLocation;
+
+    private final FileRepository fileRepository;
+
+    private final FileService fileService;
+
+    public void saveFile(HFile hFile, MultipartFile imgFile) throws Exception{
+        String oriImgName = imgFile.getOriginalFilename();
+        String imgName = "";
+        String imgUrl = "";
+
+        // 파일 업로드
+        if(!StringUtils.isEmpty(oriImgName)){
+            imgName = fileService.uploadFile(itemImgLocation, oriImgName, imgFile.getBytes());
+            imgUrl = "/images/item/" + imgName;
+        }
+
+        // 상품 이미지 정보 저장
+        hFile.updateItemImg(oriImgName, imgName, imgUrl);
+        fileRepository.save(hFile);
     }
 
-    public void deleteFile(String filePath) throws Exception {
-        File deleteFile = new File(filePath);
 
-        if(deleteFile.exists()) {
-            deleteFile.delete();
-            log.info("파일을 삭제하였습니다.");
-        }
-        else {
-            log.info("파일이 존재하지 않습니다.");
-        }
-    }
+
+
 
 }
