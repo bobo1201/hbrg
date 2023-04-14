@@ -28,10 +28,10 @@ public class UserController {
     }
 
 //    @PostMapping(value="/new")
-//    public String newHbrg_User(UserFormDto userFormDto){
+//    public String newUser(UserFormDto userFormDto){
 //
 //        UserFormDto userFormDto = UserFormDto.createHUser(userFormDto, passwordEncoder);
-//        hbrg_userService.saveHbrg_User(hbrg_user);
+//        userService.saveHUser(user);
 //
 //        return "redirect:/";
 //    }
@@ -48,8 +48,8 @@ public class UserController {
         }catch(IllegalStateException e){
             model.addAttribute("errorMessage", e.getMessage());
         }
-
-        return "redirect:/";
+        //회원가입 성공시 로그인 페이지로 이동
+        return "redirect:/user/login";
     }
 
     @GetMapping(value="/login")

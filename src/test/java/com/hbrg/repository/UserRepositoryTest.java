@@ -1,6 +1,5 @@
 package com.hbrg.repository;
 
-import com.hbrg.entity.HUser;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,7 +23,7 @@ class UserRepositoryTest {
         hUser.setNic("행보락규");
 //        hbrg_user.setPh(010123456L);
 //        hbrg_user.setAd("12315646");
-        HUser savedHUser = userRepository.save(hUser);
-        System.out.println(savedHUser.toString());
+        HUser savedUser = userRepository.save(hUser);
+        System.out.println(savedUser.toString());
     }
 }
