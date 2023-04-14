@@ -77,9 +77,9 @@ public class BoardController {
     }
 
 
-    // 댓글
+ /*   // 댓글
     @GetMapping("/board/read/{id}")
     public String read(@PathVariable Long id, Model model) {
         
-    }
+    }*/
 }
