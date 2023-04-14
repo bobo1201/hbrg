@@ -17,7 +17,7 @@ class UserRepositoryTest {
     @DisplayName("테이블 연결 테스트")
     public void createUserTest(){
         HUser hUser = new HUser();
-        hUser.setUserId(1L);
+//        hUser.setUserId(1L);
         hUser.setId("hbrg");
         hUser.setPw("hbrg1234");
         hUser.setEm("hbrg@naver.com");
