@@ -15,5 +15,5 @@ public class BoardDto {
     private Long bLike;
     private LocalDateTime cDate;
     private LocalDateTime uDate;
-    private String txt;
+    private String content;
 }
