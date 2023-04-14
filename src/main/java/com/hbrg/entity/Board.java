@@ -1,6 +1,7 @@
 package com.hbrg.entity;
 
 import com.hbrg.dto.BoardFormDto;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -38,17 +39,17 @@ public class Board {
 
     private String content;  // 본문
 
-    public void updateBoard(String id, String title, String txt){
+    public void updateBoard(String id, String title, String content){
         this.id = id;
         this.title = title;
         this.content = content;
     }
 
-    public static Board createBoard(BoardFormDto boardFormDto){
-        Board board = new Board();
-        board.setContent(boardFormDto.getContent());
-        board.setTitle(boardFormDto.getTitle());
-        return board;
-    }
 
+    @Builder
+    public Board(String id, String title, String content) {
+        this.id = id;
+        this.title = title;
+        this.content = content;
+    }
 }

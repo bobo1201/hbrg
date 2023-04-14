@@ -11,11 +11,10 @@ import javax.persistence.*;
 @Getter
 @Setter
 @ToString
-<<<<<<<< HEAD:src/main/java/com/hbrg/entity/File.java
+
 public class File {
-========
-public class HFile {
->>>>>>>> bobo:src/main/java/com/hbrg/entity/HFile.java
+
+
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

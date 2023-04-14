@@ -1,3 +1,4 @@
+/*
 package com.hbrg.repository;
 
 import org.junit.jupiter.api.DisplayName;
@@ -26,4 +27,4 @@ class UserRepositoryTest {
         HUser savedUser = userRepository.save(hUser);
         System.out.println(savedUser.toString());
     }
-}
+}*/

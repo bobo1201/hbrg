@@ -23,10 +23,10 @@ public class BoardService {
     private BoardRepository boardRepository;
 
     /* Paging */
-    public Page<Board> getList(int page) {
-        Pageable pageable = PageRequest.of(page, 10);
-        return this.boardRepository.findAll(pageable);
-    }
+//    public Page<Board> getList(int page) {
+//        Pageable pageable = PageRequest.of(page, 10);
+//        return this.boardRepository.findAll(pageable);
+//    }
 
    /* public void create(String title, String content) {
         Board hb = new Board();
@@ -37,31 +37,31 @@ public class BoardService {
 
 
 
-    public BoardService(BoardRepository boardRepository) {
-        this.boardRepository = boardRepository;
-    }
+//    public BoardService(BoardRepository boardRepository) {
+//        this.boardRepository = boardRepository;
+//    }
 
     @Transactional
     public String savePost(BoardDto boardDto) {
         return boardRepository.save(boardDto.toEntity()).getId();
     }
 
-    @Transactional
-    public List<BoardDto> getBoardList() {
-        List<Board> boardList = boardRepository.findAll();
-        List<BoardDto> boardDtoList = new ArrayList<>();
-
-        for(Board board : boardList) {
-            BoardDto boardDto = BoardDto.builder()
-                    .id(board.getId())
-                    .title(board.getTitle())
-                    .content(board.getContent())
-                    .cDate(board.getCDate())
-                    .build();
-            boardDtoList.add(boardDto);
-        }
-        return boardDtoList;
-    }
+//    @Transactional
+//    public List<BoardDto> getBoardList() {
+//        List<Board> boardList = boardRepository.findAll();
+//        List<BoardDto> boardDtoList = new ArrayList<>();
+//
+//        for(Board board : boardList) {
+//            BoardDto boardDto = BoardDto.builder()
+//                    .id(board.getId())
+//                    .title(board.getTitle())
+//                    .content(board.getContent())
+//                    .cDate(board.getCDate())
+//                    .build();
+//            boardDtoList.add(boardDto);
+//        }
+//        return boardDtoList;
+//    }
 
 
     public void Content(Board board){
