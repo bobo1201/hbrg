@@ -16,21 +16,24 @@
 <div layout:fragment="content" class="text-center" style="margin-top: 100px;">
     <form action="/">
         <form class="form-inline justify-content-center">
-            <div class="input-group">
-                <div class="input-group-prepend">
-                    <button class="btn btn-outline-secondary dropdown-toggle" type="button"
-                            id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        전체</button>
-                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                        <a class="dropdown-item" href="#">제목</a>
-                        <a class="dropdown-item" href="#">본문</a>
+            <div class="row justify-content-center">
+                <div class="col-md-8">
+                    <div class="input-group" >
+                        <div class="input-group-prepend ">
+                            <button class="btn btn-outline-secondary dropdown-toggle" type="button"
+                                    id="dMB1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                전체</button>
+                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                <a class="dropdown-item" href="#">제목</a>
+                                <a class="dropdown-item" href="#">본문</a>
+                            </div>
+                        </div>
+                        <input name="searchQuery" class="form-control mr-sm-2"
+                               type="search" placeholder="검색어를 입력하세요." aria-label="Search" style="width:250px;">
+                        <button class="btn btn-outline-success my-2 my-sm-0"
+                                id="dMB2" type="submit">검색</button>
                     </div>
                 </div>
-                <input name="searchQuery" class="form-control mr-sm-2"
-                       type="search" placeholder="검색어를 입력하세요." aria-label="Search"
-                       style="width: 300px;">
-                <button class="btn btn-outline-success my-2 my-sm-0"
-                        type="submit">검색</button>
             </div>
         </form>
 
@@ -39,7 +42,7 @@
             <div class="row justify-content-center">
                 <div class="col-md-8">
                     <div class="table-responsive" style="margin-top: 50px;">
-                        <button class="btn btn-primary float-right">글쓰기</button>
+                        <button class="btn btn-primary float-right" id="dMB3">글쓰기</button>
                         <table class="table table-striped">
                             <thead>
                             <tr>
@@ -146,7 +149,6 @@
                         </ul>
                     </nav>
                 </div>
-
             </div>
         </div>
     </form>
