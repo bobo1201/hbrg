@@ -48,6 +48,72 @@
         justify-content: center;
         }
 
+.writeButton {      /* 글쓰기 버튼 */
+      background-color: #feec9e;
+      border: none;
+      color: #7c6839;
+    }
+
+.writeButton:hover {
+  background-color: #ffce00;
+  color: #fff9e4;
+}
+
+.cancelButton {     /* 취소 버튼 */
+      background-color: #feec9e;
+      border: none;
+      color: #7c6839;
+    }
+
+.cancelButton:hover {
+  background-color: #ffce00;
+  color: #fff9e4;
+}
+
+.btn-add { /* 해시태그 + 버튼 */
+      background-color: #feec9e;
+      border: none;
+      color: #7c6839;
+    }
+
+.btn-add:hover {
+  background-color: #ffce00;
+  color: #fff9e4;
+}
+
+/*.btn-add {  *//* + 버튼 *//*
+      background-color: #feec9e;
+      border: none;
+      color: #7c6839;
+    }
+
+.btn-add:hover {
+  background-color: #ffce00;
+  color: #fff9e4;
+}*/
+
+.btn-remove{      /* - 버튼 */
+      background-color: #feec9e;
+      border: none;
+      color: #7c6839;
+    }
+
+.btn-remove:hover {
+  background-color: #ffce00;
+  color: #fff9e4;
+}
+
+
+.btn-file {   /* 파일첨부 버튼 */
+     background-color: #feec9e;
+      border: none;
+      color: #7c6839;
+    }
+
+.btn-file:hover {
+  background-color: #ffce00;
+  color: #fff9e4;
+}
 
 
 /* main.html css 부분 */

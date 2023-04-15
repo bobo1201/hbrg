@@ -28,25 +28,25 @@
                             <textarea name="content" class="form-control" id="inputContent" rows="5"></textarea>
                         </div>
                         <div class="form-group">
-                            <label for="inputHashtag"><strong>해시태그</strong></label>
+                            <label for="inputHashtag" ><strong>해시태그</strong></label>
                             <div class="hashtag-container">
                                 <input type="text" name="hashtag" class="form-control hashtag-input" id="inputHashtag" />
                                 <button type="button" class="btn btn-primary btn-add">+</button>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="inputFile"><strong>파일 첨부</strong></label>
+                            <label for="inputFile" id="fileButton"><strong>파일 첨부</strong></label>
                             <div class="file-container">
                                 <input type="text" name="file-path" class="form-control file-path" id="inputFile" readonly />
                                 <button type="button" class="btn btn-primary btn-file">파일 첨부</button>
 
-                                <button type="button" class="btn btn-danger btn-remove">-</button>
-                                <button type="button" class="btn btn-primary btn-add">+</button>
+                                <button type="button" class="btn btn-primary btn-add" id="addButton">+</button>
+                                <button type="button" class="btn btn-danger btn-remove" id="removeButton">-</button>
                             </div>
                         </div>
                         <div class="form-group text-center">
-                            <button type="submit" class="btn btn-primary">글쓰기</button>
-                            <button type="button" class="btn btn-secondary">취소</button>
+                            <button type="submit" class="btn btn-primary writeButton">글쓰기</button>
+                            <button type="button" class="btn btn-secondary cancelButton">취소</button>
                         </div>
                     </div>
                 </form>
