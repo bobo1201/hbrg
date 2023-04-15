@@ -20,11 +20,7 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
-<<<<<<< Updated upstream
-    UserService userService;
-=======
     UserService hbrg_userService;
->>>>>>> Stashed changes
 
     @Override
     protected void configure(HttpSecurity http) throws Exception{
@@ -37,19 +33,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .logout()
                 .logoutRequestMatcher(new AntPathRequestMatcher("/user/logout"))
                 .logoutSuccessUrl("/")
-<<<<<<< Updated upstream
-                ;
-
-        http.authorizeRequests()
-                .mvcMatchers("/", "/user/**", "images/**").permitAll()
-                .mvcMatchers("/admin/**").hasRole("ADMIN")
-                .anyRequest().authenticated()
-                ;
-
-        http.exceptionHandling()
-                .authenticationEntryPoint(new CustomAuthenticationEntryPoint())
-                ;
-=======
         ;
 
         http.authorizeRequests()
@@ -61,7 +44,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.exceptionHandling()
                 .authenticationEntryPoint(new CustomAuthenticationEntryPoint())
         ;
->>>>>>> Stashed changes
 
         //Spring Security의 CSRF(Cross-Site Request Forgery) 토큰 저장소 구현에서 이 문제가 발생할 가능성이 있습니다.
         // 이 경우에는 웹 요청에서 CSRF 토큰을 저장하기 위해 Spring Security가 세션을 생성하는데,
@@ -84,11 +66,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception{
-<<<<<<< Updated upstream
-        auth.userDetailsService(userService)
-=======
         auth.userDetailsService(hbrg_userService)
->>>>>>> Stashed changes
                 .passwordEncoder(passwordEncoder());
     }
 }
