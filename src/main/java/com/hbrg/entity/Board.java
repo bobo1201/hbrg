@@ -45,11 +45,23 @@ public class Board {
         this.content = content;
     }
 
-
-    @Builder
-    public Board(String id, String title, String content) {
-        this.id = id;
-        this.title = title;
-        this.content = content;
+    public void updateBoard(BoardFormDto boardFormDto){
+        this.boardId = boardFormDto.getBoardId();
+        this.title = boardFormDto.getTitle();
+        this.content = boardFormDto.getContent();;
     }
+
+    public static Board createBoard(BoardFormDto boardFormDto){
+        Board board = new Board();
+        board.setContent(boardFormDto.getContent());
+        board.setTitle(boardFormDto.getTitle());
+        return board;
+    }
+
+//    @Builder
+//    public Board(String id, String title, String content) {
+//        this.id = id;
+//        this.title = title;
+//        this.content = content;
+//    }
 }

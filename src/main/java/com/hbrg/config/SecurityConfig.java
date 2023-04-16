@@ -11,8 +11,6 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.security.web.csrf.HttpSessionCsrfTokenRepository;
-import org.springframework.security.web.csrf.LazyCsrfTokenRepository;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 @Configuration
@@ -24,6 +22,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception{
+        http.cors().and().csrf().disable();
+
         http.formLogin()
                 .loginPage("/user/login")
                 .defaultSuccessUrl("/")
@@ -36,7 +36,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         ;
 
         http.authorizeRequests()
-                .mvcMatchers("/", "/user/**", "img/**").permitAll()
+                .mvcMatchers("/", "/hbrg/**", "/user/**", "img/**").permitAll()
                 .mvcMatchers("/admin/**").hasRole("ADMIN")
                 .anyRequest().authenticated()
         ;
@@ -51,7 +51,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         //이 문제를 해결하기 위해 Spring Security의 CSRF 토큰 저장소 구현에서 LazyCsrfTokenRepository를 사용할 수 있습니다.
         // LazyCsrfTokenRepository는 요청이 완료될 때까지 세션을 생성하지 않습니다.
         // 이를 위해, SecurityConfig 클래스에서 다음과 같이 설정해볼 수 있습니다.
-        http.csrf().csrfTokenRepository(new LazyCsrfTokenRepository(new HttpSessionCsrfTokenRepository()));
+//        http.csrf().csrfTokenRepository(new LazyCsrfTokenRepository(new HttpSessionCsrfTokenRepository()));
     }
 
     @Override

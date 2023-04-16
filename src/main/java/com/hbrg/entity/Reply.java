@@ -15,14 +15,13 @@ import java.time.LocalDateTime;
 public class Reply {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long reId; // 댓글 번호
 
     @JoinColumn(name="boardId")
     private Long boardId; // 게시물 번호
 
 //    @OneToMany
-    @JoinColumn(name="id")
     private String id; // 로그인 ID
 
     private LocalDateTime reCDate; // 댓글 생성 날짜
