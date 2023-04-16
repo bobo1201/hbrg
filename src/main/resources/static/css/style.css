@@ -221,3 +221,12 @@ button#dMB3 {       /*버튼 글쓰기 부분 */
   color: #fff9e4;
 }
 
+
+
+/* header */
+
+.navbar-brand {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
