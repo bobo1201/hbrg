@@ -18,6 +18,8 @@ public interface BoardRepository extends JpaRepository<Board, Long> {
 
     Board findByBoardId(Long boardId);
 
+
+//    페이징 처리 추가 23/04/17 16:22 아래 문구 추가
     Page<Board> findAll(Pageable pageable);
 
 }

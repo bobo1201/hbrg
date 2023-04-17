@@ -131,19 +131,6 @@ public class BoardController {
         return "redirect:/";
     }
 
-//    @PostMapping(value = "/ex01")
-//    public String boardForm(BoardFormDto boardFormDto){
-//        System.out.println(boardFormDto.getId());
-//        System.out.println(boardFormDto.getTxt());
-//        System.out.println(boardFormDto.getBoardId());
-//        System.out.println(boardFormDto.getTitle());
-//        System.out.println(boardFormDto.getCDate());
-//        System.out.println(boardFormDto.getUDate());
-//        System.out.println(boardFormDto.getBLike());
-//
-//        return "출력완료";
-//    }
-
 
     @GetMapping(value = "/ex02/{boardId}")
     public String boardView(Model model, @PathVariable("boardId") Long boardId){
