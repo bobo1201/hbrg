@@ -64,7 +64,7 @@
             <!-- 페이지 수정 삭제-->
             <div class="form-group">
               <div class="btn-margin">
-                <button type="button" class="btn btn-primary writeButton"><a th:href="@{/hbrg/ex01/{boardId}(boardId=${boardDto.boardId})}">수정</a></button>
+                <button type="button" class="btn btn-primary writeButton" th:href="@{'/hbrg/ex01/'+${boardDto.boardId}}" onclick="location.href=this.getAttribute('href')">수정</button>
                 <button onclick="location.href='/'" type="button" class="btn btn-secondary cancelButton">삭제</button>
                 <button onclick="location.href='/'" type="button" class="btn btn-secondary listButton">목록</button>
               </div>
