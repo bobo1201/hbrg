@@ -101,11 +101,11 @@
                                 </th>
                             </tr>
                             </thead>
-
+                            <!-- 페이징 처리부분  -->
                             <tbody>
-                            <tr th:each="boardDto, status: ${boardList}">
+                            <tr th:each="boardDto, status: ${list}">
                                 <td><a th:href="@{/hbrg/ex02/{boardId}(boardId=${boardDto.boardId})}" th:text="${boardDto.boardId}"></a></td>
-                                <td th:text="${boardDto.title}"></td>
+                                <td><a th:href="@{/hbrg/ex02/{boardId}(boardId=${boardDto.boardId})}" th:text="${boardDto.title}"></a></td>
                                 <td th:text="${boardDto.vC}"></td>
                                 <td th:text="${boardDto.bLike}"></td>
                                 <td th:text="${boardDto.cDate}"></td>
@@ -113,33 +113,29 @@
                             </tbody>
                         </table>
                     </div>
+
+                    <!-- 페이징 처리 -->
+                    <ul class="pagination justify-content-center">
+                        <li class="page-item" th:class="${nowPage == 1 ? 'disabled' : ''}">
+                            <a class="page-link" th:if="${nowPage > 1}" th:href="@{/(page=${nowPage-2})}" th:text="이전"></a>
+                        </li>
+                        <th:block th:each="page:${#numbers.sequence(startPage,endPage)}">
+                            <li class="page-item">
+                                <a class="page-link" th:if="${page != nowPage}" th:href="@{/(page=${page})}" th:text="${page}"></a>
+                                <strong class="page-link" th:if="${page == nowPage}" th:text="${page}" style="font-style:bold"></strong>
+                            </li>
+                        </th:block>
+                        <li class="page-item" th:class="${nowPage == endPage ? 'disabled' : ''}">
+                            <a class="page-link" th:unless="${nowPage == endPage}" th:href="@{/(page=${nowPage})}">다음</a>
+                        </li>
+                    </ul>
                 </div>
             </div>
         </div>
-
-        <!-- 페이지 버튼 -->
-        <div class="pagination justify-content-center" style="margin-top: 100px;">
-            <nav aria-label="Page navigation example">
-                <ul class="pagination">
-                    <li class="page-item disabled">
-                        <a class="page-link" href="#" tabindex="-1">이전</a>
-                    </li>
-                    <li class="page-item"><a class="page-link" href="#">1</a></li>
-                    <li class="page-item"><a class="page-link" href="#">2</a></li>
-                    <li class="page-item"><a class="page-link" href="#">3</a></li>
-                    <li class="page-item"><a class="page-link" href="#">4</a></li>
-                    <li class="page-item"><a class="page-link" href="#">5</a></li>
-                    <li class="page-item"><a class="page-link" href="#">6</a></li>
-                    <li class="page-item"><a class="page-link" href="#">7</a></li>
-                    <li class="page-item"><a class="page-link" href="#">8</a></li>
-                    <li class="page-item">
-                        <a class="page-link" href="#">다음</a>
-                    </li>
-                </ul>
-            </nav>
-        </div>
     </form>
+</div>
+<div>
+    <footer th:insert="fragments/footer.html"></footer>
 </div>
 </body>
 </html>
-

@@ -6,6 +6,8 @@ import com.hbrg.entity.HFile;
 import com.hbrg.repository.BoardRepository;
 import com.hbrg.repository.FileRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
@@ -87,6 +89,12 @@ public class BoardService {
         return board.getBoardId();
     }
 
+
+    // 페이징 처리를 위한 코드 구현 23/04/17 16:22 아래 문구 추가
+    public Page<Board> boardList(Pageable pageable){
+        //기존 List<Board>값으로 넘어가지만 페이징 설정을 해주면 Page<Board>로 넘어감
+        return boardRepository.findAll(pageable);
+    }
 
     public Board boardview(Long boardId){
         return boardRepository.getOne(boardId);
