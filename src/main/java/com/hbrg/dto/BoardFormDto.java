@@ -22,7 +22,7 @@ public class BoardFormDto {
     @ColumnDefault("0")
     private Long vC;
 
-    private List<FileDto> fileDtoList = new ArrayList<>();
+    private List<HFileDto> fileDtoList = new ArrayList<>();
 
     private List<Long> fileIds = new ArrayList<>();
 
