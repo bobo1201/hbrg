@@ -105,7 +105,7 @@
                             <tbody>
                             <tr th:each="boardDto, status: ${boardList}">
                                 <td><a th:href="@{/hbrg/ex02/{boardId}(boardId=${boardDto.boardId})}" th:text="${boardDto.boardId}"></a></td>
-                                <td th:text="${boardDto.title}"></td>
+                                <td><a th:href="@{/hbrg/ex02/{boardId}(boardId=${boardDto.boardId})}"  th:text="${boardDto.title}"></a></td>
                                 <td th:text="${boardDto.vC}"></td>
                                 <td th:text="${boardDto.bLike}"></td>
                                 <td th:text="${boardDto.cDate}"></td>

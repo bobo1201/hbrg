@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.persistence.EntityNotFoundException;
 import java.util.List;
 
 @Service
@@ -49,7 +50,7 @@ public class BoardService {
 //            fileDtoList.add(fileDto);
 //        }
 
-        Board board = boardRepository.findByBoardId(boardId);
+        Board board = boardRepository.findById(boardId).orElseThrow(EntityNotFoundException::new);
         BoardFormDto boardFormDto = BoardFormDto.of(board);
 //        boardFormDto.setFileDtoList(fileDtoList);
         return boardFormDto;

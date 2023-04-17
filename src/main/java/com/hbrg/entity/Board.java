@@ -24,13 +24,17 @@ public class Board {
     @JoinColumn(name="huser_id")
     private String id; // 로그인 ID
 
+//    @ManyToOne
+//    @JoinColumn(name="board_id")
+//    private HUser hUser;
+
     private String title; // 주제
 
-    @ColumnDefault("0")
-    private Long vC; // 조회수
+    @Column(columnDefinition = "integer default 0")
+    private int vC; // 조회수
 
-    @ColumnDefault("0")
-    private Long bLike; // 좋아요
+    @Column(columnDefinition = "integer default 0")
+    private int bLike; // 좋아요
 
     private LocalDateTime cDate; // 생성 날짜
 
