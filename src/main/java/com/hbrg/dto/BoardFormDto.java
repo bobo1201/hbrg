@@ -1,7 +1,9 @@
 package com.hbrg.dto;
 
+import com.hbrg.entity.Board;
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.annotations.ColumnDefault;
 import org.modelmapper.ModelMapper;
 
 import java.util.ArrayList;
@@ -17,10 +19,20 @@ public class BoardFormDto {
 
     private String content;
 
+    @ColumnDefault("0")
+    private Long vC;
+
     private List<FileDto> fileDtoList = new ArrayList<>();
 
     private List<Long> fileIds = new ArrayList<>();
 
     private static ModelMapper modelMapper = new ModelMapper();
 
+    public Board createBoard(){
+        return modelMapper.map(this, Board.class);
+    }
+
+    public static BoardFormDto of(Board board){
+        return modelMapper.map(board, BoardFormDto.class);
+    }
 }

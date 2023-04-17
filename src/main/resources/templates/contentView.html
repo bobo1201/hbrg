@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/layout1}">
+<head>
+    <meta charset="UTF-8" />
+    <title>게시판 상세페이지</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" />    <link rel="stylesheet" href="/css/style.css" />
+</head>
+<body>
+<header th:insert="fragments/header.html"></header>
+
+<div layout:fragment="content" style="margin-left:25%;margin-right:25%">
+
+    <input type="hidden" id="BoardId" th:value="${boardDto.boardId}">
+
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <!--                <form role="form" method="post" enctype="multipart/form-data" th:object="${BoardFormDto}">-->
+                <form role="form" method="post" enctype="multipart/form-data">
+                    <div class="form-container">
+
+                        <div class="form-group">
+                            <label th:for="inputTitle"><strong>제목</strong></label>
+                            <label th:text="${boardDto.title}"></label>
+                        </div>
+
+                        <div class="form-group">
+                            <label th:for="inputContent"><strong>내용</strong></label>
+                            <p class="form-control" aria-label="With textarea" th:text="${boardDto.content}" name="content" id="inputContent" rows="5"></p>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="inputHashtag" ><strong>해시태그</strong></label>
+                            <div class="hashtag-container">
+                                <input type="text" name="hashtag" class="form-control hashtag-input" id="inputHashtag" />
+                                <button type="button" class="btn btn-primary btn-add">+</button>
+                            </div>
+                        </div>
+
+
+                        <!--                        <div class="form-group">-->
+                        <!--                            <div th:if="${#lists.isEmpty(BoardFormDto.fileDtoList)}">-->
+                        <!--                                <label th:for="inputFile"><strong>파일 첨부</strong></label>-->
+                        <!--                                <div class="file-container" th:each="num: ${#numbers.sequence(1,2)}">-->
+                        <!--                                    <div class="custom-file img-div">-->
+                        <!--                                        <input type="file" class="custom-file-input" name="itemImgFile">-->
+                        <!--                                        <label class="custom-file-label" th:text="상품이미지 + ${num}"></label>-->
+                        <!--                                    </div>-->
+                        <!--                                </div>-->
+                        <!--                            </div>-->
+
+                        <!--                            <div th:if = "${not #lists.isEmpty(BoardFormDto.fileDtoList)}">-->
+                        <!--                                <div class="form-group" th:each="FileDto, status: ${BoardFormDto.fileDtoList}">-->
+                        <!--                                    <div class="custom-file img-div">-->
+                        <!--                                        <input type="file" class="custom-file-input" name="itemImgFile">-->
+                        <!--                                        <input type="hidden" name="itemImgIds" th:value="${FileDto.fileId}">-->
+                        <!--                                        <label class="custom-file-label" th:text="${not #strings.isEmpty(FileDto.oriFileNm)} ? ${FileDto.oriFileNm} : '상품이미지' + ${status.index+1}"></label>-->
+                        <!--                                    </div>-->
+                        <!--                                </div>-->
+                        <!--                            </div>-->
+                        <!--                        </div>-->
+
+                        <!--                        <div class="form-group">-->
+                        <!--                            <label for="inputFile"><strong>파일 첨부</strong></label>-->
+                        <!--                            <div class="file-container">-->
+                        <!--                                <input type="text" name="file-path" class="form-control file-path" id="inputFile" readonly />-->
+                        <!--                                <button type="button" class="btn btn-primary btn-file">파일 첨부</button>-->
+
+                        <!--                                <button type="button" class="btn btn-primary btn-add" id="addButton">+</button>-->
+                        <!--                                <button type="button" class="btn btn-danger btn-remove" id="removeButton">-</button>-->
+                        <!--                            </div>-->
+                        <!--                        </div>-->
+
+
+                        <div class="form-group text-center">
+                            <!--                            <button type="button" onclick="location.href='/hbrg/ex01/' + ${boardDto.boardId}" class="btn btn-primary writeButton">수정</button>-->
+                            <button type="button" class="btn btn-primary writeButton"><a th:href="@{/hbrg/ex01/{boardId}(boardId=${boardDto.boardId})}">수정</a></button>
+                            <!--                                <form th:action="@{/hbrg/ex01/{boardId}(boardId=${boardDto.boardId})}" method="post"> <button type="submit">수정</button> </form>-->
+                            <!--                            <button onclick="location.href='/hbrg/ex01/' + ${boardDto.boardId}" type="submit"  class="btn btn-primary writeButton">수정</button>-->
+                            <!-- <button type="button" onclick="location.href='/hbrg/ex01/' + boardId" class="btn btn-primary writeButton">수정</button>-->
+                            <!--                            <button type="button" onclick="location.href='/hbrg/ex01/' + ${boardId}" class="btn btn-primary writeButton">수정</button>-->
+                            <!--                            <button type="button" onclick="location.href='/hbrg/ex01/${boardId}'" class="btn btn-primary writeButton">수정</button>-->
+                            <!--                            <button type="button" onclick="location.href='/hbrg/ex01/' + boardId" class="btn btn-primary writeButton">수정</button>-->
+                            <!--                            <a th:href="@{/hbrg/ex02/{boardId}(boardId=${boardDto.boardId})}" th:text="${boardDto.boardId}">-->
+                            <!--                            th:href="@{/hbrg/ex02/{boardId}(boardId=${boardDto.boardId})}"-->
+
+                            <button onclick="location.href='/'" type="button" class="btn btn-secondary cancelButton">삭제</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
