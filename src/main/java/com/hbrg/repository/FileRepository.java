@@ -8,4 +8,5 @@ import java.util.List;
 public interface FileRepository extends JpaRepository<HFile, Long> {
     List<HFile> findByBoardIdOrderByFileIdAsc(Long boardId);
 
+    HFile findByFileId(Long fileId);
 }

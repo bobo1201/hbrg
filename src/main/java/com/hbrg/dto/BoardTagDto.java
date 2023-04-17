@@ -10,3 +10,4 @@ public class BoardTagDto {
     private Long boardId;
     private Long tagId;
 }
+

@@ -5,8 +5,7 @@
 <head>
     <meta charset="UTF-8" />
     <title>게시판 - 글쓰기</title>
-    <link rel="stylesheet" href="/webjars/bootstrap/4.5.0/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="/css/style.css" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" />    <link rel="stylesheet" href="/css/style.css" />
 </head>
 <body>
 <header th:insert="fragments/header.html"></header>
@@ -17,36 +16,67 @@
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-8">
-                <form action="/post" method="post" enctype="multipart/form-data">
+                <form role="form" method="post" enctype="multipart/form-data" th:object="${BoardFormDto}">
                     <div class="form-container">
+
                         <div class="form-group">
-                            <label for="inputTitle"><strong>제목</strong></label>
-                            <input type="text" name="title" class="form-control" id="inputTitle" />
+                            <label th:for="inputTitle"><strong>제목</strong></label>
+                            <input type="text" th:field="*{title}" class="form-control" placeholder="제목을 입력해주세요" name="title" id="inputTitle" />
                         </div>
+                        <p th:if="${#fields.hasErrors('title')}" th:errors="*{title}" class="fieldError">Incorrect data</p>
+
                         <div class="form-group">
-                            <label for="inputContent"><strong>내용</strong></label>
-                            <textarea name="content" class="form-control" id="inputContent" rows="5"></textarea>
+                            <label th:for="inputContent"><strong>내용</strong></label>
+                            <textarea class="form-control" aria-label="With textarea" th:field="*{content}" name="content" id="inputContent" rows="5"></textarea>
                         </div>
+                        <p th:if="${#fields.hasErrors('content')}" th:errors="*{content}" class="fieldError">Incorrect data</p>
+
                         <div class="form-group">
-                            <label for="inputHashtag"><strong>해시태그</strong></label>
+                            <label for="inputHashtag" ><strong>해시태그</strong></label>
                             <div class="hashtag-container">
                                 <input type="text" name="hashtag" class="form-control hashtag-input" id="inputHashtag" />
                                 <button type="button" class="btn btn-primary btn-add">+</button>
                             </div>
                         </div>
-                        <div class="form-group">
-                            <label for="inputFile"><strong>파일 첨부</strong></label>
-                            <div class="file-container">
-                                <input type="text" name="file-path" class="form-control file-path" id="inputFile" readonly />
-                                <button type="button" class="btn btn-primary btn-file">파일 첨부</button>
 
-                                <button type="button" class="btn btn-danger btn-remove">-</button>
-                                <button type="button" class="btn btn-primary btn-add">+</button>
+
+                        <div class="form-group">
+                            <div th:if="${#lists.isEmpty(BoardFormDto.fileDtoList)}">
+                                <label th:for="inputFile"><strong>파일 첨부</strong></label>
+                                <div class="file-container" th:each="num: ${#numbers.sequence(1,2)}">
+                                    <div class="custom-file img-div">
+                                        <input type="file" class="custom-file-input" name="itemImgFile">
+                                        <label class="custom-file-label" th:text="상품이미지 + ${num}"></label>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div th:if = "${not #lists.isEmpty(BoardFormDto.fileDtoList)}">
+                                <div class="form-group" th:each="FileDto, status: ${BoardFormDto.fileDtoList}">
+                                    <div class="custom-file img-div">
+                                        <input type="file" class="custom-file-input" name="itemImgFile">
+                                        <input type="hidden" name="itemImgIds" th:value="${FileDto.fileId}">
+                                        <label class="custom-file-label" th:text="${not #strings.isEmpty(FileDto.oriFileNm)} ? ${FileDto.oriFileNm} : '상품이미지' + ${status.index+1}"></label>
+                                    </div>
+                                </div>
                             </div>
                         </div>
+
+                        <!--                        <div class="form-group">-->
+                        <!--                            <label for="inputFile"><strong>파일 첨부</strong></label>-->
+                        <!--                            <div class="file-container">-->
+                        <!--                                <input type="text" name="file-path" class="form-control file-path" id="inputFile" readonly />-->
+                        <!--                                <button type="button" class="btn btn-primary btn-file">파일 첨부</button>-->
+
+                        <!--                                <button type="button" class="btn btn-primary btn-add" id="addButton">+</button>-->
+                        <!--                                <button type="button" class="btn btn-danger btn-remove" id="removeButton">-</button>-->
+                        <!--                            </div>-->
+                        <!--                        </div>-->
+
+
                         <div class="form-group text-center">
-                            <button type="submit" class="btn btn-primary">글쓰기</button>
-                            <button type="button" class="btn btn-secondary">취소</button>
+                            <button onclick="location.href='/'" type="submit" class="btn btn-primary writeButton">저장</button>
+                            <button onclick="location.href='/'" type="button" class="btn btn-secondary cancelButton">취소</button>
                         </div>
                     </div>
                 </form>
