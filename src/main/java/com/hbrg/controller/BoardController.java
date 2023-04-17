@@ -143,10 +143,14 @@ public class BoardController {
 //    }
 
 
+    // 상세페이지 표시
     @GetMapping(value = "/ex02/{boardId}")
     public String boardView(Model model, @PathVariable("boardId") Long boardId){
         BoardFormDto boardFormDto = boardService.getBoardDtl(boardId); // 추가
         model.addAttribute("boardDto", boardFormDto);
+
+        // 조회수 코드 추가
+        boardService.updateView(boardId); //조회수~~
         return "contentview";
     }
 

@@ -136,4 +136,10 @@ public class BoardService {
         boardRepository.save(board);
     }
 
+    // 조회수 증가를 위한 쿼리문 사용
+    @Transactional
+    public int updateView(Long boardId){
+        return boardRepository.updateView(boardId);
+    }
+
 }

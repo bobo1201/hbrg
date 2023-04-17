@@ -30,6 +30,7 @@ public class Board {
 
     private String title; // 주제
 
+    // 조회수를 위한 디폴트 값 설정
     @Column(columnDefinition = "integer default 0")
     private int vC; // 조회수
 
