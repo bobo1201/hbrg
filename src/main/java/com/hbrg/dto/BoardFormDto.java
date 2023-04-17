@@ -19,11 +19,10 @@ public class BoardFormDto {
 
     private String content;
 
-    private int vC;
+    @ColumnDefault("0")
+    private Long vC;
 
-    private int bLike; // 좋아요
-
-    private List<FileDto> fileDtoList = new ArrayList<>();
+    private List<HFileDto> fileDtoList = new ArrayList<>();
 
     private List<Long> fileIds = new ArrayList<>();
 

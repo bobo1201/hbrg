@@ -21,7 +21,7 @@ public class Reply {
     @JoinColumn(name="boardId")
     private Long boardId; // 게시물 번호
 
-    //    @OneToMany
+//    @OneToMany
     private String id; // 로그인 ID
 
     private LocalDateTime reCDate; // 댓글 생성 날짜

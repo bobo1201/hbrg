@@ -5,7 +5,8 @@
 <head>
     <meta charset="UTF-8" />
     <title>게시판 - 글쓰기</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" />    <link rel="stylesheet" href="/css/style.css" />
+    <link rel="stylesheet" href="/webjars/bootstrap/4.5.0/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="/css/style.css" />
 </head>
 <body>
 <header th:insert="fragments/header.html"></header>
@@ -46,7 +47,7 @@
                                 <div class="file-container" th:each="num: ${#numbers.sequence(1,2)}">
                                     <div class="custom-file img-div">
                                         <input type="file" class="custom-file-input" name="itemImgFile">
-                                        <label class="custom-file-label" th:text="상품이미지 + ${num}"></label>
+                                        <label class="custom-file-label" th:text="첨부파일 + ${num}"></label>
                                     </div>
                                 </div>
                             </div>
@@ -56,22 +57,22 @@
                                     <div class="custom-file img-div">
                                         <input type="file" class="custom-file-input" name="itemImgFile">
                                         <input type="hidden" name="itemImgIds" th:value="${FileDto.fileId}">
-                                        <label class="custom-file-label" th:text="${not #strings.isEmpty(FileDto.oriFileNm)} ? ${FileDto.oriFileNm} : '상품이미지' + ${status.index+1}"></label>
+                                        <label class="custom-file-label" th:text="${not #strings.isEmpty(FileDto.oriFileNm)} ? ${FileDto.oriFileNm} : '첨부파일' + ${status.index+1}"></label>
                                     </div>
                                 </div>
                             </div>
                         </div>
 
-                        <!--                        <div class="form-group">-->
-                        <!--                            <label for="inputFile"><strong>파일 첨부</strong></label>-->
-                        <!--                            <div class="file-container">-->
-                        <!--                                <input type="text" name="file-path" class="form-control file-path" id="inputFile" readonly />-->
-                        <!--                                <button type="button" class="btn btn-primary btn-file">파일 첨부</button>-->
+<!--                        <div class="form-group">-->
+<!--                            <label for="inputFile"><strong>파일 첨부</strong></label>-->
+<!--                            <div class="file-container">-->
+<!--                                <input type="text" name="file-path" class="form-control file-path" id="inputFile" readonly />-->
+<!--                                <button type="button" class="btn btn-primary btn-file">파일 첨부</button>-->
 
-                        <!--                                <button type="button" class="btn btn-primary btn-add" id="addButton">+</button>-->
-                        <!--                                <button type="button" class="btn btn-danger btn-remove" id="removeButton">-</button>-->
-                        <!--                            </div>-->
-                        <!--                        </div>-->
+<!--                                <button type="button" class="btn btn-primary btn-add" id="addButton">+</button>-->
+<!--                                <button type="button" class="btn btn-danger btn-remove" id="removeButton">-</button>-->
+<!--                            </div>-->
+<!--                        </div>-->
 
 
                         <div class="form-group text-center">

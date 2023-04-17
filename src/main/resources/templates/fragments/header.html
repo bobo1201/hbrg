@@ -1,7 +1,10 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
-
+<head>
+    <link rel="stylesheet" type="text/css" href="../css/style.css">
+</head>
+<body>
 <div th:fragment="header">
     <nav class="navbar navbar-expand-sm navbar-dark" style="background-color: #66BB6A;">
         <button class="navbar-toggler" type="button" data-toggle="collapse"
@@ -10,10 +13,7 @@
                 aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
-        <a class="navbar-brand" href="/">
-            <img src="../img/home.png" alt="home image" width="120" height="80" />
-        </a>
-
+        <a class="navbar-brand" href="/"></a>
         <div class="collapse navbar-collapse justify-content-end" id="navbarTogglerDemo03">
             <ul class="navbar-nav">
                 <li class="nav-item" sec:authorize="isAnonymous()">
@@ -26,4 +26,5 @@
         </div>
     </nav>
 </div>
+</body>
 </html>
