@@ -12,7 +12,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
-import javax.persistence.EntityNotFoundException;
 import java.util.List;
 
 @Service
@@ -24,8 +23,6 @@ public class BoardService {
     private final FileAddService fileAddService;
     private final FileRepository fileRepository;
 
-
-    // 게시물 등록하는 코드
     public Long saveBoard(BoardFormDto boardFormDto, List<MultipartFile> fileList) throws Exception{
 
         // 게시물 등록
@@ -45,8 +42,6 @@ public class BoardService {
         return board.getBoardId();
     }
 
-
-    // 상세페이지 구현 코드
     @Transactional(readOnly = true)
     public BoardFormDto getBoardDtl(Long boardId){
 //        List<HFile> fileList =  fileRepository.findByBoardIdOrderByFileIdAsc(boardId);
@@ -56,14 +51,12 @@ public class BoardService {
 //            fileDtoList.add(fileDto);
 //        }
 
-        Board board = boardRepository.findById(boardId).orElseThrow(EntityNotFoundException::new);
+        Board board = boardRepository.findByBoardId(boardId);
         BoardFormDto boardFormDto = BoardFormDto.of(board);
 //        boardFormDto.setFileDtoList(fileDtoList);
         return boardFormDto;
     }
 
-
-    //상품 내용 수정 코드
     public Long updateBoard(BoardFormDto boardFormDto,
                             List<MultipartFile> fileList) throws Exception{
 
@@ -96,19 +89,17 @@ public class BoardService {
         return board.getBoardId();
     }
 
+
     // 페이징 처리를 위한 코드 구현 23/04/17 16:22 아래 문구 추가
     public Page<Board> boardList(Pageable pageable){
         //기존 List<Board>값으로 넘어가지만 페이징 설정을 해주면 Page<Board>로 넘어감
         return boardRepository.findAll(pageable);
     }
 
-
-    // 게시판 상세 페이지 확인 코드 (사용 안함)
     public Board boardview(Long boardId){
         return boardRepository.getOne(boardId);
     }
 
-    // 게시판 삭제 코드
     public void boardDelete(Long boardId){
         boardRepository.deleteByBoardId(boardId);
     }

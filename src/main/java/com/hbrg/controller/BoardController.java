@@ -73,7 +73,7 @@ public class BoardController {
 
         try {
             boardService.saveBoard(boardFormDto, fileList);
-            System.out.println("실행3");
+            System.out.println("실행");
 
         } catch (Exception e){
             System.out.println("에러2");
@@ -95,8 +95,6 @@ public class BoardController {
         try{
             BoardFormDto boardFormDto = boardService.getBoardDtl(boradId);
             model.addAttribute("BoardFormDto", boardFormDto);
-            System.out.println("실행4");
-
         } catch (EntityNotFoundException e){
             model.addAttribute("errorMessage", "존재하지 않습니다.");
             model.addAttribute("BoardFormDto", new BoardFormDto());
@@ -121,7 +119,7 @@ public class BoardController {
 
         try {
             boardService.updateBoard(boardFormDto, fileList);
-            System.out.println("실행5");
+            System.out.println("실행");
         } catch (Exception e){
             System.out.println("에러2");
             model.addAttribute("errorMessage", "상품 수정 중 에러가 발생했습니다.");
@@ -131,13 +129,24 @@ public class BoardController {
         return "redirect:/";
     }
 
+//    @PostMapping(value = "/ex01")
+//    public String boardForm(BoardFormDto boardFormDto){
+//        System.out.println(boardFormDto.getId());
+//        System.out.println(boardFormDto.getTxt());
+//        System.out.println(boardFormDto.getBoardId());
+//        System.out.println(boardFormDto.getTitle());
+//        System.out.println(boardFormDto.getCDate());
+//        System.out.println(boardFormDto.getUDate());
+//        System.out.println(boardFormDto.getBLike());
+//
+//        return "출력완료";
+//    }
+
 
     @GetMapping(value = "/ex02/{boardId}")
     public String boardView(Model model, @PathVariable("boardId") Long boardId){
-        System.out.println("실행6");
         BoardFormDto boardFormDto = boardService.getBoardDtl(boardId); // 추가
         model.addAttribute("boardDto", boardFormDto);
-        System.out.println("실행6");
         return "contentview";
     }
 
