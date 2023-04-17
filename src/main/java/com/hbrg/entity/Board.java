@@ -27,8 +27,8 @@ public class Board {
 
     private String title; // 주제
 
-    @ColumnDefault("0")
-    private Long vC; // 조회수
+    @Column(columnDefinition = "integer default 0")
+    private int vC; // 조회수
 
     @ColumnDefault("0")
     private Long bLike; // 좋아요

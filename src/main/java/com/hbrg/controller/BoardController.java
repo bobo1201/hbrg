@@ -147,6 +147,7 @@ public class BoardController {
     public String boardView(Model model, @PathVariable("boardId") Long boardId){
         BoardFormDto boardFormDto = boardService.getBoardDtl(boardId); // 추가
         model.addAttribute("boardDto", boardFormDto);
+        boardService.updateView(boardId); //조회수~~
         return "contentview";
     }
 

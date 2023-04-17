@@ -136,4 +136,8 @@ public class BoardService {
         boardRepository.save(board);
     }
 
+    @Transactional
+    public int updateView(Long boardId){
+        return boardRepository.updateView(boardId);
+    }
 }
