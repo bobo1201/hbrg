@@ -214,7 +214,13 @@ height: 200px; /* 원하는 높이 값으로 조정 */
         width: 10%;
     }
 
+.float-left {
+    float: left;
+}
 
+.float-right {
+    float: right;
+}
 
 /* main button 부분 */
 
@@ -249,6 +255,17 @@ button#dMB3 {       /*버튼 글쓰기 부분 */
   background-color: #ffce00; /* 원하는 색상으로 변경 */
   color: #fff9e4; /* 원하는 색상으로 변경 */
 }
+
+
+.sortBtn{
+    background-color: #feec9e;
+    color: #7c6839;
+}
+.sortBtn:hover {
+background-color: #ffce00; /* 원하는 색상으로 변경 */
+  color: #fff9e4; /* 원하는 색상으로 변경 */
+}
+
 
 /* main 페이지 처리 부분 */
 .page-link {

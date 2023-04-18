@@ -41,62 +41,57 @@
         <div class="table-container " style="overflow-x: hidden; text-align: center; margin: 0 auto;" >
             <div class="row justify-content-center">
                 <div class="col-md-10">
+                    <div class="sortBtn float-left" style="margin-top: 50px;">
+                        <button class="btn btn-default dropdown-toggle" type="button" id="sortMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            정렬 기준
+                        </button>
+                        <div class="dropdown-menu" aria-labelledby="sortMenu" >
+                            <a class="dropdown-item" href="#" data-sortby="number">번호</a>
+                            <a class="dropdown-item" href="#" data-sortby="title">제목</a>
+                            <a class="dropdown-item" href="#" data-sortby="views">조회수</a>
+                            <a class="dropdown-item" href="#" data-sortby="likes">좋아요</a>
+                            <a class="dropdown-item" href="#" data-sortby="created_at">생성일</a>
+                        </div>
+                    </div>
+                    <button class="btn btn-primary float-right" style="margin-top: 50px;" id="dMB3" onclick="location.href='/hbrg/ex01'">글쓰기</button>
                     <div class="table-responsive" style="margin-top: 50px;" >
-                        <button class="btn btn-primary float-right" id="dMB3" onclick="location.href='/hbrg/ex01'">글쓰기</button>
+
                         <table class="table table-striped" style="table-layout: fixed; width: 100%;">
                             <thead>
                             <tr>
                                 <th>
                                     <div class="dropdown">
-                                        <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenuButton1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <button class="btn btn-default" type="button" id="dropdownMenuButton1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                             번호
                                         </button>
-                                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                                            <a class="dropdown-item" href="#">오름차순</a>
-                                            <a class="dropdown-item" href="#">내림차순</a>
-                                        </div>
                                     </div>
                                 </th>
-                                <th><div class="dropdown">
-                                    <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenuButton2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        제목
-                                    </button>
-                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton2">
-                                        <a class="dropdown-item" href="#">오름차순</a>
-                                        <a class="dropdown-item" href="#">내림차순</a>
-                                    </div>
-                                </div></th>
                                 <th>
                                     <div class="dropdown">
-                                        <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenuButton3" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <button class="btn btn-default" type="button" id="dropdownMenuButton2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            제목
+                                        </button>
+                                    </div>
+                                </th>
+                                <th>
+                                    <div class="dropdown">
+                                        <button class="btn btn-default" type="button" id="dropdownMenuButton3" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                             조회수
                                         </button>
-                                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton3">
-                                            <a class="dropdown-item" href="#">오름차순</a>
-                                            <a class="dropdown-item" href="#">내림차순</a>
-                                        </div>
                                     </div>
                                 </th>
                                 <th>
                                     <div class="dropdown">
-                                        <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenuButton4" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <button class="btn btn-default" type="button" id="dropdownMenuButton4" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                             좋아요
                                         </button>
-                                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton4">
-                                            <a class="dropdown-item" href="#">오름차순</a>
-                                            <a class="dropdown-item" href="#">내림차순</a>
-                                        </div>
                                     </div>
                                 </th>
                                 <th>
                                     <div class="dropdown">
-                                        <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenuButton5" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <button class="btn btn-default" type="button" id="dropdownMenuButton5" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                             생성일
                                         </button>
-                                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton5">
-                                            <a class="dropdown-item" href="#">오름차순</a>
-                                            <a class="dropdown-item" href="#">내림차순</a>
-                                        </div>
                                     </div>
                                 </th>
                             </tr>
@@ -106,7 +101,7 @@
                             <tr th:each="boardDto, status: ${list}">
                                 <td><a th:href="@{/hbrg/ex02/{boardId}(boardId=${boardDto.boardId})}" th:text="${boardDto.boardId}"></a></td>
                                 <td><a th:href="@{/hbrg/ex02/{boardId}(boardId=${boardDto.boardId})}" th:text="${boardDto.title}"></a></td>
-                                <td th:text="${boardDto.vC}"></td>
+                                <td th:text="${boardDto.vc}"></td>
                                 <td th:text="${boardDto.bLike}"></td>
                                 <td th:text="${boardDto.cDate}"></td>
                             </tr>
@@ -137,5 +132,17 @@
 <div>
     <footer th:insert="fragments/footer.html"></footer>
 </div>
+<script>
+    $(document).ready(function() {
+    $(".dropdown-menu a").click(function() {
+        var sortby = $(this).data("sortby");
+        sortTable(sortby);
+    });
+
+    function sortTable(sortby) {
+        // 데이터를 정렬하는 코드 작성
+        }
+    });
+</script>
 </body>
 </html>
