@@ -14,6 +14,8 @@ import javax.persistence.MappedSuperclass;
 @Getter
 public abstract class BaseEntity extends BaseTimeEntity {
 
+
+
     @CreatedBy
     @Column(updatable = false)
     private String createdBy;

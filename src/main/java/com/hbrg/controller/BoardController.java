@@ -154,10 +154,12 @@ public class BoardController {
         return "contentview";
     }
 
-//    @GetMapping(value = "/delete")
-//    public String boardDelete(Integer boardId){
-//        boardService.boardDelete(boardId);
-//        return "redirect:/list/";
-//    }
+
+    // 글삭제(23/04/18 16:58)
+    @GetMapping(value = "/ex02/delete/{boardId}")
+    public String boardDelete(@PathVariable("boardId") Long boardId){
+        boardService.boardDelete(boardId);
+        return "redirect:/";
+    }
 
 }

@@ -65,7 +65,10 @@
             <div class="form-group">
               <div class="btn-margin">
                 <button type="button" class="btn btn-primary writeButton" th:href="@{'/hbrg/ex01/'+${boardDto.boardId}}" onclick="location.href=this.getAttribute('href')">수정</button>
-                <button onclick="location.href='/'" type="button" class="btn btn-secondary cancelButton">삭제</button>
+<!--              글삭제(23/04/18 16:58)-->
+<!--                <button type="button" class="btn btn-secondary cancelButton" th:href="@{'/hbrg/ex02/delete/'+${boardDto.boardId}}" onclick="location.href=this.getAttribute('href')">삭제</button>-->
+                <button type="button" class="btn btn-secondary cancelButton" th:href="@{/hbrg/ex02/delete/{boardId}(boardId=${boardDto.boardId})}" onclick="location.href=this.getAttribute('href')">삭제</button>
+
                 <button onclick="location.href='/'" type="button" class="btn btn-secondary listButton">목록</button>
               </div>
             </div>

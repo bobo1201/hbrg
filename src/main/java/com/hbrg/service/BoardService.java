@@ -6,12 +6,15 @@ import com.hbrg.entity.HFile;
 import com.hbrg.repository.BoardRepository;
 import com.hbrg.repository.FileRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.CollectionUtils;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.persistence.EntityNotFoundException;
 import java.util.List;
 
 @Service
@@ -100,9 +103,21 @@ public class BoardService {
         return boardRepository.getOne(boardId);
     }
 
+
+    // 글삭제(23/04/18 16:58)
     public void boardDelete(Long boardId){
-        boardRepository.deleteByBoardId(boardId);
+        Board board = boardRepository.findById(boardId)
+                .orElseThrow(() -> new EntityNotFoundException("Board not found for board id: " + boardId));
+
+        List<HFile> hFiles = board.getHFiles();
+        if (!CollectionUtils.isEmpty(hFiles)) {
+            fileRepository.deleteAll(hFiles);
+        }
+
+        board.removeHFiles();
+        boardRepository.delete(board);
     }
+
 
 //    public Long saveItem(Hbrg_BoardDto hbrg_boardDto) throws Exception {
 //        //상품 등록
@@ -110,10 +125,6 @@ public class BoardService {
 //        itemRepository.save(item);
 //    }
 
-
-    public void Content(Board board){
-        boardRepository.save(board);
-    }
 
     // 조회수 증가를 위한 쿼리문 사용
     @Transactional

@@ -8,6 +8,8 @@ import org.hibernate.annotations.ColumnDefault;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "Board")
@@ -38,12 +40,16 @@ public class Board extends BaseEntity{
     private int bLike; // 좋아요
 
     private String content;  // 본문
-//
-//    public void updateBoard(String id, String title, String content){
-//        this.id = id;
-//        this.title = title;
-//        this.content = content;
-//    }
+
+    // 글삭제(23/04/18 16:58)
+    @OneToMany(mappedBy = "board", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<HFile> hFiles = new ArrayList<>();
+
+    public void removeHFiles() {
+        hFiles.clear();
+    }
+
+
 
     public void updateBoard(BoardFormDto boardFormDto){
         this.boardId = boardFormDto.getBoardId();
@@ -57,6 +63,8 @@ public class Board extends BaseEntity{
         board.setTitle(boardFormDto.getTitle());
         return board;
     }
+
+
 
 //    @Builder
 //    public Board(String id, String title, String content) {

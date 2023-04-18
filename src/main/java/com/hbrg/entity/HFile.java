@@ -17,7 +17,7 @@ public class HFile {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long fileId; // 파일 번호
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="board_id")
     private Board board; // board id 가져오기
 //

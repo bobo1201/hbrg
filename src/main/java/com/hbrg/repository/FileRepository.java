@@ -1,5 +1,6 @@
 package com.hbrg.repository;
 
+import com.hbrg.entity.Board;
 import com.hbrg.entity.HFile;
 import org.springframework.data.jpa.repository.JpaRepository;
 
@@ -9,4 +10,8 @@ public interface FileRepository extends JpaRepository<HFile, Long> {
     List<HFile> findByBoardIdOrderByFileIdAsc(Long boardId);
 
     HFile findByFileId(Long fileId);
+
+    void deleteByBoardId(Long boardId);
+
+    List<HFile> findByBoard(Board board);
 }
