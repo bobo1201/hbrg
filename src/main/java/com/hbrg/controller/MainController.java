@@ -103,14 +103,84 @@ public class MainController {
 //        return "main";
 //    }
 
+//    @GetMapping(value = "/")
+//    public String main(Model model,
+//                       @PageableDefault(page=0, size=10, sort="boardId", direction= Sort.Direction.DESC) Pageable pageable,
+//                       @RequestParam(value = "searchKeyword", required = false) String searchKeyword,
+//                       @RequestParam(value = "searchType", required = false) String searchType) {
+//
+//        // 페이지블럭 처리
+//        Page<Board> list = boardService.boardList(pageable);
+//        int nowPage = list.getPageable().getPageNumber() + 1;
+//        int startPage = Math.max(nowPage - 2, 1);
+//        int endPage = Math.min(nowPage+2, list.getTotalPages());
+//        if(nowPage == 1){
+//            endPage = Math.min(nowPage + 4, list.getTotalPages());
+//        } else if(nowPage == 2){
+//            endPage = Math.min(nowPage + 3, list.getTotalPages());
+//        }
+//
+//        // 검색 기능 처리
+//        if (searchKeyword != null && searchType != null) {
+//            Page<Board> searchResults = null;
+//            switch(searchType) {
+//                case "title":
+//                    searchResults = boardRepository.findByTitleContaining(searchKeyword, pageable);
+//                    break;
+//                case "content":
+//                    searchResults = boardRepository.findByContentContaining(searchKeyword, pageable);
+//                    break;
+//                case "vc":
+//                    searchResults = boardRepository.findByVcContaining(searchKeyword, pageable);
+//                    break;
+////                case "blike":
+////                    searchResults = boardRepository.findByBlikeContaining(searchKeyword, pageable);
+////                    break;
+//                default:
+//                    searchResults = boardService.boardList(pageable);
+//                    break;
+//            }
+//            model.addAttribute("boards", searchResults);
+//        } else {
+//            model.addAttribute("boards", boardRepository.findAll(pageable));
+//        }
+//
+//        model.addAttribute("nowPage",nowPage);
+//        model.addAttribute("startPage", startPage);
+//        model.addAttribute("endPage", endPage);
+//        model.addAttribute("searchKeyword", searchKeyword);
+//        model.addAttribute("searchType", searchType);
+//
+//        return "main";
+//    }
+
     @GetMapping(value = "/")
     public String main(Model model,
-                       @PageableDefault(page=0, size=10, sort="boardId", direction= Sort.Direction.DESC) Pageable pageable,
+                       @PageableDefault(page=0, size=10, sort="boardId", direction=Sort.Direction.DESC) Pageable pageable,
                        @RequestParam(value = "searchKeyword", required = false) String searchKeyword,
                        @RequestParam(value = "searchType", required = false) String searchType) {
 
         // 페이지블럭 처리
-        Page<Board> list = boardService.boardList(pageable);
+        Page<Board> list;
+        if (searchKeyword != null && searchType != null) {
+            switch(searchType) {
+                case "title":
+                    list = boardRepository.findByTitleContaining(searchKeyword, pageable);
+                    break;
+                case "content":
+                    list = boardRepository.findByContentContaining(searchKeyword, pageable);
+                    break;
+                case "vc":
+                    list = boardRepository.findByVcContaining(searchKeyword, pageable);
+                    break;
+                default:
+                    list = boardService.boardList(pageable);
+                    break;
+            }
+        } else {
+            list = boardService.boardList(pageable);
+        }
+
         int nowPage = list.getPageable().getPageNumber() + 1;
         int startPage = Math.max(nowPage - 2, 1);
         int endPage = Math.min(nowPage+2, list.getTotalPages());
@@ -120,38 +190,19 @@ public class MainController {
             endPage = Math.min(nowPage + 3, list.getTotalPages());
         }
 
-        // 검색 기능 처리
+        String queryString = "";
         if (searchKeyword != null && searchType != null) {
-            Page<Board> searchResults = null;
-            switch(searchType) {
-                case "title":
-                    searchResults = boardRepository.findByTitleContaining(searchKeyword, pageable);
-                    break;
-                case "content":
-                    searchResults = boardRepository.findByContentContaining(searchKeyword, pageable);
-                    break;
-                case "vc":
-                    searchResults = boardRepository.findByVcContaining(searchKeyword, pageable);
-                    break;
-//                case "blike":
-//                    searchResults = boardRepository.findByBlikeContaining(searchKeyword, pageable);
-//                    break;
-                default:
-                    searchResults = boardService.boardList(pageable);
-                    break;
-            }
-            model.addAttribute("boards", searchResults);
-        } else {
-            model.addAttribute("boards", boardRepository.findAll(pageable));
+            queryString += "searchKeyword=" + searchKeyword + "&searchType=" + searchType + "&";
         }
 
-        model.addAttribute("nowPage",nowPage);
+        model.addAttribute("boards", list);
+        model.addAttribute("nowPage", nowPage);
         model.addAttribute("startPage", startPage);
         model.addAttribute("endPage", endPage);
         model.addAttribute("searchKeyword", searchKeyword);
         model.addAttribute("searchType", searchType);
+        model.addAttribute("queryString", queryString);
 
         return "main";
     }
-
 }

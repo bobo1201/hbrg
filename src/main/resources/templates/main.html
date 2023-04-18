@@ -125,44 +125,41 @@
                     </div>
 
 <!--                    &lt;!&ndash; 페이징 처리 &ndash;&gt;-->
-<!--                    <ul class="pagination justify-content-center">-->
-<!--                        <li class="page-item" th:class="${nowPage == 1 ? 'disabled' : ''}">-->
-<!--                            <a class="page-link" th:if="${nowPage > 1}" th:href="@{/(page=${nowPage-2})}" th:text="이전"></a>-->
-<!--                        </li>-->
-<!--                        <th:block th:each="page:${#numbers.sequence(startPage,endPage)}">-->
-<!--                            <li class="page-item">-->
-<!--                                <a class="page-link" th:if="${page != nowPage}" th:href="@{/(page=${page-1})}" th:text="${page}"></a>-->
-<!--                                <strong class="page-link" th:if="${page == nowPage}" th:text="${page}" style="font-style:bold"></strong>-->
-<!--                            </li>-->
-<!--                        </th:block>-->
-<!--                        <li class="page-item" th:class="${nowPage == endPage ? 'disabled' : ''}">-->
-<!--                            <a class="page-link" th:unless="${nowPage == endPage}" th:href="@{/(page=${nowPage})}">다음</a>-->
-<!--                        </li>-->
-<!--                    </ul>-->
+                    <ul class="pagination justify-content-center">
+                        <li class="page-item" th:class="${nowPage == 1 ? 'disabled' : ''}">
+                            <a class="page-link" th:if="${nowPage > 1}" th:href="@{/(page=${nowPage-2})}" th:text="이전"></a>
+                        </li>
+                        <th:block th:each="page:${#numbers.sequence(startPage,endPage)}">
+                            <li class="page-item">
+                                <a class="page-link" th:if="${page != nowPage}" th:href="@{/(page=${page-1})}" th:text="${page}"></a>
+                                <strong class="page-link" th:if="${page == nowPage}" th:text="${page}" style="font-style:bold"></strong>
+                            </li>
+                        </th:block>
+                        <li class="page-item" th:class="${nowPage == endPage ? 'disabled' : ''}">
+                            <a class="page-link" th:unless="${nowPage == endPage}" th:href="@{/(page=${nowPage})}">다음</a>
+                        </li>
+                    </ul>
                      <!-- 페이징 처리 -->
-
-                    <div>
-                        <ul class="pagination">
-                            <li th:classappend="${nowPage == 1} ? disabled : ''">
-                                <a th:href="@{/(page=${nowPage - 3}, size=${size}, sort=${sort})}" th:text="'<<'"></a>
-                            </li>
-                            <li th:classappend="${nowPage == 1} ? disabled : ''">
-                                <a th:href="@{/(page=${nowPage - 2}, size=${size}, sort=${sort})}" th:text="'<'"></a>
-                            </li>
-                            <li th:each="page : ${#numbers.sequence(startPage, endPage)}"
-                                th:classappend="${page == nowPage-1} ? active : ''">
-                                <a th:href="@{/(page=${page}, size=${size}, sort=${sort})}" th:text="${page}"></a>
-                            </li>
-                            <li th:classappend="${nowPage == totalPage} ? disabled : ''">
-                                <a th:href="@{/(page=${nowPage}, size=${size}, sort=${sort})}" th:text="'>'"></a>
-                            </li>
-                            <li th:classappend="${nowPage == totalPage} ? disabled : ''">
-                                <a th:href="@{/(page=${nowPage + 1}, size=${size}, sort=${sort})}" th:text="'>>'"></a>
-                            </li>
-                        </ul>
-                    </div>
-
-
+<!--                    <div>-->
+<!--                        <ul class="pagination">-->
+<!--                            <li th:classappend="${nowPage == 1} ? disabled : ''">-->
+<!--                                <a th:href="@{/(page=${nowPage - 3}, size=${size}, sort=${sort})}" th:text="'<<'"></a>-->
+<!--                            </li>-->
+<!--                            <li th:classappend="${nowPage == 1} ? disabled : ''">-->
+<!--                                <a th:href="@{/(page=${nowPage - 2}, size=${size}, sort=${sort})}" th:text="'<'"></a>-->
+<!--                            </li>-->
+<!--                            <li th:each="page : ${#numbers.sequence(startPage, endPage)}"-->
+<!--                                th:classappend="${page == nowPage-1} ? active : ''">-->
+<!--                                <a th:href="@{/(page=${page}, size=${size}, sort=${sort})}" th:text="${page}"></a>-->
+<!--                            </li>-->
+<!--                            <li th:classappend="${nowPage == totalPage} ? disabled : ''">-->
+<!--                                <a th:href="@{/(page=${nowPage}, size=${size}, sort=${sort})}" th:text="'>'"></a>-->
+<!--                            </li>-->
+<!--                            <li th:classappend="${nowPage == totalPage} ? disabled : ''">-->
+<!--                                <a th:href="@{/(page=${nowPage + 1}, size=${size}, sort=${sort})}" th:text="'>>'"></a>-->
+<!--                            </li>-->
+<!--                        </ul>-->
+<!--                    </div>-->
                 </div>
             </div>
         </div>
