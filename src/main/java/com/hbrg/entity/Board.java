@@ -14,40 +14,36 @@ import java.time.LocalDateTime;
 @Getter
 @Setter
 @ToString
-public class Board {
+public class Board extends BaseEntity{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long boardId; // 게시물 번호
 
     //    @ManyToOne
-    @JoinColumn(name="huser_id")
+//    @JoinColumn(name="huser_id")
     private String id; // 로그인 ID
 
 //    @ManyToOne
-//    @JoinColumn(name="board_id")
+//    @JoinColumn(name="huser_id")
 //    private HUser hUser;
 
     private String title; // 주제
 
     // 조회수를 위한 디폴트 값 설정
     @Column(columnDefinition = "integer default 0")
-    private int vC; // 조회수
+    private int vc; // 조회수
 
     @Column(columnDefinition = "integer default 0")
     private int bLike; // 좋아요
 
-    private LocalDateTime cDate; // 생성 날짜
-
-    private LocalDateTime uDate; // 수정 날짜
-
     private String content;  // 본문
-
-    public void updateBoard(String id, String title, String content){
-        this.id = id;
-        this.title = title;
-        this.content = content;
-    }
+//
+//    public void updateBoard(String id, String title, String content){
+//        this.id = id;
+//        this.title = title;
+//        this.content = content;
+//    }
 
     public void updateBoard(BoardFormDto boardFormDto){
         this.boardId = boardFormDto.getBoardId();

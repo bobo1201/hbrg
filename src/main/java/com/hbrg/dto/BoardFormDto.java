@@ -20,7 +20,7 @@ public class BoardFormDto {
     private String content;
 
     @ColumnDefault("0")
-    private Long vC;
+    private int vc;
 
     private List<HFileDto> fileDtoList = new ArrayList<>();
 

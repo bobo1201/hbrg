@@ -13,7 +13,7 @@ public interface BoardRepository extends JpaRepository<Board, Long> {
 
     List<Board> findAll();
 
-    List<Board> findById(String id);
+//    List<Board> findById(String id);
 
 
     void deleteByBoardId(Long boardId);
@@ -24,7 +24,17 @@ public interface BoardRepository extends JpaRepository<Board, Long> {
 
     // 조회수를 위한 쿼리 설정(값 증가)
     @Modifying
-    @Query("update Board b set b.vC = b.vC + 1 where b.boardId = :boardId")
+    @Query("update Board b set b.vc = b.vc + 1 where b.boardId = :boardId")
     int updateView(Long boardId);
+
+
+    Page<Board> findByTitleContaining(String searchKeyword, Pageable pageable);
+
+    Page<Board> findByContentContaining(String searchKeyword, Pageable pageable);
+
+    Page<Board> findByVcContaining(String searchKeyword, Pageable pageable);
+
+//    Page<Board> findByBlikeContaining(String searchKeyword, Pageable pageable);
+
 
 }

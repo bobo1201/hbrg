@@ -15,21 +15,30 @@
 <!-- 검색창 부분 -->
 <div layout:fragment="content" class="text-center" style="margin-top: 100px;">
     <form>
-        <form class="form-inline justify-content-center">
+        <!-- 검색 기능 구현 -->
+        <form action="/" method="GET" class="form-inline justify-content-center">
             <div class="row justify-content-center">
                 <div class="col-md-8">
                     <div class="input-group" >
                         <div class="input-group-prepend ">
-                            <button class="btn btn-outline-secondary dropdown-toggle" type="button"
-                                    id="dMB1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                전체</button>
-                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                <a class="dropdown-item" href="#">제목</a>
-                                <a class="dropdown-item" href="#">본문</a>
-                            </div>
+                            <label for="searchType"></label>
+                            <select id="searchType" name="searchType" class="btn btn-outline-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <option value=""><a class="dropdown-item">전체</a></option>
+                                <option value="title"><a class="dropdown-item">제목</a></option>
+                                <option value="content"><a class="dropdown-item">본문</a></option>
+                                <option value="vc"><a class="dropdown-item">조회수</a></option>
+<!--                                <option value="blike">Blike</option>-->
+                            </select>
+<!--                            <button class="btn btn-outline-secondary dropdown-toggle" type="button"-->
+<!--                                    id="dMB1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">-->
+<!--                                전체</button>-->
+<!--                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">-->
+<!--                                <a class="dropdown-item" href="#">제목</a>-->
+<!--                                <a class="dropdown-item" href="#">본문</a>-->
+<!--                            </div>-->
                         </div>
-                        <input name="searchQuery" class="form-control mr-sm-2"
-                               type="search" placeholder="검색어를 입력하세요." aria-label="Search" style="width:250px;">
+                        <input name="searchKeyword" class="form-control mr-sm-2" id="searchKeyword"
+                               type="text" placeholder="검색어를 입력하세요." aria-label="Search" style="width:250px;">
                         <button class="btn btn-outline-success my-2 my-sm-0"
                                 id="dMB2" type="submit">검색</button>
                     </div>
@@ -40,7 +49,7 @@
         <!-- 테이블 부분 -->
         <div class="table-container " style="overflow-x: hidden; text-align: center; margin: 0 auto;" >
             <div class="row justify-content-center">
-                <div class="col-md-10">
+                <div class="col-md-12">
                     <div class="table-responsive" style="margin-top: 50px;" >
                         <button class="btn btn-primary float-right" id="dMB3" onclick="location.href='/hbrg/ex01'">글쓰기</button>
                         <table class="table table-striped" style="table-layout: fixed; width: 100%;">
@@ -52,8 +61,9 @@
                                             번호
                                         </button>
                                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                                            <a class="dropdown-item" href="#">오름차순</a>
-                                            <a class="dropdown-item" href="#">내림차순</a>
+                                            <a class="dropdown-item" href="#">조회수</a>
+                                            <a class="dropdown-item" href="#">좋아요</a>
+                                            <a class="dropdown-item" href="#">최신순</a>
                                         </div>
                                     </div>
                                 </th>
@@ -103,39 +113,73 @@
                             </thead>
                             <!-- 페이징 처리부분  -->
                             <tbody>
-                            <tr th:each="boardDto, status: ${list}">
+                            <tr th:each="boardDto, status: ${boards}">
                                 <td><a th:href="@{/hbrg/ex02/{boardId}(boardId=${boardDto.boardId})}" th:text="${boardDto.boardId}"></a></td>
                                 <td><a th:href="@{/hbrg/ex02/{boardId}(boardId=${boardDto.boardId})}" th:text="${boardDto.title}"></a></td>
-                                <td th:text="${boardDto.vC}"></td>
+                                <td th:text="${boardDto.vc}"></td>
                                 <td th:text="${boardDto.bLike}"></td>
-                                <td th:text="${boardDto.cDate}"></td>
+                                <td th:text="${boardDto.regTime}"></td>
                             </tr>
                             </tbody>
                         </table>
                     </div>
 
-                    <!-- 페이징 처리 -->
-                    <ul class="pagination justify-content-center">
-                        <li class="page-item" th:class="${nowPage == 1 ? 'disabled' : ''}">
-                            <a class="page-link" th:if="${nowPage > 1}" th:href="@{/(page=${nowPage-2})}" th:text="이전"></a>
-                        </li>
-                        <th:block th:each="page:${#numbers.sequence(startPage,endPage)}">
-                            <li class="page-item">
-                                <a class="page-link" th:if="${page != nowPage}" th:href="@{/(page=${page-1})}" th:text="${page}"></a>
-                                <strong class="page-link" th:if="${page == nowPage}" th:text="${page}" style="font-style:bold"></strong>
+<!--                    &lt;!&ndash; 페이징 처리 &ndash;&gt;-->
+<!--                    <ul class="pagination justify-content-center">-->
+<!--                        <li class="page-item" th:class="${nowPage == 1 ? 'disabled' : ''}">-->
+<!--                            <a class="page-link" th:if="${nowPage > 1}" th:href="@{/(page=${nowPage-2})}" th:text="이전"></a>-->
+<!--                        </li>-->
+<!--                        <th:block th:each="page:${#numbers.sequence(startPage,endPage)}">-->
+<!--                            <li class="page-item">-->
+<!--                                <a class="page-link" th:if="${page != nowPage}" th:href="@{/(page=${page-1})}" th:text="${page}"></a>-->
+<!--                                <strong class="page-link" th:if="${page == nowPage}" th:text="${page}" style="font-style:bold"></strong>-->
+<!--                            </li>-->
+<!--                        </th:block>-->
+<!--                        <li class="page-item" th:class="${nowPage == endPage ? 'disabled' : ''}">-->
+<!--                            <a class="page-link" th:unless="${nowPage == endPage}" th:href="@{/(page=${nowPage})}">다음</a>-->
+<!--                        </li>-->
+<!--                    </ul>-->
+                     <!-- 페이징 처리 -->
+
+                    <div>
+                        <ul class="pagination">
+                            <li th:classappend="${nowPage == 1} ? disabled : ''">
+                                <a th:href="@{/(page=${nowPage - 3}, size=${size}, sort=${sort})}" th:text="'<<'"></a>
                             </li>
-                        </th:block>
-                        <li class="page-item" th:class="${nowPage == endPage ? 'disabled' : ''}">
-                            <a class="page-link" th:unless="${nowPage == endPage}" th:href="@{/(page=${nowPage})}">다음</a>
-                        </li>
-                    </ul>
+                            <li th:classappend="${nowPage == 1} ? disabled : ''">
+                                <a th:href="@{/(page=${nowPage - 2}, size=${size}, sort=${sort})}" th:text="'<'"></a>
+                            </li>
+                            <li th:each="page : ${#numbers.sequence(startPage, endPage)}"
+                                th:classappend="${page == nowPage-1} ? active : ''">
+                                <a th:href="@{/(page=${page}, size=${size}, sort=${sort})}" th:text="${page}"></a>
+                            </li>
+                            <li th:classappend="${nowPage == totalPage} ? disabled : ''">
+                                <a th:href="@{/(page=${nowPage}, size=${size}, sort=${sort})}" th:text="'>'"></a>
+                            </li>
+                            <li th:classappend="${nowPage == totalPage} ? disabled : ''">
+                                <a th:href="@{/(page=${nowPage + 1}, size=${size}, sort=${sort})}" th:text="'>>'"></a>
+                            </li>
+                        </ul>
+                    </div>
+
+
                 </div>
             </div>
         </div>
     </form>
 </div>
 <div>
-    <footer th:insert="fragments/footer.html"></footer>
+<!--    <footer th:insert="fragments/footer.html"></footer>-->
 </div>
+<script>
+        // 현재 검색 유형 선택 상태 유지
+        var searchType = document.getElementById("searchType");
+        for (var i = 0; i < searchType.options.length; i++) {
+            if (searchType.options[i].value === "${searchType}") {
+                searchType.options[i].selected = true;
+                break;
+            }
+        }
+    </script>
 </body>
 </html>

@@ -15,7 +15,7 @@ import javax.persistence.*;
 @Getter
 @Setter
 @ToString
-public class HUser {
+public class HUser  extends BaseEntity{
 
     @Id
     @Column(name="id", nullable = false)

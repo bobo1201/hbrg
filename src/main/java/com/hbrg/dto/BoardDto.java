@@ -12,8 +12,8 @@ public class BoardDto {
     private Long boardId;
     private String id;
     private String title;
-    private Long vC;
-    private Long bLike;
+    private int vc;
+    private int bLike;
     private LocalDateTime cDate;
     private LocalDateTime uDate;
     private String content;

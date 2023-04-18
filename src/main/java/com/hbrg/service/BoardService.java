@@ -111,27 +111,6 @@ public class BoardService {
 //    }
 
 
-
-    /* Paging */
-//    public Page<Board> getList(int page) {
-//        Pageable pageable = PageRequest.of(page, 10);
-//        return this.boardRepository.findAll(pageable);
-//    }
-
-   /* public void create(String title, String content) {
-        Board hb = new Board();
-        hb.setTitle(title);
-        hb.setContent(content);
-        this.boardRepository.save(hb);
-    }*/
-
-
-//    @Transactional
-//    public String savePost(BoardDto boardDto) {
-//        return boardRepository.save(boardDto.toEntity()).getId();
-//    }
-
-
     public void Content(Board board){
         boardRepository.save(board);
     }
