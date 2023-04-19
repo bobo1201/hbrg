@@ -27,15 +27,15 @@
                                 <option value="title"><a class="dropdown-item">제목</a></option>
                                 <option value="content"><a class="dropdown-item">본문</a></option>
                                 <option value="vc"><a class="dropdown-item">조회수</a></option>
-<!--                                <option value="blike">Blike</option>-->
+                                <!--                                <option value="blike">Blike</option>-->
                             </select>
-<!--                            <button class="btn btn-outline-secondary dropdown-toggle" type="button"-->
-<!--                                    id="dMB1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">-->
-<!--                                전체</button>-->
-<!--                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">-->
-<!--                                <a class="dropdown-item" href="#">제목</a>-->
-<!--                                <a class="dropdown-item" href="#">본문</a>-->
-<!--                            </div>-->
+                            <!--                            <button class="btn btn-outline-secondary dropdown-toggle" type="button"-->
+                            <!--                                    id="dMB1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">-->
+                            <!--                                전체</button>-->
+                            <!--                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">-->
+                            <!--                                <a class="dropdown-item" href="#">제목</a>-->
+                            <!--                                <a class="dropdown-item" href="#">본문</a>-->
+                            <!--                            </div>-->
                         </div>
                         <input name="searchKeyword" class="form-control mr-sm-2" id="searchKeyword"
                                type="text" placeholder="검색어를 입력하세요." aria-label="Search" style="width:250px;">
@@ -61,9 +61,12 @@
                                             번호
                                         </button>
                                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                                            <a class="dropdown-item" href="#">조회수</a>
+                                            <a class="dropdown-item" href="?sort=boardId">번호</a>
+                                            <a class="dropdown-item" href="?sort=title">제목</a>
+                                            <a class="dropdown-item" href="?sort=vc">조회수</a>
                                             <a class="dropdown-item" href="#">좋아요</a>
-                                            <a class="dropdown-item" href="#">최신순</a>
+                                            <a class="dropdown-item" href="?sort=regTime">생성일</a>
+
                                         </div>
                                     </div>
                                 </th>
@@ -124,7 +127,7 @@
                         </table>
                     </div>
 
-<!--                    &lt;!&ndash; 페이징 처리 &ndash;&gt;-->
+                    <!--                    &lt;!&ndash; 페이징 처리 &ndash;&gt;-->
                     <ul class="pagination justify-content-center">
                         <li class="page-item" th:class="${nowPage == 1 ? 'disabled' : ''}">
                             <a class="page-link" th:if="${nowPage > 1}" th:href="@{/(page=${nowPage-2})}" th:text="이전"></a>
@@ -139,34 +142,34 @@
                             <a class="page-link" th:unless="${nowPage == endPage}" th:href="@{/(page=${nowPage})}">다음</a>
                         </li>
                     </ul>
-                     <!-- 페이징 처리 -->
-<!--                    <div>-->
-<!--                        <ul class="pagination">-->
-<!--                            <li th:classappend="${nowPage == 1} ? disabled : ''">-->
-<!--                                <a th:href="@{/(page=${nowPage - 3}, size=${size}, sort=${sort})}" th:text="'<<'"></a>-->
-<!--                            </li>-->
-<!--                            <li th:classappend="${nowPage == 1} ? disabled : ''">-->
-<!--                                <a th:href="@{/(page=${nowPage - 2}, size=${size}, sort=${sort})}" th:text="'<'"></a>-->
-<!--                            </li>-->
-<!--                            <li th:each="page : ${#numbers.sequence(startPage, endPage)}"-->
-<!--                                th:classappend="${page == nowPage-1} ? active : ''">-->
-<!--                                <a th:href="@{/(page=${page}, size=${size}, sort=${sort})}" th:text="${page}"></a>-->
-<!--                            </li>-->
-<!--                            <li th:classappend="${nowPage == totalPage} ? disabled : ''">-->
-<!--                                <a th:href="@{/(page=${nowPage}, size=${size}, sort=${sort})}" th:text="'>'"></a>-->
-<!--                            </li>-->
-<!--                            <li th:classappend="${nowPage == totalPage} ? disabled : ''">-->
-<!--                                <a th:href="@{/(page=${nowPage + 1}, size=${size}, sort=${sort})}" th:text="'>>'"></a>-->
-<!--                            </li>-->
-<!--                        </ul>-->
-<!--                    </div>-->
+                    <!-- 페이징 처리 -->
+                    <!--                    <div>-->
+                    <!--                        <ul class="pagination">-->
+                    <!--                            <li th:classappend="${nowPage == 1} ? disabled : ''">-->
+                    <!--                                <a th:href="@{/(page=${nowPage - 3}, size=${size}, sort=${sort})}" th:text="'<<'"></a>-->
+                    <!--                            </li>-->
+                    <!--                            <li th:classappend="${nowPage == 1} ? disabled : ''">-->
+                    <!--                                <a th:href="@{/(page=${nowPage - 2}, size=${size}, sort=${sort})}" th:text="'<'"></a>-->
+                    <!--                            </li>-->
+                    <!--                            <li th:each="page : ${#numbers.sequence(startPage, endPage)}"-->
+                    <!--                                th:classappend="${page == nowPage-1} ? active : ''">-->
+                    <!--                                <a th:href="@{/(page=${page}, size=${size}, sort=${sort})}" th:text="${page}"></a>-->
+                    <!--                            </li>-->
+                    <!--                            <li th:classappend="${nowPage == totalPage} ? disabled : ''">-->
+                    <!--                                <a th:href="@{/(page=${nowPage}, size=${size}, sort=${sort})}" th:text="'>'"></a>-->
+                    <!--                            </li>-->
+                    <!--                            <li th:classappend="${nowPage == totalPage} ? disabled : ''">-->
+                    <!--                                <a th:href="@{/(page=${nowPage + 1}, size=${size}, sort=${sort})}" th:text="'>>'"></a>-->
+                    <!--                            </li>-->
+                    <!--                        </ul>-->
+                    <!--                    </div>-->
                 </div>
             </div>
         </div>
     </form>
 </div>
 <div>
-<!--    <footer th:insert="fragments/footer.html"></footer>-->
+    <!--    <footer th:insert="fragments/footer.html"></footer>-->
 </div>
 <script>
         // 현재 검색 유형 선택 상태 유지

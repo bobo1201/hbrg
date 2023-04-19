@@ -4,10 +4,8 @@ import com.hbrg.dto.BoardFormDto;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
-import org.hibernate.annotations.ColumnDefault;
 
 import javax.persistence.*;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -26,9 +24,9 @@ public class Board extends BaseEntity{
 //    @JoinColumn(name="huser_id")
     private String id; // 로그인 ID
 
-//    @ManyToOne
-//    @JoinColumn(name="huser_id")
-//    private HUser hUser;
+    @ManyToOne
+    @JoinColumn(name="hUserId")
+    private HUser hUser;
 
     private String title; // 주제
 
@@ -41,6 +39,13 @@ public class Board extends BaseEntity{
 
     private String content;  // 본문
 
+    /* 댓글 */
+//    @OrderBy("id asc") //댓글 정렬
+//    @JsonIgnoreProperties({"board"})
+//    @OneToMany(mappedBy = "board", fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
+//    private List<Comment> comments;
+
+
     // 글삭제(23/04/18 16:58)
     @OneToMany(mappedBy = "board", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<HFile> hFiles = new ArrayList<>();
@@ -49,12 +54,10 @@ public class Board extends BaseEntity{
         hFiles.clear();
     }
 
-
-
     public void updateBoard(BoardFormDto boardFormDto){
-        this.boardId = boardFormDto.getBoardId();
         this.title = boardFormDto.getTitle();
         this.content = boardFormDto.getContent();;
+        this.boardId = boardFormDto.getBoardId();
     }
 
     public static Board createBoard(BoardFormDto boardFormDto){
@@ -64,12 +67,4 @@ public class Board extends BaseEntity{
         return board;
     }
 
-
-
-//    @Builder
-//    public Board(String id, String title, String content) {
-//        this.id = id;
-//        this.title = title;
-//        this.content = content;
-//    }
 }

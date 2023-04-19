@@ -16,7 +16,7 @@ import java.time.format.DateTimeFormatter;
 @Setter
 public abstract class BaseTimeEntity {
 
-    @Convert(converter = LocalDateTimeConverter.class)
+//    @Convert(converter = LocalDateTimeConverter.class)
     @CreatedDate
     @Column(updatable = false)
     private LocalDateTime regTime;

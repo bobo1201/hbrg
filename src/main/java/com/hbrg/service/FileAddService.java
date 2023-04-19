@@ -61,18 +61,19 @@ public class FileAddService {
 //        }
 //    }
 
-//    public void updateFile(Long fileId, MultipartFile imgFile) throws Exception{
-//        if(!imgFile.isEmpty()){
-//            HFile savedFile = fileRepository.findByFileId(fileId);
-//            if (!StringUtils.isEmpty(savedFile.getFileNm())){
-//                fileService.deleteFile(itemImgLocation + "/" + savedFile.getFileNm());
-//            }
-//
-//            String oriImgName = imgFile.getOriginalFilename();
-//            String imgName = fileService.uploadFile(itemImgLocation, oriImgName, imgFile.getBytes());
-//            String imgUrl = "/images/item/" + imgName;
-//            savedFile.updateFile(oriImgName,imgName,imgUrl);
-//            fileRepository.save(savedFile);
-//        }
-//    }
+    public void updateFile(Long fileId, MultipartFile imgFile) throws Exception{
+        if(!imgFile.isEmpty()){
+            HFile savedFile = fileRepository.findByFileId(fileId);
+
+            if (!StringUtils.isEmpty(savedFile.getFileNm())){
+                fileService.deleteFile(itemImgLocation + "/" + savedFile.getFileNm());
+            }
+
+            String oriImgName = imgFile.getOriginalFilename();
+            String imgName = fileService.uploadFile(itemImgLocation, oriImgName, imgFile.getBytes());
+            String imgUrl = "/images/item/" + imgName;
+            savedFile.updateFile(oriImgName,imgName,imgUrl);
+            fileRepository.save(savedFile);
+        }
+    }
 }

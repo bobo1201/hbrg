@@ -1,6 +1,7 @@
 package com.hbrg.controller;
 
 import com.hbrg.dto.BoardFormDto;
+import com.hbrg.entity.Board;
 import com.hbrg.repository.BoardRepository;
 import com.hbrg.service.BoardService;
 import lombok.RequiredArgsConstructor;
@@ -20,12 +21,6 @@ import java.util.List;
 public class BoardController {
 
 
-    @GetMapping(value = "board")
-    public String Board() {
-        return "Content";
-    }
-
-
     private final BoardRepository boardRepository;
 
     private final BoardService boardService;
@@ -40,13 +35,6 @@ public class BoardController {
 //         assertEquals(board.getBoardId(), boardFormDto.getBoardId());
 //
 //        return "main";
-//    }
-
-//    @GetMapping(value = "/ex01")
-//    public String getBoardList1(Model model){
-//        List<Board> boardList = boardRepository.findAll();
-//        model.addAttribute("boardList", boardList);
-//        return "sub01Form";
 //    }
 
     @GetMapping(value = "/ex01")
@@ -68,7 +56,7 @@ public class BoardController {
 
 //        if(fileList.get(0).isEmpty() && boardFormDto.getBoardId() == null){
 //            model.addAttribute("errorMessage", "첫번째 이미지는 필수 입력 값입니다.");
-//            return "redirect:/list/ex01";
+//            return "redirect:/hbrg/ex01";
 //        }
 
         try {
@@ -89,20 +77,23 @@ public class BoardController {
         return "redirect:/";
     }
 
+    // 상품 수정 페이지로 값 전달
     @GetMapping(value = "/ex01/{boardId}")
-    public String boardDtl(@PathVariable("boardId") Long boradId, Model model){
+    public String boardDtl(@PathVariable("boardId") Long boardId, Model model){
 
         try{
-            BoardFormDto boardFormDto = boardService.getBoardDtl(boradId);
+            BoardFormDto boardFormDto = boardService.getBoardDtl(boardId);
             model.addAttribute("BoardFormDto", boardFormDto);
         } catch (EntityNotFoundException e){
             model.addAttribute("errorMessage", "존재하지 않습니다.");
             model.addAttribute("BoardFormDto", new BoardFormDto());
-            return "content";
+            return "redirect:/hbrg/ex01/{boardId}";
         }
         return "content";
     }
 
+
+    // 상품 수정 페이지에서 db로 값 전달
     @PostMapping(value = "/ex01/{boardId}")
     public String boardUpdate(@Valid BoardFormDto boardFormDto,BindingResult bindingResult, Model model,
                               @RequestParam("itemImgFile") List<MultipartFile> fileList){
@@ -114,7 +105,7 @@ public class BoardController {
 
 //        if(fileList.get(0).isEmpty() && boardFormDto.getBoardId() == null){
 //            model.addAttribute("errorMessage", "첫번째 이미지는 필수 입력 값입니다.");
-//            return "redirect:/list/ex01/{boardId}";
+//            return "content";
 //        }
 
         try {
@@ -122,6 +113,8 @@ public class BoardController {
             System.out.println("실행");
         } catch (Exception e){
             System.out.println("에러2");
+            e.printStackTrace();
+
             model.addAttribute("errorMessage", "상품 수정 중 에러가 발생했습니다.");
             return "redirect:/hbrg/ex01/{boardId}";
         }
@@ -129,25 +122,13 @@ public class BoardController {
         return "redirect:/";
     }
 
-//    @PostMapping(value = "/ex01")
-//    public String boardForm(BoardFormDto boardFormDto){
-//        System.out.println(boardFormDto.getId());
-//        System.out.println(boardFormDto.getTxt());
-//        System.out.println(boardFormDto.getBoardId());
-//        System.out.println(boardFormDto.getTitle());
-//        System.out.println(boardFormDto.getCDate());
-//        System.out.println(boardFormDto.getUDate());
-//        System.out.println(boardFormDto.getBLike());
-//
-//        return "출력완료";
-//    }
-
 
     // 상세페이지 표시
     @GetMapping(value = "/ex02/{boardId}")
     public String boardView(Model model, @PathVariable("boardId") Long boardId){
+        System.out.println("에러 " + boardId);
         BoardFormDto boardFormDto = boardService.getBoardDtl(boardId); // 추가
-        model.addAttribute("boardDto", boardFormDto);
+        model.addAttribute("BoardFormDto", boardFormDto);
 
         // 조회수 코드 추가
         boardService.updateView(boardId); //조회수~~
