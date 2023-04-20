@@ -17,18 +17,26 @@ public class UserService implements UserDetailsService {
 
     private final UserRepository userRepository;
 
-    public Huser saveHUser(Huser user){
-        validateDuplicateHUser(user);
+    public Huser saveUser(Huser user){
+        validateDuplicateUser(user);
+        validateDuplicateEm(user);
         return userRepository.save(user);
     }
 
     //이미 가입된 회원 이메일로 검사
-    private void validateDuplicateHUser(Huser user){
-        Huser findhUser = userRepository.findById(user.getId());
-        if (findhUser != null){
+    private void validateDuplicateUser(Huser user){
+        Huser findUser = userRepository.findById(user.getId());
+        if (findUser != null){
             throw new IllegalStateException("이미 가입된 회원입니다.");
         }
     }
+    private void validateDuplicateEm(Huser user){
+        Huser findUser = userRepository.findByEm(user.getEm());
+        if (findUser != null){
+            throw new IllegalStateException("이미 가입된 회원입니다.");
+        }
+    }
+
 
     @Override
     public UserDetails loadUserByUsername(String id) throws UsernameNotFoundException{
