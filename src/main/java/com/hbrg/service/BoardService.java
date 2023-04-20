@@ -3,7 +3,7 @@ package com.hbrg.service;
 import com.hbrg.dto.BoardFormDto;
 import com.hbrg.dto.HFileDto;
 import com.hbrg.entity.Board;
-import com.hbrg.entity.HFile;
+import com.hbrg.entity.Hfile;
 import com.hbrg.repository.BoardRepository;
 import com.hbrg.repository.FileRepository;
 import lombok.RequiredArgsConstructor;
@@ -14,7 +14,6 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.CollectionUtils;
 import org.springframework.web.multipart.MultipartFile;
 
-import javax.persistence.EntityNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -35,47 +34,31 @@ public class BoardService {
 
         // 이미지 등록
         for (int i=0; i<fileList.size(); i++){
-            HFile hFile = new HFile();
-            hFile.setBoard(board);
+            Hfile file = new Hfile();
+            file.setBoard(board);
             if (i == 0)
-                hFile.setRepImgYn("Y");
+                file.setRepImgYn("Y");
             else
-                hFile.setRepImgYn("N");
-            fileAddService.saveFile(hFile, fileList.get(i));
+                file.setRepImgYn("N");
+            fileAddService.saveFile(file, fileList.get(i));
         }
         return board.getBoardId();
     }
 
     // 파일 수정을 위한 파일 읽기
-//    @Transactional(readOnly = true)
-//    public BoardFormDto getBoardDtl(Long boardId){
-//
-//        // 이미지 파일 저장
-//        List<HFile> fileList =  fileRepository.findByBoardIdOrderByFileIdAsc(boardId);
-//        List<HFileDto> fileDtoList = new ArrayList<>();
-//        for (HFile hFile : fileList){
-//            HFileDto fileDto = HFileDto.of(hFile);
-//            fileDtoList.add(fileDto);
-//        }
-//
-//        // boardform으로 데이터 전달 및 fileDto 저장
-//        Board board = boardRepository.findById(boardId).orElseThrow(EntityNotFoundException::new);
-//        BoardFormDto boardFormDto = BoardFormDto.of(board);
-//        boardFormDto.setFileDtoList(fileDtoList);
-//        return boardFormDto;
-//    }
-
     @Transactional(readOnly = true)
     public BoardFormDto getBoardDtl(Long boardId){
 
         // 이미지 파일 저장
         Board board = boardRepository.findByBoardId(boardId);
-        List<HFile> fileList = board.getHFiles();
+        List<Hfile> fileList = board.getFiles();
         List<HFileDto> fileDtoList = new ArrayList<>();
 
-        for (HFile hFile : fileList){
-            HFileDto fileDto = HFileDto.of(hFile);
+        for (Hfile file : fileList){
+            HFileDto fileDto = HFileDto.of(file);
             fileDtoList.add(fileDto);
+
+            System.out.println(fileDto + " 1");
         }
 
         // boardform으로 데이터 전달 및 fileDto 저장
@@ -88,49 +71,29 @@ public class BoardService {
     public Long updateBoard(BoardFormDto boardFormDto,
                             List<MultipartFile> fileList) throws Exception{
 
-//        Board board = boardFormDto.createBoard();
-//        boardRepository.save(board);
-
-//        // 이미지 등록
-//        for (int i=0; i<fileList.size(); i++){
-//            HFile hFile = new HFile();
-//            hFile.setBoard(board);
-//            if (i == 0)
-//                hFile.setRepImgYn("Y");
-//            else
-//                hFile.setRepImgYn("N");
-//            fileAddService.saveFile(hFile, fileList.get(i));
-//        }
-
-
         // 상품 수정
         Board board = boardRepository.findByBoardId(boardFormDto.getBoardId());
         board.updateBoard(boardFormDto);
 
-        System.out.println("ID" + boardFormDto.getBoardId());
-        System.out.println("title" + boardFormDto.getTitle());
-        System.out.println("CONTENT" + boardFormDto.getContent());
-
-
-        // 이미지 등록
-        List<Long> fileIds = boardFormDto.getFileIds();
-
-        if (fileIds == null || fileIds.isEmpty()) {
-            // 예외 처리
-            throw new IllegalArgumentException("fileIds 리스트가 null이거나 비어 있습니다.");
+        // 이미지 파일 삭제
+        List<Hfile> files = board.getFiles();
+        if (!CollectionUtils.isEmpty(files)) {
+            fileRepository.deleteAll(files);
         }
 
-        if (fileList.size() != fileIds.size()) {
-            // 예외 처리
-            throw new IllegalArgumentException("fileList의 크기와 fileIds의 크기가 일치하지 않습니다.");
-        } else {
-            System.out.println("에러없음22");
-        }
+        // 게시판에서 삭제
+        board.removeHFiles();
 
-        for(int i=0; i<fileList.size(); i++){
-            fileAddService.updateFile(fileIds.get(i), fileList.get(i));
+        // 이미지 파일 다시 저장
+        for (int i=0; i<fileList.size(); i++){
+            Hfile file = new Hfile();
+            file.setBoard(board);
+            if (i == 0)
+                file.setRepImgYn("Y");
+            else
+                file.setRepImgYn("N");
+            fileAddService.saveFile(file, fileList.get(i));
         }
-
         return board.getBoardId();
     }
 
@@ -149,21 +112,14 @@ public class BoardService {
     // 글삭제(23/04/18 16:58)
     public void boardDelete(Long boardId){
         Board board = boardRepository.findByBoardId(boardId);
-        List<HFile> hFiles = board.getHFiles();
-        if (!CollectionUtils.isEmpty(hFiles)) {
-            fileRepository.deleteAll(hFiles);
+        List<Hfile> files = board.getFiles();
+        if (!CollectionUtils.isEmpty(files)) {
+            fileRepository.deleteAll(files);
         }
 
         board.removeHFiles();
         boardRepository.delete(board);
     }
-
-
-//    public Long saveItem(Hbrg_BoardDto hbrg_boardDto) throws Exception {
-//        //상품 등록
-//        Hbrg_Board hbrg_board = Hbrg_BoardDto.createItem();
-//        itemRepository.save(item);
-//    }
 
 
     // 조회수 증가를 위한 쿼리문 사용

@@ -1,8 +1,8 @@
 package com.hbrg.dto;
 
 import com.hbrg.entity.Board;
-import com.hbrg.entity.HFile;
-import com.hbrg.entity.HUser;
+import com.hbrg.entity.Hfile;
+import com.hbrg.entity.Huser;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.ColumnDefault;
@@ -25,9 +25,9 @@ public class BoardFormDto {
     @ColumnDefault("0")
     private int vc;
 
-    private HFile hFile;
+    private Hfile file;
 
-    private HUser hUser;
+    private Huser user;
 
     private LocalDateTime regTime;
     private LocalDateTime updateTime;

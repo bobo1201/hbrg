@@ -24,9 +24,9 @@ public class Board extends BaseEntity{
 //    @JoinColumn(name="huser_id")
     private String id; // 로그인 ID
 
-    @ManyToOne
-    @JoinColumn(name="hUserId")
-    private HUser hUser;
+//    @ManyToOne
+//    @JoinColumn(name="hUserId")
+//    private HUser hUser;
 
     private String title; // 주제
 
@@ -48,10 +48,10 @@ public class Board extends BaseEntity{
 
     // 글삭제(23/04/18 16:58)
     @OneToMany(mappedBy = "board", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<HFile> hFiles = new ArrayList<>();
+    private List<Hfile> files = new ArrayList<>();
 
     public void removeHFiles() {
-        hFiles.clear();
+        files.clear();
     }
 
     public void updateBoard(BoardFormDto boardFormDto){

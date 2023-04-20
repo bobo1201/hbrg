@@ -11,11 +11,11 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "HUser")
+@Table(name = "Huser")
 @Getter
 @Setter
 @ToString
-public class HUser  extends BaseEntity{
+public class Huser  extends BaseEntity{
 
     @Id
     @Column(name="id", nullable = false)
@@ -34,17 +34,17 @@ public class HUser  extends BaseEntity{
     @Enumerated(EnumType.STRING)
     private Role role;
 
-    public static HUser createHUser (UserFormDto userFormDto, PasswordEncoder passwordEncoder){
-        HUser hUser = new HUser();
-        hUser.setId(userFormDto.getId());
-        hUser.setEm(userFormDto.getEm());
-        hUser.setNic(userFormDto.getNic());
-        hUser.setRole(Role.USER);
+    public static Huser createHUser (UserFormDto userFormDto, PasswordEncoder passwordEncoder){
+        Huser user = new Huser();
+        user.setId(userFormDto.getId());
+        user.setEm(userFormDto.getEm());
+        user.setNic(userFormDto.getNic());
+        user.setRole(Role.USER);
 
         //SecurityConfig의 BCryptPasswordEncoder Bean을 파라미터로 넘겨서 비밀번호 암호화
         String Password = passwordEncoder.encode(userFormDto.getPw());
-        hUser.setPw(Password);
+        user.setPw(Password);
 
-        return hUser;
+        return user;
     }
 }

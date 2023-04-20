@@ -1,6 +1,6 @@
 package com.hbrg.dto;
 
-import com.hbrg.entity.HFile;
+import com.hbrg.entity.Hfile;
 import lombok.Getter;
 import lombok.Setter;
 import org.modelmapper.ModelMapper;
@@ -16,7 +16,7 @@ public class HFileDto {
 
     private static ModelMapper modelMapper = new ModelMapper();
 
-    public static HFileDto of(HFile hFile){
-        return modelMapper.map(hFile, HFileDto.class);
+    public static HFileDto of(Hfile file){
+        return modelMapper.map(file, HFileDto.class);
     }
 }

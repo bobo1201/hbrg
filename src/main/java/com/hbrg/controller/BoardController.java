@@ -1,7 +1,6 @@
 package com.hbrg.controller;
 
 import com.hbrg.dto.BoardFormDto;
-import com.hbrg.entity.Board;
 import com.hbrg.repository.BoardRepository;
 import com.hbrg.service.BoardService;
 import lombok.RequiredArgsConstructor;
@@ -114,8 +113,7 @@ public class BoardController {
         } catch (Exception e){
             System.out.println("에러2");
             e.printStackTrace();
-
-            model.addAttribute("errorMessage", "상품 수정 중 에러가 발생했습니다.");
+            model.addAttribute("errorMessage", "수정 중 에러가 발생했습니다.");
             return "redirect:/hbrg/ex01/{boardId}";
         }
 
