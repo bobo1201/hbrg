@@ -12,7 +12,7 @@ import java.time.LocalDateTime;
 @Getter
 @Setter
 @ToString
-public class ReReply {
+public class ReReply  {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

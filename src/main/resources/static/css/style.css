@@ -1,3 +1,4 @@
+
 /* content.html css 부분*/
 
 .form-container {
@@ -81,16 +82,7 @@
   color: #fff9e4;
 }
 
-/*.btn-add {  *//* + 버튼 *//*
-      background-color: #feec9e;
-      border: none;
-      color: #7c6839;
-    }
 
-.btn-add:hover {
-  background-color: #ffce00;
-  color: #fff9e4;
-}*/
 
 .btn-remove{      /* - 버튼 */
       background-color: #feec9e;
@@ -115,6 +107,78 @@
   color: #fff9e4;
 }
 
+/* contentview.html */
+
+.title-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.like-button {
+  margin-left: 10px;
+}
+
+.listButton {     /* 취소 버튼 */
+      background-color: #feec9e;
+      border: none;
+      color: #7c6839;
+    }
+
+.listButton:hover {
+  background-color: #ffce00;
+  color: #fff9e4;
+}
+
+
+.btn-margin {
+  display: flex;
+  justify-content: center;
+  margin-top: 50px;
+}
+.my-textarea {
+height: 200px; /* 원하는 높이 값으로 조정 */
+  overflow-y: auto; /* 스크롤 막대 추가 */
+}
+
+
+/* 댓글*/
+
+.comment-container, .comment-list-container {
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+.btn-sm {   /* 댓글달기 버튼 */
+ background-color: #feec9e;
+      border: none;
+      color: #7c6839;
+}
+.btn-sm:hover {
+  background-color: #ffce00;
+  color: #fff9e4;
+}
+.comment-container {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.comment-input {
+  flex: 1;
+}
+
+.btn-comment {
+  margin-left: 10px;
+  padding: 5px 10px;
+  font-size: 14px;
+}
+
+
+
+
+
 
 /* main.html css 부분 */
 
@@ -123,7 +187,34 @@
 }
 .table {
     background-color: white;
+
 }
+.table-container {
+  width: 1000px; /* 원하는 너비 설정 */
+}
+ table {
+        table-layout: fixed;
+        width: 100%;
+    }
+
+    th, td {
+        text-align: center;
+        vertical-align: middle;
+    }
+
+    th:nth-child(1), td:nth-child(1) {
+        width: 10%;
+    }
+
+    th:nth-child(2), td:nth-child(2) {
+        width: 30%;
+    }
+
+    th:nth-child(3), td:nth-child(3), th:nth-child(4), td:nth-child(4), th:nth-child(5), td:nth-child(5) {
+        width: 10%;
+    }
+
+
 
 /* main button 부분 */
 
@@ -223,10 +314,40 @@ button#dMB3 {       /*버튼 글쓰기 부분 */
 
 
 
-/* header */
+/* header.html */
 
 .navbar-brand {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-      }
+  background-image: url('../img/home.png');
+  background-repeat: no-repeat;
+  background-size: contain;
+  display: inline-block;
+  width: 120px;
+  height: 80px;
+}
+
+/* contentview.html */
+
+.form-group .btn-add-comment, .form-group .btn-edit-comment {
+    float: right;
+}
+
+
+/* 좋아요 부분 */
+
+
+.like-button {
+  margin-left: 20px;
+  background-color: #feec9e; /* 배경색상 */
+  border-color: none; /* 테두리 없앰 */
+  color: #7c6839;   /* 글자 색 */
+}
+
+.like-button:hover {
+  background-color: #ff0044; /* 배경색상 */
+  color: #fff9e4;
+}
+
+.like-button.active {
+  background-color: #ff0044;
+}
+

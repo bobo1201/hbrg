@@ -1,6 +1,6 @@
 package com.hbrg.service;
 
-import com.hbrg.entity.HUser;
+import com.hbrg.entity.Huser;
 import com.hbrg.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.User;
@@ -17,14 +17,14 @@ public class UserService implements UserDetailsService {
 
     private final UserRepository userRepository;
 
-    public HUser saveHUser(HUser hUser){
-        validateDuplicateHUser(hUser);
-        return userRepository.save(hUser);
+    public Huser saveHUser(Huser user){
+        validateDuplicateHUser(user);
+        return userRepository.save(user);
     }
 
     //이미 가입된 회원 이메일로 검사
-    private void validateDuplicateHUser(HUser hUser){
-        HUser findhUser = userRepository.findById(hUser.getId());
+    private void validateDuplicateHUser(Huser user){
+        Huser findhUser = userRepository.findById(user.getId());
         if (findhUser != null){
             throw new IllegalStateException("이미 가입된 회원입니다.");
         }
@@ -32,15 +32,15 @@ public class UserService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String id) throws UsernameNotFoundException{
-        HUser hUser = userRepository.findById(id);
-        if(hUser==null){
+        Huser user = userRepository.findById(id);
+        if(user==null){
             throw new UsernameNotFoundException(id);
         }
 
         return User.builder()
-                .username(hUser.getId())
-                .password(hUser.getPw())
-                .roles(hUser.getRole().toString())
+                .username(user.getId())
+                .password(user.getPw())
+                .roles(user.getRole().toString())
                 .build();
     }
 }

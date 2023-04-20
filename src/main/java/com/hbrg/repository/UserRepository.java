@@ -1,9 +1,9 @@
 package com.hbrg.repository;
 
-import com.hbrg.entity.HUser;
+import com.hbrg.entity.Huser;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface UserRepository extends JpaRepository<HUser, Long> {
+public interface UserRepository extends JpaRepository<Huser, Long> {
 
-    HUser findById(String id);
+    Huser findById(String id);
 }

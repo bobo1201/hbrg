@@ -1,11 +1,14 @@
 package com.hbrg.dto;
 
 import com.hbrg.entity.Board;
+import com.hbrg.entity.Hfile;
+import com.hbrg.entity.Huser;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.ColumnDefault;
 import org.modelmapper.ModelMapper;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,9 +23,18 @@ public class BoardFormDto {
     private String content;
 
     @ColumnDefault("0")
-    private Long vC;
+    private int vc;
 
-    private List<FileDto> fileDtoList = new ArrayList<>();
+    private Hfile file;
+
+    private Huser user;
+
+    private LocalDateTime regTime;
+    private LocalDateTime updateTime;
+
+
+    private List<HFileDto> fileDtoList = new ArrayList<>();
+
 
     private List<Long> fileIds = new ArrayList<>();
 

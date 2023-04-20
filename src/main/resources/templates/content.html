@@ -5,11 +5,39 @@
 <head>
     <meta charset="UTF-8" />
     <title>게시판 - 글쓰기</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" />    <link rel="stylesheet" href="/css/style.css" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="/css/style.css" />
 </head>
 <body>
 <header th:insert="fragments/header.html"></header>
+<th:block layout:fragment="script">
+    <script th:inline="javascript">
+        $(document).ready(function(){
+            var errorMessage = [[${errorMessage}]];
+            if(errorMessage != null){
+                alert(errorMessage);
+            }
 
+            bindDomEvent();
+
+        });
+
+        function bindDomEvent(){
+            $(".custom-file-input").on("change", function() {
+                var fileName = $(this).val().split("\\").pop();  //이미지 파일명
+                var fileExt = fileName.substring(fileName.lastIndexOf(".")+1); // 확장자 추출
+                fileExt = fileExt.toLowerCase(); //소문자 변환
+
+                if(fileExt != "jpg" && fileExt != "jpeg" && fileExt != "gif" && fileExt != "png" && fileExt != "bmp"){
+                    alert("이미지 파일만 등록이 가능합니다.");
+                    return;
+                }
+
+                $(this).siblings(".custom-file-label").html(fileName);
+            });
+        }
+    </script>
+</th:block>
 
 
 <div layout:fragment="content">
@@ -42,11 +70,11 @@
 
                         <div class="form-group">
                             <div th:if="${#lists.isEmpty(BoardFormDto.fileDtoList)}">
-                                <label th:for="inputFile"><strong>파일 첨부</strong></label>
+                                <label><strong>파일 첨부</strong></label>
                                 <div class="file-container" th:each="num: ${#numbers.sequence(1,2)}">
                                     <div class="custom-file img-div">
                                         <input type="file" class="custom-file-input" name="itemImgFile">
-                                        <label class="custom-file-label" th:text="상품이미지 + ${num}"></label>
+                                        <label class="custom-file-label" th:text="첨부파일 + ${num}"></label>
                                     </div>
                                 </div>
                             </div>
@@ -56,7 +84,7 @@
                                     <div class="custom-file img-div">
                                         <input type="file" class="custom-file-input" name="itemImgFile">
                                         <input type="hidden" name="itemImgIds" th:value="${FileDto.fileId}">
-                                        <label class="custom-file-label" th:text="${not #strings.isEmpty(FileDto.oriFileNm)} ? ${FileDto.oriFileNm} : '상품이미지' + ${status.index+1}"></label>
+                                        <label class="custom-file-label" th:text="${not #strings.isEmpty(FileDto.oriFileNm)} ? ${FileDto.oriFileNm} : '첨부파일' + ${status.index+1}"></label>
                                     </div>
                                 </div>
                             </div>

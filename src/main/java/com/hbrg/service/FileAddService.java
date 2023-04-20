@@ -1,6 +1,6 @@
 package com.hbrg.service;
 
-import com.hbrg.entity.HFile;
+import com.hbrg.entity.Hfile;
 import com.hbrg.repository.FileRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
@@ -23,7 +23,7 @@ public class FileAddService {
 
     private final FileService fileService;
 
-    public void saveFile(HFile hFile, MultipartFile imgFile) throws Exception{
+    public void saveFile(Hfile file, MultipartFile imgFile) throws Exception{
         String oriImgName = imgFile.getOriginalFilename();
         String imgName = "";
         String imgUrl = "";
@@ -35,8 +35,8 @@ public class FileAddService {
         }
 
         // 상품 이미지 정보 저장
-        hFile.updateFile(oriImgName, imgName, imgUrl);
-        fileRepository.save(hFile);
+        file.updateFile(oriImgName, imgName, imgUrl);
+        fileRepository.save(file);
     }
 
 //    public void updateFile(Long fileId, MultipartFile imgFile) throws Exception{
@@ -61,18 +61,19 @@ public class FileAddService {
 //        }
 //    }
 
-//    public void updateFile(Long fileId, MultipartFile imgFile) throws Exception{
-//        if(!imgFile.isEmpty()){
-//            HFile savedFile = fileRepository.findByFileId(fileId);
-//            if (!StringUtils.isEmpty(savedFile.getFileNm())){
-//                fileService.deleteFile(itemImgLocation + "/" + savedFile.getFileNm());
-//            }
-//
-//            String oriImgName = imgFile.getOriginalFilename();
-//            String imgName = fileService.uploadFile(itemImgLocation, oriImgName, imgFile.getBytes());
-//            String imgUrl = "/images/item/" + imgName;
-//            savedFile.updateFile(oriImgName,imgName,imgUrl);
-//            fileRepository.save(savedFile);
-//        }
-//    }
+    public void updateFile(Long fileId, MultipartFile imgFile) throws Exception{
+        if(!imgFile.isEmpty()){
+            Hfile savedFile = fileRepository.findByFileId(fileId);
+
+            if (!StringUtils.isEmpty(savedFile.getFileNm())){
+                fileService.deleteFile(itemImgLocation + "/" + savedFile.getFileNm());
+            }
+
+            String oriImgName = imgFile.getOriginalFilename();
+            String imgName = fileService.uploadFile(itemImgLocation, oriImgName, imgFile.getBytes());
+            String imgUrl = "/images/item/" + imgName;
+            savedFile.updateFile(oriImgName,imgName,imgUrl);
+            fileRepository.save(savedFile);
+        }
+    }
 }

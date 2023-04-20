@@ -1,7 +1,7 @@
 package com.hbrg.controller;
 
 import com.hbrg.dto.UserFormDto;
-import com.hbrg.entity.HUser;
+import com.hbrg.entity.Huser;
 import com.hbrg.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -11,6 +11,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+
 import javax.validation.Valid;
 
 @RequestMapping("/user")
@@ -34,8 +35,8 @@ public class UserController {
         }
 
         try{
-            HUser hUser = HUser.createHUser(userFormDto, passwordEncoder);
-            userService.saveHUser(hUser);
+            Huser user = Huser.createHUser(userFormDto, passwordEncoder);
+            userService.saveHUser(user);
         }catch(IllegalStateException e){
             model.addAttribute("errorMessage", e.getMessage());
         }

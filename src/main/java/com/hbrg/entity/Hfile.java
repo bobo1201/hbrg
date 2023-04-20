@@ -2,22 +2,20 @@ package com.hbrg.entity;
 
 import lombok.Getter;
 import lombok.Setter;
-import lombok.ToString;
 
 import javax.persistence.*;
 
 @Entity
-@Table(name = "HFile")
+@Table(name = "Hfile")
 @Getter @Setter
-@ToString
-public class HFile {
+public class Hfile {
 
     @Id
     @Column(name="fileId")
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long fileId; // 파일 번호
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="board_id")
     private Board board; // board id 가져오기
 //
