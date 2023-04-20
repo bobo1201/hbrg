@@ -141,4 +141,16 @@ public class BoardController {
         return "redirect:/";
     }
 
+    // 검ㅅ개 기능 추가
+//    @GetMapping(value = {"/search/board", "/search/board/{page}"})
+//    public String BoardManage(BoardSearchDto boardSearchDto, @PathVariable("page") Optional<Integer> page, Model model) {
+//        Pageable pageable = PageRequest.of(page.isPresent() ? page.get() : 0, 3);
+//        Page<Board> boards = boardService.getAdminItemPage(boardSearchDto, pageable);
+//        boardService.getAdminItemPage(boardSearchDto, pageable);
+//        model.addAttribute("boards", boards);
+//        model.addAttribute("boardSearchDto", boardSearchDto);
+//        model.addAttribute("maxPage", 5);
+//        return "main";
+//    }
+
 }

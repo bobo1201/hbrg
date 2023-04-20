@@ -1,6 +1,7 @@
 package com.hbrg.service;
 
 import com.hbrg.dto.BoardFormDto;
+import com.hbrg.dto.BoardSearchDto;
 import com.hbrg.dto.HFileDto;
 import com.hbrg.entity.Board;
 import com.hbrg.entity.Hfile;
@@ -126,6 +127,12 @@ public class BoardService {
     @Transactional
     public int updateView(Long boardId){
         return boardRepository.updateView(boardId);
+    }
+
+
+    @Transactional(readOnly = true)
+    public Page<Board> getAdminItemPage(BoardSearchDto boardSearchDto, Pageable pageable) {
+        return boardRepository.getAdminItemPage(boardSearchDto, pageable);
     }
 
 }
