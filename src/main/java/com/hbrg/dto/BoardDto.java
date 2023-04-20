@@ -12,7 +12,7 @@ public class BoardDto {
     private Long boardId;
     private String id;
     private String title;
-    private Long vC;
+    private Long vc;
     private Long bLike;
     private LocalDateTime cDate;
     private LocalDateTime uDate;

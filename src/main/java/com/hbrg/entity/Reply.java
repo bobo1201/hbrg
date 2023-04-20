@@ -3,28 +3,61 @@ package com.hbrg.entity;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
+import org.hibernate.annotations.ColumnDefault;
 
 import javax.persistence.*;
-import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "Reply")
 @Getter
 @Setter
 @ToString
-public class Reply {
+public class Reply extends BaseEntity{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "reId")
     private Long reId; // 댓글 번호
 
-    @JoinColumn(name="boardId")
-    private Long boardId; // 게시물 번호
 
-//    @OneToMany
-    private String id; // 로그인 ID
+    private String content; // 댓글 내용
 
-    private LocalDateTime reCDate; // 댓글 생성 날짜
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "boardId")
+    private Board board;
 
-    private String reTxt; // 댓글 내용
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "id")
+    private HUser hUser; // 로그인 ID
+
+
+
+    private String Nic;
+
+
+
+
+    private int commentCnt;
+
+    private int commentGroup;
+
+    @ColumnDefault("0")
+    private int commentSequence;
+
+    @ColumnDefault("0")
+    private int level;
+/*
+    public void setReContent(String reContent) {
+        this.reContent = reContent;
+    }
+
+    public String getReContent() {
+        return reContent;
+    }*/
+
+
+
+
 }
+
