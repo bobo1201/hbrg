@@ -1,9 +1,14 @@
 package com.hbrg.controller;
 
 import com.hbrg.dto.BoardFormDto;
+import com.hbrg.dto.BoardSearchDto;
+import com.hbrg.entity.Board;
 import com.hbrg.repository.BoardRepository;
 import com.hbrg.service.BoardService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -13,6 +18,7 @@ import org.springframework.web.multipart.MultipartFile;
 import javax.persistence.EntityNotFoundException;
 import javax.validation.Valid;
 import java.util.List;
+import java.util.Optional;
 
 @Controller
 @RequestMapping(value="/hbrg")
@@ -139,6 +145,18 @@ public class BoardController {
     public String boardDelete(@PathVariable("boardId") Long boardId){
         boardService.boardDelete(boardId);
         return "redirect:/";
+    }
+
+    // 검ㅅ개 기능 추가
+    @GetMapping(value = {"/search/board", "/search/board/{page}"})
+    public String BoardManage(BoardSearchDto boardSearchDto, @PathVariable("page") Optional<Integer> page, Model model) {
+        Pageable pageable = PageRequest.of(page.isPresent() ? page.get() : 0, 3);
+        Page<Board> boards = boardService.getAdminItemPage(boardSearchDto, pageable);
+        boardService.getAdminItemPage(boardSearchDto, pageable);
+        model.addAttribute("items", boards);
+        model.addAttribute("itemSearchDto", boardSearchDto);
+        model.addAttribute("maxPage", 5);
+        return "main";
     }
 
 }

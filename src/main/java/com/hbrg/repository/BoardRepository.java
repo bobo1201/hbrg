@@ -6,11 +6,13 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.querydsl.QuerydslPredicateExecutor;
 
 import java.time.LocalDateTime;
 import java.util.List;
 
-public interface BoardRepository extends JpaRepository<Board, Long> {
+public interface BoardRepository extends JpaRepository<Board, Long>,
+    QuerydslPredicateExecutor<Board>, BoardRepositoryCustom {
 
 
     List<Board> findAllByOrderByBoardIdDesc();
@@ -25,6 +27,10 @@ public interface BoardRepository extends JpaRepository<Board, Long> {
     Board findByBoardId(Long boardId);
 
     Page<Board> findAll(Pageable pageable);
+
+
+
+
 
     // 조회수를 위한 쿼리 설정(값 증가)
     @Modifying
