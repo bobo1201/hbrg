@@ -247,6 +247,7 @@ public class MainController {
 
 
 
+
     @GetMapping(value = {"/", "/{page}"})
     public String BoardManage(BoardSearchDto boardSearchDto, @PathVariable("page") Optional<Integer> page, Model model) {
         // 클릭한 항목에 따라 sort 속성을 설정합니다.

@@ -124,15 +124,15 @@ public class BoardService {
 
 
     // 조회수 증가를 위한 쿼리문 사용
-    @Transactional
-    public int updateView(Long boardId){
-        return boardRepository.updateView(boardId);
-    }
+        @Transactional
+        public int updateView(Long boardId){
+            return boardRepository.updateView(boardId);
+        }
 
 
-    @Transactional(readOnly = true)
-    public Page<Board> getAdminItemPage(BoardSearchDto boardSearchDto, Pageable pageable) {
-        return boardRepository.getAdminItemPage(boardSearchDto, pageable);
+        @Transactional(readOnly = true)
+        public Page<Board> getAdminItemPage(BoardSearchDto boardSearchDto, Pageable pageable) {
+            return boardRepository.getAdminItemPage(boardSearchDto, pageable);
     }
 
 }
