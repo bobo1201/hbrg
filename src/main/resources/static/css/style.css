@@ -145,35 +145,18 @@ height: 200px; /* 원하는 높이 값으로 조정 */
 
 /* 댓글*/
 
-.comment-container, .comment-list-container {
-    border: 1px solid #ccc;
-    padding: 10px;
-    margin-bottom: 10px;
-}
-.btn-sm {   /* 댓글달기 버튼 */
+#comment-write-btn {
  background-color: #feec9e;
       border: none;
       color: #7c6839;
-}
-.btn-sm:hover {
+    }
+
+#comment-write-btn:hover {
   background-color: #ffce00;
   color: #fff9e4;
 }
-.comment-container {
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-}
 
-.comment-input {
-  flex: 1;
-}
 
-.btn-comment {
-  margin-left: 10px;
-  padding: 5px 10px;
-  font-size: 14px;
-}
 
 
 

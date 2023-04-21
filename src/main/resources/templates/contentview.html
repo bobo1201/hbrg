@@ -7,6 +7,8 @@
   <title>게시판 상세페이지</title>
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" />
   <link rel="stylesheet" href="/css/style.css" />
+  <script src="https//code.jquery.com/jquery-3.6.3.min.js"></script>
+
 
 </head>
 <body>
@@ -42,24 +44,38 @@
                 <button type="button" class="btn btn-primary btn-add">+</button>
               </div>
             </div>
-            <!-- 댓글 목록 -->
-            <div class="form-group">
-              <label for="commentList"><strong>댓글 목록</strong></label>
-              <div class="comment-list-container">
-                <ul id="commentList">
-                  <!-- 댓글 목록을 나타낼 li 태그들을 동적으로 추가 -->
-                </ul>
-              </div>
-            </div>
 
-            <!-- 댓글 부분 -->
-            <div class="form-group">
-              <label for="inputComment"><strong>댓글</strong></label>
-              <div class="comment-container">
-                <input type="text" name="comment" class="form-control comment-input" id="inputComment" />
-                <button type="button" class="btn btn-primary btn-comment btn-sm">댓글달기</button>
+
+            <form class="comment-view">
+              <!-- 댓글 작성 부분 -->
+              <div id="comment-write">
+                <input type="text" id="commentWriter" placeholder="작성자">
+                <input type="text" id="commentContents" placeholder="내용">
+                <button id="comment-write-btn" onclick="commentWrite()">댓글작성</button>
               </div>
-            </div>
+
+              <!-- 댓글 출력 부분 -->
+              <div id="comment-list">
+                <table>
+                  <tr>
+                    <th>댓글번호</th>
+                    <th>작성자</th>
+                    <th>내용</th>
+                    <th>작성시간</th>
+                  </tr>
+                  <tr th:each="reply: ${replyList}">
+                    <td th:text="${reply.reId}"></td>
+                    <td th:text="${reply.id}"></td>
+                    <td th:text="${reply.reContent}"></td>
+                    <td th:text="${reply.reCDate}"></td>
+                  </tr>
+                </table>
+              </div>
+            </form>
+
+
+
+
 
             <!-- 페이지 수정 삭제-->
             <div class="form-group">
@@ -77,39 +93,98 @@
 </div>
 </div>
 
-<script>
-// 내용
-var textarea = document.querySelector(".my-textarea");
+<script th:inline="javascript">
+// 댓글
+    const commentWrite = () => {
+        const writer = document.getElementById("").value;
+        const contents = document.getElementById("commentContents").value;
+        console.log("작성자: ", writer);
+        console.log("내용: ", contents);
+        const id = [[${board.boardId}]];
+        $.ajax({
+           // 요청방식: post, 요청주소: /comment/save, 요청데이터: 작성자, 작성내용, 게시글번호
+           type: "post",
+           url: "/comment/save",
+<!--           data: {-->
+<!--               "commentWriter": writer,-->
+<!--               "commentContents": contents,-->
+<!--               "boardId": id-->
+<!--           },-->
+<!--           success: function (res) {-->
+<!--               console.log("요청성공", res);-->
+<!--               let output = "<table>";-->
+<!--               output += "<tr><th>댓글번호</th>";-->
+<!--               output += "<th>작성자</th>";-->
+<!--               output += "<th>내용</th>";-->
+<!--               output += "<th>작성시간</th></tr>";-->
+<!--               for (let i in res) {-->
+<!--                   output += "<tr>";-->
+<!--                   output += "<td>" + res[i].id + "</td>";-->
+<!--                   output += "<td>" + res[i].commentWriter + "</td>";-->
+<!--                   output += "<td>" + res[i].commentContents + "</td>";-->
+<!--                   output += "<td>" + res[i].commentCreatedTime + "</td>";-->
+<!--                   output += "</tr>";-->
+<!--               }-->
+<!--               output += "</table>";-->
+<!--               document.getElementById('comment-list').innerHTML = output;-->
+<!--               document.getElementById('commentWriter').value = '';-->
+<!--               document.getElementById('commentContents').value = '';-->
+<!--           },-->
+<!--           error: function (err) {-->
+<!--               console.log("요청실패", err);-->
+<!--           }-->
+<!--        });-->
 
-textarea.addEventListener("input", function(){
-  this.style.height = "auto";
-  this.style.height = (this.scrollHeight) + "px";
-});
+    }
+<!--    const listReq = () => {-->
+<!--        console.log("목록 요청");-->
+<!--        const page = [[${page}]];-->
+<!--        location.href = "/hgrg/paging?page="+page;-->
+<!--    }-->
+<!--    const updateReq = () => {-->
+<!--        console.log("수정 요청");-->
+<!--        const id = [[${board.id}]];-->
+<!--        location.href = "/hgrg/update/" + id;-->
+<!--    }-->
+<!--    const deleteReq = () => {-->
+<!--        console.log("삭제 요청");-->
+<!--        const id = [[${board.id}]];-->
+<!--        location.href = "/hgrg/delete/" + id;-->
+<!--    }-->
+
+
+<!--// 내용-->
+<!--var textarea = document.querySelector(".my-textarea");-->
+
+<!--textarea.addEventListener("input", function(){-->
+<!--  this.style.height = "auto";-->
+<!--  this.style.height = (this.scrollHeight) + "px";-->
+<!--});-->
 
 
 
-function likeButtonClick() {
-  var btn = document.querySelector(".like-button");
-  btn.classList.toggle("active");
-}
+<!--function likeButtonClick() {-->
+<!--  var btn = document.querySelector(".like-button");-->
+<!--  btn.classList.toggle("active");-->
+<!--}-->
 
-  // 게시글 ID 가져오기
-  var boardId = document.querySelector('#BoardId').value;
+<!--  // 게시글 ID 가져오기-->
+<!--  var boardId = document.querySelector('#BoardId').value;-->
 
-  // 좋아요 요청 보내기
-  fetch('/like/' + boardId, { method: 'POST' })
-    .then(response => response.json())
-    .then(data => {
-      // 좋아요 버튼 텍스트 업데이트
-      var btnLike = document.querySelector('.like-button');
-      if (data.liked) {
-        btnLike.textContent = '취소하기';
-      } else {
-        btnLike.textContent = '좋아요';
-      }
-    })
-    .catch(error => console.error(error));
-}
+<!--  // 좋아요 요청 보내기-->
+<!--  fetch('/like/' + boardId, { method: 'POST' })-->
+<!--    .then(response => response.json())-->
+<!--    .then(data => {-->
+<!--      // 좋아요 버튼 텍스트 업데이트-->
+<!--      var btnLike = document.querySelector('.like-button');-->
+<!--      if (data.liked) {-->
+<!--        btnLike.textContent = '취소하기';-->
+<!--      } else {-->
+<!--        btnLike.textContent = '좋아요';-->
+<!--      }-->
+<!--    })-->
+<!--    .catch(error => console.error(error));-->
+<!--}-->
 
 
 </script>
