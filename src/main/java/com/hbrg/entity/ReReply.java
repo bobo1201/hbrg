@@ -12,7 +12,7 @@ import java.time.LocalDateTime;
 @Getter
 @Setter
 @ToString
-public class ReReply {
+public class ReReply  {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -21,7 +21,7 @@ public class ReReply {
     @JoinColumn(name="reId")
     private Long reId; // 댓글 번호
 
-//    @OneToMany
+    //    @OneToMany
     @JoinColumn(name="id")
     private String id; // 로그인 ID
 

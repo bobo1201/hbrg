@@ -5,14 +5,16 @@ import org.springframework.data.annotation.CreatedBy;
 import org.springframework.data.annotation.LastModifiedBy;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
-import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.List;
+import javax.persistence.Column;
+import javax.persistence.EntityListeners;
+import javax.persistence.MappedSuperclass;
 
 @EntityListeners(value = {AuditingEntityListener.class})
 @MappedSuperclass
 @Getter
 public abstract class BaseEntity extends BaseTimeEntity {
+
+
 
     @CreatedBy
     @Column(updatable = false)
@@ -21,7 +23,4 @@ public abstract class BaseEntity extends BaseTimeEntity {
     @LastModifiedBy
     private String modifiedBy;
 
-    // 댓글 연관관계
-    @OneToMany(mappedBy = "boardEntity", fetch = FetchType.LAZY)
-    private List<Reply> commentEntityList = new ArrayList<>();
 }

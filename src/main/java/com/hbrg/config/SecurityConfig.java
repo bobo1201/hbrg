@@ -36,7 +36,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         ;
 
         http.authorizeRequests()
-                .mvcMatchers("/", "/hbrg/**", "/user/**", "img/**").permitAll()
+                .mvcMatchers("/", "/hbrg/**", "/user/**", "img/**", "/search**").permitAll()
                 .mvcMatchers("/admin/**").hasRole("ADMIN")
                 .anyRequest().authenticated()
         ;
@@ -56,7 +56,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     public void configure(WebSecurity web) throws Exception{
-        web.ignoring().antMatchers("/css/**", "js/**", "img/**");
+        web.ignoring().antMatchers("/css/**", "js/**", "img/**", "/search**");
     }
 
     @Bean

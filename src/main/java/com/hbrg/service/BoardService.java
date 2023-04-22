@@ -1,8 +1,10 @@
 package com.hbrg.service;
 
 import com.hbrg.dto.BoardFormDto;
+import com.hbrg.dto.BoardSearchDto;
+import com.hbrg.dto.HFileDto;
 import com.hbrg.entity.Board;
-import com.hbrg.entity.HFile;
+import com.hbrg.entity.Hfile;
 import com.hbrg.repository.BoardRepository;
 import com.hbrg.repository.FileRepository;
 import lombok.RequiredArgsConstructor;
@@ -10,8 +12,10 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.CollectionUtils;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -31,61 +35,66 @@ public class BoardService {
 
         // 이미지 등록
         for (int i=0; i<fileList.size(); i++){
-            HFile hFile = new HFile();
-            hFile.setBoard(board);
+            Hfile file = new Hfile();
+            file.setBoard(board);
             if (i == 0)
-                hFile.setRepImgYn("Y");
+                file.setRepImgYn("Y");
             else
-                hFile.setRepImgYn("N");
-            fileAddService.saveFile(hFile, fileList.get(i));
+                file.setRepImgYn("N");
+            fileAddService.saveFile(file, fileList.get(i));
         }
         return board.getBoardId();
     }
 
+    // 파일 수정을 위한 파일 읽기
     @Transactional(readOnly = true)
     public BoardFormDto getBoardDtl(Long boardId){
-//        List<HFile> fileList =  fileRepository.findByBoardIdOrderByFileIdAsc(boardId);
-//        List<FileDto> fileDtoList = new ArrayList<>();0
-//        for (HFile hFile : fileList){
-//            FileDto fileDto = FileDto.of(hFile);
-//            fileDtoList.add(fileDto);
-//        }
 
+        // 이미지 파일 저장
         Board board = boardRepository.findByBoardId(boardId);
+        List<Hfile> fileList = board.getFiles();
+        List<HFileDto> fileDtoList = new ArrayList<>();
+
+        for (Hfile file : fileList){
+            HFileDto fileDto = HFileDto.of(file);
+            fileDtoList.add(fileDto);
+
+            System.out.println(fileDto + " 1");
+        }
+
+        // boardform으로 데이터 전달 및 fileDto 저장
         BoardFormDto boardFormDto = BoardFormDto.of(board);
-//        boardFormDto.setFileDtoList(fileDtoList);
+        boardFormDto.setFileDtoList(fileDtoList);
         return boardFormDto;
     }
 
+    // 상품 수정을 위한 메소드 생성
     public Long updateBoard(BoardFormDto boardFormDto,
                             List<MultipartFile> fileList) throws Exception{
 
-        Board board = boardFormDto.createBoard();
-        boardRepository.save(board);
+        // 상품 수정
+        Board board = boardRepository.findByBoardId(boardFormDto.getBoardId());
+        board.updateBoard(boardFormDto);
 
-//        // 이미지 등록
-//        for (int i=0; i<fileList.size(); i++){
-//            HFile hFile = new HFile();
-//            hFile.setBoard(board);
-//            if (i == 0)
-//                hFile.setRepImgYn("Y");
-//            else
-//                hFile.setRepImgYn("N");
-//            fileAddService.saveFile(hFile, fileList.get(i));
-//        }
+        // 이미지 파일 삭제
+        List<Hfile> files = board.getFiles();
+        if (!CollectionUtils.isEmpty(files)) {
+            fileRepository.deleteAll(files);
+        }
 
+        // 게시판에서 삭제
+        board.removeHFiles();
 
-//        // 상품 수정
-//        board = boardRepository.findByBoardId(boardFormDto.getBoardId());
-//        board.updateBoard(boardFormDto);
-
-//        // 이미지 등록
-//        List<Long> fileIds = boardFormDto.getFileIds();
-//
-//        for(int i=0; i<fileList.size(); i++){
-//            fileAddService.updateFile(fileIds.get(i), fileList.get(i));
-//        }
-
+        // 이미지 파일 다시 저장
+        for (int i=0; i<fileList.size(); i++){
+            Hfile file = new Hfile();
+            file.setBoard(board);
+            if (i == 0)
+                file.setRepImgYn("Y");
+            else
+                file.setRepImgYn("N");
+            fileAddService.saveFile(file, fileList.get(i));
+        }
         return board.getBoardId();
     }
 
@@ -100,44 +109,33 @@ public class BoardService {
         return boardRepository.getOne(boardId);
     }
 
+
+    // 글삭제(23/04/18 16:58)
     public void boardDelete(Long boardId){
-        boardRepository.deleteByBoardId(boardId);
+        Board board = boardRepository.findByBoardId(boardId);
+        List<Hfile> files = board.getFiles();
+        if (!CollectionUtils.isEmpty(files)) {
+            fileRepository.deleteAll(files);
+        }
+
+        board.removeHFiles();
+        boardRepository.delete(board);
     }
 
-//    public Long saveItem(Hbrg_BoardDto hbrg_boardDto) throws Exception {
-//        //상품 등록
-//        Hbrg_Board hbrg_board = Hbrg_BoardDto.createItem();
-//        itemRepository.save(item);
-//    }
+
+    // 조회수 증가를 위한 쿼리문 사용
+        @Transactional
+        public int updateView(Long boardId){
+            return boardRepository.updateView(boardId);
+        }
 
 
-
-    /* Paging */
-//    public Page<Board> getList(int page) {
-//        Pageable pageable = PageRequest.of(page, 10);
-//        return this.boardRepository.findAll(pageable);
-//    }
-
-   /* public void create(String title, String content) {
-        Board hb = new Board();
-        hb.setTitle(title);
-        hb.setContent(content);
-        this.boardRepository.save(hb);
-    }*/
-
-
-//    @Transactional
-//    public String savePost(BoardDto boardDto) {
-//        return boardRepository.save(boardDto.toEntity()).getId();
-//    }
-
-
-    public void Content(Board board){
-        boardRepository.save(board);
+        @Transactional(readOnly = true)
+        public Page<Board> getAdminItemPage(BoardSearchDto boardSearchDto, Pageable pageable) {
+            return boardRepository.getAdminItemPage(boardSearchDto, pageable);
     }
 
-    @Transactional
-    public int updateView(Long boardId){
-        return boardRepository.updateView(boardId);
-    }
+//    public BoardResposeDto findByBoardId(Long boardId) {
+//        return  findByBoardId(boardId);
+//    }
 }

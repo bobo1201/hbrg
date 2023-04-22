@@ -145,15 +145,76 @@ height: 200px; /* 원하는 높이 값으로 조정 */
 
 /* 댓글*/
 
-#comment-write-btn {
+.comment-container, .comment-list-container {
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+.btn-sm {   /* 댓글달기 버튼 */
  background-color: #feec9e;
       border: none;
       color: #7c6839;
-    }
-
-#comment-write-btn:hover {
+}
+.btn-sm:hover {
   background-color: #ffce00;
   color: #fff9e4;
+}
+.comment-container {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.comment-input {
+  flex: 1;
+}
+
+.btn-comment {
+  margin-left: 10px;
+  padding: 5px 10px;
+  font-size: 14px;
+}
+
+
+
+/* ul 점 제거 */
+ul#commentList {
+  list-style-type: none; /* 점 제거 */
+  padding: 0; /* 패딩 제거 */
+  margin: 0; /* 마진 제거 */
+}
+
+ul#commentList li {
+  margin-bottom: 10px; /* 각 댓글 사이에 간격 추가 */
+}
+
+
+.reply-list li {
+  image: url("../img/panda.png");
+}
+.reply-list img {
+  max-width: 25px;
+  max-height: 25px;
+  height: auto;
+}
+
+/* 댓글 버튼 수정, 삭제 css */
+.reply-actions {
+  display: inline-block;
+  margin-left: 5px;
+  font-size: 12px;
+  float: right;
+}
+
+.reply-actions button {
+  padding: 0px;
+  margin-left: 5px;
+  font-size: 12px;
+  color: gray;
+}
+
+.reply-actions button:hover {
+  color: black;
 }
 
 
@@ -197,13 +258,7 @@ height: 200px; /* 원하는 높이 값으로 조정 */
         width: 10%;
     }
 
-.float-left {
-    float: left;
-}
 
-.float-right {
-    float: right;
-}
 
 /* main button 부분 */
 
@@ -238,17 +293,6 @@ button#dMB3 {       /*버튼 글쓰기 부분 */
   background-color: #ffce00; /* 원하는 색상으로 변경 */
   color: #fff9e4; /* 원하는 색상으로 변경 */
 }
-
-
-.sortBtn{
-    background-color: #feec9e;
-    color: #7c6839;
-}
-.sortBtn:hover {
-background-color: #ffce00; /* 원하는 색상으로 변경 */
-  color: #fff9e4; /* 원하는 색상으로 변경 */
-}
-
 
 /* main 페이지 처리 부분 */
 .page-link {
