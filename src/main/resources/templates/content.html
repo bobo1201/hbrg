@@ -59,13 +59,15 @@
                         </div>
                         <p th:if="${#fields.hasErrors('content')}" th:errors="*{content}" class="fieldError">Incorrect data</p>
 
+                        <!--                        <form role="form" method="post" enctype="multipart/form-data" th:object="${BoardFormDto}">-->
                         <div class="form-group">
-                            <label for="inputHashtag" ><strong>해시태그</strong></label>
+                            <label th:for="hashtags" ><strong>해시태그</strong></label>
                             <div class="hashtag-container">
-                                <input type="text" name="hashtag" class="form-control hashtag-input" id="inputHashtag" />
+                                <!--                                <input name="hashtags" id="hashtags" type="text" th:value="*{hashtags}" placeholder="해시태그">-->
                                 <button type="button" class="btn btn-primary btn-add">+</button>
                             </div>
                         </div>
+                        <!--                        </form>-->
 
 
                         <div class="form-group">

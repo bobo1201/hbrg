@@ -177,6 +177,50 @@ height: 200px; /* 원하는 높이 값으로 조정 */
 
 
 
+/* ul 점 제거 */
+ul#commentList {
+  list-style-type: none; /* 점 제거 */
+  padding: 0; /* 패딩 제거 */
+  margin: 0; /* 마진 제거 */
+}
+
+ul#commentList li {
+  margin-bottom: 10px; /* 각 댓글 사이에 간격 추가 */
+}
+
+
+.reply-list li {
+  image: url("../img/panda.png");
+}
+.reply-list img {
+  max-width: 25px;
+  max-height: 25px;
+  height: auto;
+}
+
+/* 댓글 버튼 수정, 삭제 css */
+.reply-actions {
+  display: inline-block;
+  margin-left: 5px;
+  font-size: 12px;
+  float: right;
+}
+
+.reply-actions button {
+  padding: 0px;
+  margin-left: 5px;
+  font-size: 12px;
+  color: gray;
+}
+
+.reply-actions button:hover {
+  color: black;
+}
+
+
+
+
+
 
 
 

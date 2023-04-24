@@ -25,6 +25,8 @@ public class BoardFormDto {
     @ColumnDefault("0")
     private int vc;
 
+    private int bLike;
+
     private Hfile file;
 
     private Huser user;

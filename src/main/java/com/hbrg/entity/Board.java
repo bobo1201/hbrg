@@ -34,8 +34,11 @@ public class Board extends BaseEntity{
     @Column(columnDefinition = "integer default 0")
     private int vc; // 조회수
 
-    @Column(columnDefinition = "integer default 0")
+    @Column
     private int bLike; // 좋아요
+
+    @OneToMany(mappedBy = "board")
+    private List<Likes> likes = new ArrayList<>();
 
     private String content;  // 본문
 

@@ -43,4 +43,11 @@ public class UserService implements UserDetailsService {
                 .roles(user.getRole().toString())
                 .build();
     }
+
+    public Huser findUser(String userId){
+        Huser user = userRepository.findById(userId);
+
+        return user;
+    }
+
 }
