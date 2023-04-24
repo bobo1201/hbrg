@@ -228,7 +228,24 @@ ul#commentList li {
     align-items: center;
 }
 
+/ 대댓글 ul 점 없애기, 사진 넣기*/
+.rereply-list {
+  list-style-type: none;
 
+}
+.rereply-list::marker {
+  display: none;
+}
+
+.rereply-list:before {
+  content: "";
+  display: inline-block;
+  background-image: url('/img/reIcon.png');
+  background-size: cover;
+  width: 20px;
+  height: 20px;
+  margin-right: 5px;
+}
 
 
 
