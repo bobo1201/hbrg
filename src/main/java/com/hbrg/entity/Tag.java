@@ -14,8 +14,9 @@ import javax.persistence.*;
 public class Tag {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long tagId; // 해시태그 순서
 
+    @Column(unique = true, nullable = false)
     private String tagNm; // 해시태그 이름
 }

@@ -9,6 +9,8 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "Huser")
@@ -33,6 +35,9 @@ public class Huser  extends BaseEntity{
 
     @Enumerated(EnumType.STRING)
     private Role role;
+
+    @OneToMany(mappedBy = "user")
+    private List<Likes> likes = new ArrayList<>();
 
     public static Huser createHUser (UserFormDto userFormDto, PasswordEncoder passwordEncoder){
         Huser user = new Huser();

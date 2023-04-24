@@ -18,7 +18,7 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
-    UserService hbrg_userService;
+    UserService userService;
 
     @Override
     protected void configure(HttpSecurity http) throws Exception{
@@ -66,7 +66,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception{
-        auth.userDetailsService(hbrg_userService)
+        auth.userDetailsService(userService)
                 .passwordEncoder(passwordEncoder());
     }
 }

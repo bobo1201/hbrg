@@ -51,6 +51,11 @@ public class Board extends BaseEntity{
     @OneToMany(mappedBy = "board", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Hfile> files = new ArrayList<>();
 
+
+//    // 해시태그(23/04/21 20:53)
+    @OneToMany(mappedBy = "board", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<BoardTag> boardTags = new ArrayList<>();
+
     public void removeHFiles() {
         files.clear();
     }

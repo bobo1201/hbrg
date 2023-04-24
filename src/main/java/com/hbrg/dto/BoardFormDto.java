@@ -25,6 +25,8 @@ public class BoardFormDto {
     @ColumnDefault("0")
     private int vc;
 
+    private int bLike;
+
     private Hfile file;
 
     private Huser user;
@@ -32,9 +34,7 @@ public class BoardFormDto {
     private LocalDateTime regTime;
     private LocalDateTime updateTime;
 
-
     private List<HFileDto> fileDtoList = new ArrayList<>();
-
 
     private List<Long> fileIds = new ArrayList<>();
 

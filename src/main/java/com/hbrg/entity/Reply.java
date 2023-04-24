@@ -14,6 +14,7 @@ import javax.persistence.*;
 @ToString
 public class Reply extends BaseEntity {
 
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long reId; // 댓글 번호

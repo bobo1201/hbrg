@@ -1,12 +1,15 @@
 package com.hbrg.service;
 
 import com.hbrg.entity.Board;
+import com.hbrg.entity.ReReply;
 import com.hbrg.entity.Reply;
 import com.hbrg.repository.BoardRepository;
+import com.hbrg.repository.ReReplyRepository;
 import com.hbrg.repository.ReplyRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.CollectionUtils;
 
 import java.util.List;
 
@@ -17,6 +20,10 @@ public class ReplyService {
 
     private final ReplyRepository replyRepository;
     private final BoardRepository boardRepository;
+    private final ReReplyRepository reReplyRepository;
+    private final ReReplyService reReplyService;
+
+
 
     @Transactional(readOnly = true)
     public List<Reply> replyList(){
@@ -29,27 +36,22 @@ public class ReplyService {
     }
 
 
-
-
-//    public Reply addReply(Long boardId, String content) {
-//        Board board = boardRepository.findById(boardId)
-//                .orElseThrow(() -> new IllegalArgumentException("게시글이 존재하지 않습니다."));
-//
-//        Reply reply = new Reply();
-//        reply.setReContent(content);
-//        reply.setBoard(board);
-//
-//        return replyRepository.save(reply);
-//    }
-
     public void addReply(Reply reply){
         replyRepository.save(reply);
     }
 
-    public void deleteReply(Long replyId) {
 
-        replyRepository.deleteById(replyId);
+    // 댓글 삭제 기능 구현
+    public void deleteReply(Long reId) {
+
+        Reply reply = replyRepository.findByReId(reId);
+        List<ReReply> reReplies = reReplyService.reReplyList(reply);
+
+        if (!CollectionUtils.isEmpty(reReplies)) {
+            reReplyRepository.deleteAll(reReplies);
+        }
+
+        reReplies.clear();
+        replyRepository.deleteByReId(reId);
     }
-
-
 }

@@ -14,12 +14,14 @@ import javax.persistence.*;
 public class BoardTag {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long boardTagId; // 게시물 태그 매핑 번호
 
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="boardId")
-    private String boardId; // 게시물 번호
+    private Board board; // 게시물 번호
 
-    private String tagId; // 해시태그 번호
-
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name="tagId")
+    private Tag tag; // 해시태그 번호
 }

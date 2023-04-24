@@ -14,4 +14,6 @@ public class LikesDto {
     private Long userId;
 
     private Long boardId;
+
+    private int bLike;
 }
