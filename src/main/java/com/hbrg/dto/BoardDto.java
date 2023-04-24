@@ -10,7 +10,6 @@ import java.time.LocalDateTime;
 @Setter
 public class BoardDto {
     private Long boardId;
-    private String id;
     private String title;
     private int vc;
     private int bLike;
@@ -20,8 +19,7 @@ public class BoardDto {
 
 
     @Builder
-    public BoardDto(String id, String title, String content, LocalDateTime cDate, LocalDateTime uDate) {
-        this.id = id;
+    public BoardDto(String title, String content, LocalDateTime cDate, LocalDateTime uDate) {
         this.title = title;
         this.content = content;
         this.cDate = cDate;

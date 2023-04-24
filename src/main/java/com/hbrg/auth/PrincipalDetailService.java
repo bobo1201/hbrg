@@ -1,0 +1,23 @@
+package com.hbrg.auth;//package com.hbrg.auth;
+//
+//import com.hbrg.entity.HUser;
+//import com.hbrg.repository.UserRepository;
+//import org.springframework.beans.factory.annotation.Autowired;
+//import org.springframework.security.core.userdetails.UserDetails;
+//import org.springframework.security.core.userdetails.UserDetailsService;
+//import org.springframework.security.core.userdetails.UsernameNotFoundException;
+//import org.springframework.stereotype.Service;
+//
+//@Service
+//public class PrincipalDetailService implements UserDetailsService {
+//
+//    @Autowired
+//    private UserRepository userRepository;
+//
+//    @Override
+//    public UserDetails loadUserByUsername(String id) throws UsernameNotFoundException {
+//        HUser principal = userRepository.findById(id)
+//                .orElseThrow(() -> new UsernameNotFoundException("해당 사용자를 찾을 수 없습니다. : " + id));
+//        return new PrincipalDetail(principal);
+//    }
+//}

@@ -39,27 +39,6 @@ public class FileAddService {
         fileRepository.save(file);
     }
 
-//    public void updateFile(Long fileId, MultipartFile imgFile) throws Exception{
-//        if(!imgFile.isEmpty()){
-//            HFile savedFile = fileRepository.findByFileId(fileId);
-//            if (!StringUtils.isEmpty(savedFile.getFileNm())){
-//                fileService.deleteFile(itemImgLocation + "/" + savedFile.getFileNm());
-//            }
-//            String oriImgName = imgFile.getOriginalFilename();
-//            String imgName = "";
-//            String imgUrl = "";
-//
-//            // 파일 업로드
-//            if(!StringUtils.isEmpty(oriImgName)){
-//                imgName = fileService.uploadFile(itemImgLocation, oriImgName, imgFile.getBytes());
-//                imgUrl = "/images/item/" + imgName;
-//            }
-//
-//            // 상품 이미지 정보 저장
-//            savedFile.updateFile(oriImgName, imgName, imgUrl);
-//            fileRepository.save(savedFile);
-//        }
-//    }
 
     public void updateFile(Long fileId, MultipartFile imgFile) throws Exception{
         if(!imgFile.isEmpty()){

@@ -5,6 +5,7 @@ import com.hbrg.dto.ReReplyFormDto;
 import com.hbrg.dto.ReplyFormDto;
 import com.hbrg.entity.*;
 import com.hbrg.repository.BoardRepository;
+import com.hbrg.repository.ReReplyRepository;
 import com.hbrg.repository.ReplyRepository;
 import com.hbrg.service.BoardService;
 import com.hbrg.service.ReReplyService;
@@ -41,6 +42,8 @@ public class BoardController {
     private final ReReplyService reReplyService;
 
     private final ReplyRepository replyRepository;
+
+    private final ReReplyRepository reReplyRepository;
 
 
     // 글쓰기 페이지 실행
@@ -108,7 +111,7 @@ public class BoardController {
     }
 
 
-    // 상품 수정 페이지에서 db로 값 전달
+    // 상품 수정 페이지에서 dto로 값 전달
     @PostMapping(value = "/ex01/{boardId}")
     public String boardUpdate(@Valid BoardFormDto boardFormDto,BindingResult bindingResult, Model model,
                               @RequestParam("itemImgFile") List<MultipartFile> fileList){
@@ -214,7 +217,6 @@ public class BoardController {
 
         Huser user = userService.findUser(author);
 
-
         Board board = boardService.findBoard(boardId);
         System.out.println(boardId);
 
@@ -241,8 +243,8 @@ public class BoardController {
         return "redirect:/hbrg/ex02/" + boardId;
     }
 
-    // 댓글 삭제
-    @PostMapping("/reply/{reId}/delete")
+    // 대댓글 삭제
+    @PostMapping("/reply/{reReId}/delete")
     public String reReplyDelete(@PathVariable Long reReId, @RequestParam(name="boardId") Long boardId){
 
         reReplyService.deleteReReply(reReId);

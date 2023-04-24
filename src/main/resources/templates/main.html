@@ -4,33 +4,6 @@
       layout:decorate="~{layouts/layout1}">
 
 <!-- 사용자 스크립트 추가 -->
-<!--<th:block layout:fragment="script">-->
-<!--    <script th:inline="javascript">-->
-
-<!--        $(document).ready(function(){-->
-<!--            $("#dMB2").on("click",function(e) {-->
-<!--                e.preventDefault();-->
-<!--                page(0);-->
-<!--            });-->
-<!--        });-->
-
-<!--        function page(page){-->
-<!--            var searchDateType = $("#searchDateType").val();-->
-<!--            var searchBy = $("#searchBy").val();-->
-<!--            var searchQuery = $("#searchQuery").val();-->
-<!--            var sort = $("#sort").val(); // 새로 추가한 코드-->
-
-<!--            location.href="/" + page + "?searchDateType=" + searchDateType-->
-<!--            + "&searchBy=" + searchBy-->
-<!--            + "&searchQuery=" + searchQuery-->
-<!--            + "&sort=" + sort // 새로 추가한 코드-->
-<!--            + "&direction=DESC"; // 새로 추가한 코드-->
-<!--        }-->
-
-<!--    </script>-->
-<!--</th:block>-->
-
-<!-- 사용자 스크립트 추가 -->
 <th:block layout:fragment="script">
     <script th:inline="javascript">
         $(document).ready(function(){
@@ -86,7 +59,7 @@
                                 <option value="1w"><a class="dropdown-item">1주</a></option>
                                 <option value="1m"><a class="dropdown-item">1개월</a></option>
                                 <option value="6m"><a class="dropdown-item">6개월</a></option>
-                                <!--                                <option value="blike">Blike</option>-->
+
                             </select>
                             <select th:field="*{searchBy}" class="btn btn-outline-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <option value=""><a class="dropdown-item">전체</a></option>
@@ -111,79 +84,55 @@
                 <div class="col-md-12">
                     <div class="table-responsive" style="margin-top: 50px;" >
                         <button class="btn btn-primary float-right" id="dMB3" onclick="location.href='/hbrg/ex01'">글쓰기</button>
+
+                        <div class="form-group" style="display: flex; align-items: center;">
+                            <label for="my-sort"></label>
+                            <select class="form-control" id="my-sort" name="sort" style="font-size: 12px; width: 100px;">
+                                <option value="" selected disabled hidden>정렬 기준</option>
+                                <option value="number">번호</option>
+                                <option value="title">제목</option>
+                                <option value="vc">조회수</option>
+                                <!--<option value="likes">좋아요</option>-->
+                                <option value="createdBy">생성일</option>
+                            </select>
+                        </div>
+
                         <table class="table table-striped" style="table-layout: fixed; width: 100%;">
                             <thead>
                             <tr>
                                 <th>
                                     <div class="dropdown">
-                                        <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenuButton1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <div class="btn btn-default" id="MenuButton1">
                                             번호
-                                        </button>
-<!--                                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton1">-->
-<!--&lt;!&ndash;                                            <a class="dropdown-item" href="?sort=boardId">번호</a>&ndash;&gt;-->
-<!--&lt;!&ndash;                                            <a class="dropdown-item" href="?sort=title">제목</a>&ndash;&gt;-->
-<!--&lt;!&ndash;                                            <a class="dropdown-item" href="?sort=vc">조회수</a>&ndash;&gt;-->
-<!--&lt;!&ndash;                                            <a class="dropdown-item" href="#">좋아요</a>&ndash;&gt;-->
-<!--&lt;!&ndash;                                            <a class="dropdown-item" href="?sort=regTime">생성일</a>&ndash;&gt;-->
-<!--                                            <a class="dropdown-item" href="?sort=boardId&amp;direction=DESC">번호</a>-->
-<!--                                            <a class="dropdown-item" href="?sort=title&amp;direction=DESC">제목</a>-->
-<!--                                            <a class="dropdown-item" href="?sort=vc&amp;direction=DESC">조회수</a>-->
-<!--                                            <a class="dropdown-item" href="#&amp;direction=DESC">좋아요</a>-->
-<!--                                            <a class="dropdown-item" href="?sort=regTime&amp;direction=DESC">생성일</a>-->
-<!--                                        </div>-->
-
-                                        <div class="form-group mx-sm-3 mb-2">
-                                            <label for="sort">정렬 기준:</label>
-                                            <select class="form-control" id="sort" name="sort">
-                                                <option value="number">번호</option>
-                                                <option value="title">제목</option>
-                                                <option value="vc">조회수</option>
-<!--                                                <option value="likes">좋아요</option>-->
-                                                <option value="createdBy">생성일</option>
-                                            </select>
                                         </div>
                                     </div>
                                 </th>
-                                <th><div class="dropdown">
-                                    <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenuButton2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        제목
-                                    </button>
-                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton2">
-                                        <a class="dropdown-item" href="#">오름차순</a>
-                                        <a class="dropdown-item" href="#">내림차순</a>
-                                    </div>
-                                </div></th>
                                 <th>
                                     <div class="dropdown">
-                                        <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenuButton3" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <button class="btn btn-default" id="MenuButton2">
+                                            제목
+                                        </button>
+                                    </div>
+                                </th>
+                                <th>
+                                    <div class="dropdown">
+                                        <button class="btn btn-default" id="MenuButton3">
                                             조회수
                                         </button>
-                                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton3">
-                                            <a class="dropdown-item" href="#">오름차순</a>
-                                            <a class="dropdown-item" href="#">내림차순</a>
-                                        </div>
                                     </div>
                                 </th>
                                 <th>
                                     <div class="dropdown">
-                                        <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenuButton4" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <button class="btn btn-default" id="MenuButton4">
                                             좋아요
                                         </button>
-                                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton4">
-                                            <a class="dropdown-item" href="#">오름차순</a>
-                                            <a class="dropdown-item" href="#">내림차순</a>
-                                        </div>
                                     </div>
                                 </th>
                                 <th>
                                     <div class="dropdown">
-                                        <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenuButton5" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <button class="btn btn-default" id="MenuButton5">
                                             생성일
                                         </button>
-                                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton5">
-                                            <a class="dropdown-item" href="#">오름차순</a>
-                                            <a class="dropdown-item" href="#">내림차순</a>
-                                        </div>
                                     </div>
                                 </th>
                             </tr>
@@ -224,44 +173,6 @@
                         </ul>
                     </div>
 
-
-
-                    <!--                    &lt;!&ndash; 페이징 처리 &ndash;&gt;-->
-<!--                    <ul class="pagination justify-content-center">-->
-<!--                        <li class="page-item" th:class="${nowPage == 1 ? 'disabled' : ''}">-->
-<!--                            <a class="page-link" th:if="${nowPage > 1}" th:href="@{/(page=${nowPage-2})}" th:text="이전"></a>-->
-<!--                        </li>-->
-<!--                        <th:block th:each="page:${#numbers.sequence(startPage,endPage)}">-->
-<!--                            <li class="page-item">-->
-<!--                                <a class="page-link" th:if="${page != nowPage}" th:href="@{/(page=${page-1})}" th:text="${page}"></a>-->
-<!--                                <strong class="page-link" th:if="${page == nowPage}" th:text="${page}" style="font-style:bold"></strong>-->
-<!--                            </li>-->
-<!--                        </th:block>-->
-<!--                        <li class="page-item" th:class="${nowPage == endPage ? 'disabled' : ''}">-->
-<!--                            <a class="page-link" th:unless="${nowPage == endPage}" th:href="@{/(page=${nowPage})}">다음</a>-->
-<!--                        </li>-->
-<!--                    </ul>-->
-                    <!-- 페이징 처리 -->
-                    <!--                    <div>-->
-                    <!--                        <ul class="pagination">-->
-                    <!--                            <li th:classappend="${nowPage == 1} ? disabled : ''">-->
-                    <!--                                <a th:href="@{/(page=${nowPage - 3}, size=${size}, sort=${sort})}" th:text="'<<'"></a>-->
-                    <!--                            </li>-->
-                    <!--                            <li th:classappend="${nowPage == 1} ? disabled : ''">-->
-                    <!--                                <a th:href="@{/(page=${nowPage - 2}, size=${size}, sort=${sort})}" th:text="'<'"></a>-->
-                    <!--                            </li>-->
-                    <!--                            <li th:each="page : ${#numbers.sequence(startPage, endPage)}"-->
-                    <!--                                th:classappend="${page == nowPage-1} ? active : ''">-->
-                    <!--                                <a th:href="@{/(page=${page}, size=${size}, sort=${sort})}" th:text="${page}"></a>-->
-                    <!--                            </li>-->
-                    <!--                            <li th:classappend="${nowPage == totalPage} ? disabled : ''">-->
-                    <!--                                <a th:href="@{/(page=${nowPage}, size=${size}, sort=${sort})}" th:text="'>'"></a>-->
-                    <!--                            </li>-->
-                    <!--                            <li th:classappend="${nowPage == totalPage} ? disabled : ''">-->
-                    <!--                                <a th:href="@{/(page=${nowPage + 1}, size=${size}, sort=${sort})}" th:text="'>>'"></a>-->
-                    <!--                            </li>-->
-                    <!--                        </ul>-->
-                    <!--                    </div>-->
                 </div>
             </div>
         </div>

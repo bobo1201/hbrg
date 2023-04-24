@@ -4,10 +4,7 @@ import com.hbrg.dto.BoardFormDto;
 import com.hbrg.dto.BoardSearchDto;
 import com.hbrg.dto.HFileDto;
 import com.hbrg.entity.*;
-import com.hbrg.repository.BoardRepository;
-import com.hbrg.repository.FileRepository;
-import com.hbrg.repository.LikesRepository;
-import com.hbrg.repository.UserRepository;
+import com.hbrg.repository.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -32,6 +29,11 @@ public class BoardService {
     private final FileRepository fileRepository;
     private final LikesRepository likesRepository;
     private final UserRepository userRepository;
+    private final ReplyService replyService;
+    private final ReplyRepository replyRepository;
+    private final ReReplyRepository reReplyRepository;
+
+
 
     public Long saveBoard(BoardFormDto boardFormDto, List<MultipartFile> fileList) throws Exception{
 
@@ -170,7 +172,16 @@ public class BoardService {
             fileRepository.deleteAll(files);
         }
 
-        List<Reply> replies = board.
+        List<Reply> replies = board.getReplies();
+        if (!CollectionUtils.isEmpty(replies)){
+            for (Reply reply : replies) {
+                List<ReReply> reReplies = reply.getReReplies();
+                if (!CollectionUtils.isEmpty(reReplies)) {
+                    reReplyRepository.deleteAll(reReplies);
+                }
+                replyRepository.delete(reply);
+            }
+        }
 
         board.removeHFiles();
         boardRepository.delete(board);

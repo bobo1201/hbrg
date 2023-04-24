@@ -44,7 +44,7 @@ public class ReplyService {
     }
 
 
-    // 댓글 수정 기능 구현
+    // 댓글 삭제 기능 구현
     public void deleteReply(Long reId) {
         Reply reply = replyRepository.findByReId(reId);
         List<ReReply> reReplies = reReplyService.reReplyList(reply);
@@ -59,4 +59,5 @@ public class ReplyService {
         reReplies.clear();
         replyRepository.deleteByReId(reId);
     }
+
 }

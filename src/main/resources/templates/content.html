@@ -49,9 +49,9 @@
 
                         <div class="form-group">
                             <label th:for="inputTitle"><strong>제목</strong></label>
-                            <input type="text" th:field="*{title}" class="form-control" placeholder="제목을 입력해주세요" name="title" id="inputTitle" />
-                        </div>
-                        <p th:if="${#fields.hasErrors('title')}" th:errors="*{title}" class="fieldError">Incorrect data</p>
+                        <input type="text" th:field="*{title}" class="form-control" placeholder="제목을 입력해주세요" name="title" id="inputTitle" />
+                    </div>
+                    <p th:if="${#fields.hasErrors('title')}" th:errors="*{title}" class="fieldError">Incorrect data</p>
 
                         <div class="form-group">
                             <label th:for="inputContent"><strong>내용</strong></label>
@@ -67,6 +67,18 @@
                                 <button type="button" class="btn btn-primary btn-add">+</button>
                             </div>
                         </div>
+                        <!--                        </form>-->
+
+                        <!--                        <form role="form" method="post" enctype="multipart/form-data" th:object="${BoardFormDto}">-->
+<!--                        <div class="form-group">-->
+<!--                            <label for="hashtags"><strong>해시태그</strong></label>-->
+<!--                            <div class="hashtag-container">-->
+<!--                                <div class="hashtag-input-group">-->
+<!--                                    <input name="hashtags" id="hashtags" type="text" placeholder="해시태그">-->
+<!--                                    <button type="hidden" class="btn btn-primary btn-add">+</button>-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                        </div>-->
                         <!--                        </form>-->
 
 
@@ -91,18 +103,6 @@
                                 </div>
                             </div>
                         </div>
-
-                        <!--                        <div class="form-group">-->
-                        <!--                            <label for="inputFile"><strong>파일 첨부</strong></label>-->
-                        <!--                            <div class="file-container">-->
-                        <!--                                <input type="text" name="file-path" class="form-control file-path" id="inputFile" readonly />-->
-                        <!--                                <button type="button" class="btn btn-primary btn-file">파일 첨부</button>-->
-
-                        <!--                                <button type="button" class="btn btn-primary btn-add" id="addButton">+</button>-->
-                        <!--                                <button type="button" class="btn btn-danger btn-remove" id="removeButton">-</button>-->
-                        <!--                            </div>-->
-                        <!--                        </div>-->
-
 
                         <div class="form-group text-center">
                             <button onclick="location.href='/'" type="submit" class="btn btn-primary writeButton">저장</button>

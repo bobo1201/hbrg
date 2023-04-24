@@ -22,11 +22,11 @@ public class Board extends BaseEntity{
 
     //    @ManyToOne
 //    @JoinColumn(name="huser_id")
-    private String id; // 로그인 ID
+//    private String id; // 로그인 ID
 
-//    @ManyToOne
-//    @JoinColumn(name="hUserId")
-//    private HUser hUser;
+    @ManyToOne
+    @JoinColumn(name="id")
+    private Huser user;
 
     private String title; // 주제
 
@@ -42,16 +42,19 @@ public class Board extends BaseEntity{
 
     private String content;  // 본문
 
-    /* 댓글 */
-//    @OrderBy("id asc") //댓글 정렬
-//    @JsonIgnoreProperties({"board"})
-//    @OneToMany(mappedBy = "board", fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
-//    private List<Comment> comments;
 
-
-    // 글삭제(23/04/18 16:58)
+    // 글삭제, 파일 의존성 추가(23/04/18 16:58)
     @OneToMany(mappedBy = "board", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Hfile> files = new ArrayList<>();
+
+    // 댓글 의존성 추가(23/04/18 16:58)
+    @OneToMany(mappedBy = "board", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Reply> replies = new ArrayList<>();
+
+    //    // 해시태그(23/04/21 20:53)
+//    @OneToMany(mappedBy = "board", cascade = CascadeType.ALL, orphanRemoval = true)
+//    private List<BoardTag> boardTags = new ArrayList<>();
+
 
     public void removeHFiles() {
         files.clear();
