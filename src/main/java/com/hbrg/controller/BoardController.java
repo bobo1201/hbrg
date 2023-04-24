@@ -54,6 +54,7 @@ public class BoardController {
         return "content";
     }
 
+
     // 글쓰기 페이지에서 Controller로 값 전달
     @PostMapping(value = "/ex01")
     public String boardForm(@Valid BoardFormDto boardFormDto, BindingResult bindingResult, Model model,
@@ -67,6 +68,19 @@ public class BoardController {
 
         try {
             boardService.saveBoard(boardFormDto, fileList);
+//            String[] words = hashtags.split("#");
+//            List<String> hashtagList = new ArrayList<>();
+//            for(String word : words){
+//                String trimmed= word.trim();
+//                if(!trimmed.isEmpty()){
+//                    hashtagList.add(trimmed);
+//                }
+//            }
+//
+//            for(String tagList : hashtagList){
+//                Tag tag = new Tag();
+//
+//            }
             System.out.println("실행");
 
         } catch (Exception e){
@@ -74,10 +88,12 @@ public class BoardController {
             model.addAttribute("errorMessage", "등록 중 에러가 발생했습니다.");
             return "redirect:/hbrg/ex01";
         }
+
+        // userRepository를 만들고 아래와 같이 구현
+        //HUser hUser = userRepo.findById(boardFormDto.getId())
+
         return "redirect:/";
     }
-
-
 
     // 상품 수정 페이지로 값 전달
     @GetMapping(value = "/ex01/{boardId}")
@@ -168,14 +184,18 @@ public class BoardController {
         return "contentview";
     }
 
+
+    // 상세페이지에서 댓글 값 db로 전달
     @PostMapping(value = "/ex02/{boardId}")
-    public String replyForm(ReplyFormDto replyFormDto, Model model,@PathVariable("boardId") Long boardId
-    ){
+    public String replyForm(ReplyFormDto replyFormDto, Model model,@PathVariable("boardId") Long boardId){
         Reply reply = Reply.createReply(replyFormDto);
         replyService.addReply(reply);
 
         return "redirect:/hbrg/ex02/"+ boardId;
     }
+
+
+    // 대댓글 값 db로 전달
     @PostMapping("/{reId}/reReply")
     public String reReply(@PathVariable Long reId, @RequestParam(name="boardId") Long boardId,
                           ReReplyFormDto reReplyFormDto){
@@ -189,14 +209,13 @@ public class BoardController {
         return "redirect:/hbrg/ex02/" + boardId;
     }
 
-
+    // like 값 연동
     @PostMapping(value = "/like/ex02/{boardId}")
     public @ResponseBody int likeBoard(@PathVariable Long boardId) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String author = authentication.getName();
 
         Huser user = userService.findUser(author);
-
 
         Board board = boardService.findBoard(boardId);
         System.out.println(boardId);
@@ -211,10 +230,10 @@ public class BoardController {
     // 글삭제(23/04/18 16:58)
     @GetMapping(value = "/ex02/delete/{boardId}")
     public String boardDelete(@PathVariable("boardId") Long boardId){
-
         boardService.boardDelete(boardId);
         return "redirect:/";
     }
+
 
     // 댓글 삭제
     @PostMapping("/{reId}/delete")
@@ -224,14 +243,11 @@ public class BoardController {
         return "redirect:/hbrg/ex02/" + boardId;
     }
 
-
-    // 댓글 삭제
+    // 대댓글 삭제
     @PostMapping("/reply/{reReId}/delete")
     public String reReplyDelete(@PathVariable Long reReId, @RequestParam(name="boardId") Long boardId){
 
-        reReplyRepository.deleteByReReId(reReId);
+        reReplyService.deleteReReply(reReId);
         return "redirect:/hbrg/ex02/" + boardId;
     }
-
-
 }

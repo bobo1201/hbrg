@@ -14,4 +14,5 @@ public interface ReplyRepository extends JpaRepository<Reply, Long>{
     void deleteByReId(Long reId);
 
     Reply findByReId(Long reId);
+
 }

@@ -35,7 +35,8 @@
       }
     });
   });
- function showReReplyForm(button) {
+
+  function showReReplyForm(button) {
         // 대댓글 작성 버튼을 클릭한 댓글 요소
         var replyElement = button.closest('.reply-list');
         // 대댓글 작성 폼 요소
@@ -48,15 +49,10 @@
         // 대댓글 작성 폼 요소의 현재 상태를 확인하여 보이게 하거나 안보이게 함
         if (formDisplay === 'none') {
             formElement.style.display = 'block';
-<!--            reCommentListElement.style.display = 'block';-->
-
         } else {
             formElement.style.display = 'none';
-<!--            reCommentListElement.style.display = 'block';-->
-
         }
     }
-
 
 
 </script>
@@ -141,6 +137,8 @@
                                                 </form>
                                             </div>
                                         </div>
+
+
                                         <!-- 대댓글 작성 버튼 -->
                                         <button type="button" class="btn btn-link btn-sm" onclick="showReReplyForm(this)">답글</button>
 
@@ -161,7 +159,7 @@
                                                             <img src="/img/edit.png" alt="Edit" width="16" height="16">
                                                         </button>
                                                         <!-- 삭제 버튼 -->
-                                                        <form th:action="@{'/hbrg/' + ${reReply.reReId} +'/delete' }" method="post"
+                                                        <form th:action="@{'/hbrg/reply/' + ${reReply.reReId} +'/delete' }" method="post"
                                                               th:object="${BoardFormDto}">
                                                             <input type="hidden" value="delete"/>
                                                             <input type="hidden" name="boardId" th:value="${BoardFormDto.boardId}"/>
@@ -181,7 +179,7 @@
                                                 <label th:for="inputReComment"></label>
                                                 <div class="comment-container">
                                                     <input type="text" th:field="*{reReContent}" name="reComment" class="form-control comment-input" id="inputReComment" />
-                                                    <button type="submit" class="btn btn-primary btn-comment btn-sm">작성하기</button>
+                                                    <button type="submit" class="btn btn-primary btn-comment btn-sm">댓글달기</button>
                                                 </div>
                                             </div>
 
@@ -193,6 +191,8 @@
                                 </ul>
                             </div>
                         </div>
+
+
 
                         <form role="form" method="post" enctype="multipart/form-data" th:object="${replyFormDto}">
                             <!-- 댓글 부분 -->
@@ -225,7 +225,6 @@
     </div>
 </div>
 </div>
-
 
 </body>
 </html>

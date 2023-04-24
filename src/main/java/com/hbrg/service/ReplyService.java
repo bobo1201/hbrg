@@ -20,8 +20,11 @@ public class ReplyService {
 
     private final ReplyRepository replyRepository;
     private final BoardRepository boardRepository;
-    private final ReReplyRepository reReplyRepository;
+
     private final ReReplyService reReplyService;
+
+    private final ReReplyRepository reReplyRepository;
+
 
 
 
@@ -43,9 +46,11 @@ public class ReplyService {
 
     // 댓글 삭제 기능 구현
     public void deleteReply(Long reId) {
-
         Reply reply = replyRepository.findByReId(reId);
         List<ReReply> reReplies = reReplyService.reReplyList(reply);
+//        ReReplyFormDto reReplyFormDto = new ReReplyFormDto();
+//        reReplyFormDto.setReply(reply);
+
 
         if (!CollectionUtils.isEmpty(reReplies)) {
             reReplyRepository.deleteAll(reReplies);
@@ -54,4 +59,5 @@ public class ReplyService {
         reReplies.clear();
         replyRepository.deleteByReId(reId);
     }
+
 }

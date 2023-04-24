@@ -217,18 +217,20 @@ ul#commentList li {
   color: black;
 }
 
+
+/* 댓글 수정,삭제 버튼 정렬 */
 .textarea-wrapper {
     display: flex;
     align-items: center;
 }
 
 .btn-group-vertical {
-    display: flex;
+    display: flex;숮
     flex-direction: column;
     align-items: center;
 }
 
-/ 대댓글 ul 점 없애기, 사진 넣기*/
+/* 대댓글 ul 점 없애기, 사진 넣기*/
 .rereply-list {
   list-style-type: none;
 
@@ -246,10 +248,6 @@ ul#commentList li {
   height: 20px;
   margin-right: 5px;
 }
-
-
-
-
 
 /* main.html css 부분 */
 
@@ -284,154 +282,159 @@ ul#commentList li {
     th:nth-child(3), td:nth-child(3), th:nth-child(4), td:nth-child(4), th:nth-child(5), td:nth-child(5) {
         width: 10%;
     }
-/* main 검색 부분 */
-
-.search2 {
-  background-color: #feec9e;
-  color: #7c6839;
-}
-
-.search1{
-  background-color: #feec9e;
-  color: #7c6839;
-}
-
-#my-sort {
-  background-color: #feec9e;
-  color: #7c6839;
-}
 
 
-/* main button 부분 */
+    /* main 검색 부분 */
 
-.btn {
-  border: none;
-}
+    .search2 {
+      background-color: #feec9e;
+      color: #7c6839;
+    }
 
-button#dMB1 {      /* 버튼 전체 부분*/
-    background-color: #feec9e;
-    color: #7c6839;
-}
+    .search1{
+      background-color: #feec9e;
+      color: #7c6839;
+    }
 
-#dMB1:hover {
-  background-color: #ffce00; /* 원하는 색상으로 변경 */
-  color: #fff9e4; /* 원하는 색상으로 변경 */
-}
-
-button#dMB2 {       /* 버튼 검색 부분 */
-    background-color: #feec9e;
-    color: #7c6839;
-}
-#dMB2:hover {
-  background-color: #ffce00; /* 원하는 색상으로 변경 */
-  color: #fff9e4; /* 원하는 색상으로 변경 */
-}
-
-button#dMB3 {       /*버튼 글쓰기 부분 */
-    background-color: #feec9e;
-    color: #7c6839;
-}
-#dMB3:hover {
-  background-color: #ffce00; /* 원하는 색상으로 변경 */
-  color: #fff9e4; /* 원하는 색상으로 변경 */
-}
-
-/* main 페이지 처리 부분 */
-.page-link {
-    color: #7c6839;
-    background-color: #feec9e;
-    border-color: #feec9e;
-}
-.page-link:hover {
-    color: #fff9e4;
-    background-color: #ffce00;
-    border-color: #ffce00;
-}
-.pagination .page-item.disabled .page-link {    /* 이전 버튼 css */
-  color: #7c6839;
-  background-color: #feec9e;
-  border-color: #feec9e;
-}
+    #my-sort {
+      background-color: #feec9e;
+      color: #7c6839;
+    }
 
 
 
+    /* main button 부분 */
+
+    .btn {
+      border: none;
+    }
+
+    button#dMB1 {      /* 버튼 전체 부분*/
+        background-color: #feec9e;
+        color: #7c6839;
+    }
+
+    #dMB1:hover {
+      background-color: #ffce00; /* 원하는 색상으로 변경 */
+      color: #fff9e4; /* 원하는 색상으로 변경 */
+    }
+
+    button#dMB2 {       /* 버튼 검색 부분 */
+        background-color: #feec9e;
+        color: #7c6839;
+    }
+    #dMB2:hover {
+      background-color: #ffce00; /* 원하는 색상으로 변경 */
+      color: #fff9e4; /* 원하는 색상으로 변경 */
+    }
+
+    button#dMB3 {       /*버튼 글쓰기 부분 */
+        background-color: #feec9e;
+        color: #7c6839;
+    }
+    #dMB3:hover {
+      background-color: #ffce00; /* 원하는 색상으로 변경 */
+      color: #fff9e4; /* 원하는 색상으로 변경 */
+    }
+
+    /* main 페이지 처리 부분 */
+    .page-link {
+        color: #7c6839;
+        background-color: #feec9e;
+        border-color: #feec9e;
+    }
+    .page-link:hover {
+        color: #fff9e4;
+        background-color: #ffce00;
+        border-color: #ffce00;
+    }
+    .pagination .page-item.disabled .page-link {    /* 이전 버튼 css */
+      color: #7c6839;
+      background-color: #feec9e;
+      border-color: #feec9e;
+    }
 
 
 
-/* userForm */
-.fieldError {
-            color: #bd2130;
-        }
-.okButton {
-    background-color: #feec9e; /* 배경색상 */
-    border-color: none; /* 테두리 없앰 */
-    color: #7c6839;
-}
-.okButton:hover {
-    background-color: #ffce00; /* 배경색상 */
-    color: #fff9e4;
-}
-
-/* userLoginForm */
- .error{
-     color:#bd2130;
- }
-
-
-.loginButton {
-  background-color: #feec9e; /* 배경색상 */
-  border-color: none; /* 테두리 없앰 */
-  color: #7c6839;
-}
-.loginButton:hover {
-  background-color: #ffce00; /* 배경색상 */
-  color: #fff9e4;
-}
-
-.signupButton {
-  background-color: #feec9e; /* 배경색상 */
-  border-color: none; /* 테두리 없앰 */
-  color: #7c6839;   /* 글자 색 */
-}
-.signupButton:hover {
-  background-color: #ffce00; /* 배경색상 */
-  color: #fff9e4;
-}
 
 
 
-/* header.html */
+    /* userForm */
+    .fieldError {
+                color: #bd2130;
+            }
+    .okButton {
+        background-color: #feec9e; /* 배경색상 */
+        border-color: none; /* 테두리 없앰 */
+        color: #7c6839;
+    }
+    .okButton:hover {
+        background-color: #ffce00; /* 배경색상 */
+        color: #fff9e4;
+    }
 
-.navbar-brand {
-  background-image: url('../img/home.png');
-  background-repeat: no-repeat;
-  background-size: contain;
-  display: inline-block;
-  width: 120px;
-  height: 80px;
-}
-
-/* contentview.html */
-
-.form-group .btn-add-comment, .form-group .btn-edit-comment {
-    float: right;
-}
-
-
-/* 좋아요 부분 */
-
-
-#like-icon {
-  margin-left: 20px;
-  background-color: #feec9e; /* 배경색상 */
-  border-color: none; /* 테두리 없앰 */
-  color: #7c6839;   /* 글자 색 */
-}
-
-#like-icon:hover {
-  background-color: #ff0044; /* 배경색상 */
-  color: #fff9e4;
-}
+    /* userLoginForm */
+     .error{
+         color:#bd2130;
+     }
 
 
+    .loginButton {
+      background-color: #feec9e; /* 배경색상 */
+      border-color: none; /* 테두리 없앰 */
+      color: #7c6839;
+    }
+    .loginButton:hover {
+      background-color: #ffce00; /* 배경색상 */
+      color: #fff9e4;
+    }
+
+    .signupButton {
+      background-color: #feec9e; /* 배경색상 */
+      border-color: none; /* 테두리 없앰 */
+      color: #7c6839;   /* 글자 색 */
+    }
+    .signupButton:hover {
+      background-color: #ffce00; /* 배경색상 */
+      color: #fff9e4;
+    }
+
+
+
+    /* header.html */
+
+    .navbar-brand {
+      background-image: url('../img/home.png');
+      background-repeat: no-repeat;
+      background-size: contain;
+      display: inline-block;
+      width: 120px;
+      height: 80px;
+    }
+
+    /* contentview.html */
+
+    .form-group .btn-add-comment, .form-group .btn-edit-comment {
+        float: right;
+    }
+
+
+    /* 좋아요 부분 */
+
+
+    .like-button {
+      margin-left: 20px;
+      background-color: #feec9e; /* 배경색상 */
+      border-color: none; /* 테두리 없앰 */
+      color: #7c6839;   /* 글자 색 */
+    }
+
+    .like-button:hover {
+      background-color: #ff0044; /* 배경색상 */
+      color: #fff9e4;
+    }
+
+    .like-button.active {
+      background-color: #ff0044;
+    }
 

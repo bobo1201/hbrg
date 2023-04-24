@@ -49,9 +49,9 @@
 
                         <div class="form-group">
                             <label th:for="inputTitle"><strong>제목</strong></label>
-                            <input type="text" th:field="*{title}" class="form-control" placeholder="제목을 입력해주세요" name="title" id="inputTitle" />
-                        </div>
-                        <p th:if="${#fields.hasErrors('title')}" th:errors="*{title}" class="fieldError">Incorrect data</p>
+                        <input type="text" th:field="*{title}" class="form-control" placeholder="제목을 입력해주세요" name="title" id="inputTitle" />
+                    </div>
+                    <p th:if="${#fields.hasErrors('title')}" th:errors="*{title}" class="fieldError">Incorrect data</p>
 
                         <div class="form-group">
                             <label th:for="inputContent"><strong>내용</strong></label>
@@ -59,17 +59,27 @@
                         </div>
                         <p th:if="${#fields.hasErrors('content')}" th:errors="*{content}" class="fieldError">Incorrect data</p>
 
-<!--                        <form role="form" method="post" enctype="multipart/form-data" th:object="${BoardFormDto}">-->
+                        <!--                        <form role="form" method="post" enctype="multipart/form-data" th:object="${BoardFormDto}">-->
                         <div class="form-group">
-                            <label for="hashtags"><strong>해시태그</strong></label>
+                            <label th:for="hashtags" ><strong>해시태그</strong></label>
                             <div class="hashtag-container">
-                                <div class="hashtag-input-group">
-                                    <input name="hashtags" id="hashtags" type="text" placeholder="해시태그">
-                                    <button type="hidden" class="btn btn-primary btn-add">+</button>
-                                </div>
+                                <!--                                <input name="hashtags" id="hashtags" type="text" th:value="*{hashtags}" placeholder="해시태그">-->
+                                <button type="button" class="btn btn-primary btn-add">+</button>
                             </div>
                         </div>
-<!--                        </form>-->
+                        <!--                        </form>-->
+
+                        <!--                        <form role="form" method="post" enctype="multipart/form-data" th:object="${BoardFormDto}">-->
+<!--                        <div class="form-group">-->
+<!--                            <label for="hashtags"><strong>해시태그</strong></label>-->
+<!--                            <div class="hashtag-container">-->
+<!--                                <div class="hashtag-input-group">-->
+<!--                                    <input name="hashtags" id="hashtags" type="text" placeholder="해시태그">-->
+<!--                                    <button type="hidden" class="btn btn-primary btn-add">+</button>-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                        </div>-->
+                        <!--                        </form>-->
 
 
                         <div class="form-group">
@@ -93,7 +103,6 @@
                                 </div>
                             </div>
                         </div>
-
 
                         <div class="form-group text-center">
                             <button onclick="location.href='/'" type="submit" class="btn btn-primary writeButton">저장</button>

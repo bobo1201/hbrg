@@ -27,7 +27,8 @@ public class ReReplyService {
         reReplyRepository.save(reReply);
     }
 
-    public void deleteReReply(Long reReId) {
+
+    public void deleteReReply(Long reReId){
         reReplyRepository.deleteByReReId(reReId);
     }
 }

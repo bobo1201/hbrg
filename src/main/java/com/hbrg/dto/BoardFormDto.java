@@ -34,7 +34,9 @@ public class BoardFormDto {
     private LocalDateTime regTime;
     private LocalDateTime updateTime;
 
+
     private List<HFileDto> fileDtoList = new ArrayList<>();
+
 
     private List<Long> fileIds = new ArrayList<>();
 

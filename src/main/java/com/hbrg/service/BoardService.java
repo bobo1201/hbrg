@@ -3,14 +3,8 @@ package com.hbrg.service;
 import com.hbrg.dto.BoardFormDto;
 import com.hbrg.dto.BoardSearchDto;
 import com.hbrg.dto.HFileDto;
-import com.hbrg.entity.Board;
-import com.hbrg.entity.Hfile;
-import com.hbrg.entity.Huser;
-import com.hbrg.entity.Likes;
-import com.hbrg.repository.BoardRepository;
-import com.hbrg.repository.FileRepository;
-import com.hbrg.repository.LikesRepository;
-import com.hbrg.repository.UserRepository;
+import com.hbrg.entity.*;
+import com.hbrg.repository.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -35,6 +29,9 @@ public class BoardService {
     private final FileRepository fileRepository;
     private final LikesRepository likesRepository;
     private final UserRepository userRepository;
+    private final ReplyService replyService;
+    private final ReplyRepository replyRepository;
+    private final ReReplyRepository reReplyRepository;
 
 
 
@@ -63,10 +60,6 @@ public class BoardService {
 
         // 이미지 파일 저장
         Board board = boardRepository.findByBoardId(boardId);
-
-        System.out.println("board1 : " + board);
-
-
         List<Hfile> fileList = board.getFiles();
         List<HFileDto> fileDtoList = new ArrayList<>();
 
@@ -110,13 +103,8 @@ public class BoardService {
                 file.setRepImgYn("N");
             fileAddService.saveFile(file, fileList.get(i));
         }
-
-        System.out.println("board1 : " + board.getBoardId());
-
-
         return board.getBoardId();
     }
-
 
     // like 좋아요
     public Board findBoard(Long boardId){
@@ -129,7 +117,6 @@ public class BoardService {
         return likesRepository.findByUserAndBoard(user, board);
 
     }
-
 
     public int saveLike(Board board, Huser user) {
         /** 로그인한 유저가 해당 게시물을 좋아요 했는지 안 했는지 확인 **/
@@ -161,7 +148,6 @@ public class BoardService {
     }
 
 
-
     // 페이징 처리를 위한 코드 구현 23/04/17 16:22 아래 문구 추가
     public Page<Board> boardList(Pageable pageable){
         //기존 List<Board>값으로 넘어가지만 페이징 설정을 해주면 Page<Board>로 넘어감
@@ -186,6 +172,17 @@ public class BoardService {
             fileRepository.deleteAll(files);
         }
 
+        List<Reply> replies = board.getReplies();
+        if (!CollectionUtils.isEmpty(replies)){
+            for (Reply reply : replies) {
+                List<ReReply> reReplies = reply.getReReplies();
+                if (!CollectionUtils.isEmpty(reReplies)) {
+                    reReplyRepository.deleteAll(reReplies);
+                }
+                replyRepository.delete(reply);
+            }
+        }
+
         board.removeHFiles();
         boardRepository.delete(board);
     }
@@ -198,13 +195,9 @@ public class BoardService {
         }
 
 
-
         @Transactional(readOnly = true)
         public Page<Board> getAdminItemPage(BoardSearchDto boardSearchDto, Pageable pageable) {
             return boardRepository.getAdminItemPage(boardSearchDto, pageable);
     }
 
-//    public BoardResposeDto findByBoardId(Long boardId) {
-//        return  findByBoardId(boardId);
-//    }
 }

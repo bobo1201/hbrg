@@ -35,5 +35,4 @@ public class ReReply  {
         reReply.setReply(reReplyFormDto.getReply());
         return reReply;
     }
-
 }

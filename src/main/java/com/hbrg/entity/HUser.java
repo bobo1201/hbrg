@@ -26,8 +26,8 @@ public class Huser  extends BaseEntity{
     @Column(name="pw", nullable = false)
     private String pw; // 로그인 PW
 
-    @Column(name="em", nullable = false)
-    private String em; // 회원가입 이메일
+    @Column(name="email", nullable = false)
+    private String email; // 회원가입 이메일
 
     @Column(name="nic", nullable = false)
     private String nic; // 회원가입 닉네임
@@ -39,10 +39,10 @@ public class Huser  extends BaseEntity{
     @OneToMany(mappedBy = "user")
     private List<Likes> likes = new ArrayList<>();
 
-    public static Huser createHUser (UserFormDto userFormDto, PasswordEncoder passwordEncoder){
+    public static Huser createUser (UserFormDto userFormDto, PasswordEncoder passwordEncoder){
         Huser user = new Huser();
         user.setId(userFormDto.getId());
-        user.setEm(userFormDto.getEm());
+        user.setEmail(userFormDto.getEmail());
         user.setNic(userFormDto.getNic());
         user.setRole(Role.USER);
 

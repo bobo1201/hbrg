@@ -6,6 +6,8 @@ import lombok.Setter;
 import lombok.ToString;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "Reply")
@@ -26,10 +28,14 @@ public class Reply extends BaseEntity {
     @Column()
     private String reContent; // 댓글 내용
 
+    @OneToMany(mappedBy = "reply", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<ReReply> reReplies = new ArrayList<>();
+
     public static Reply createReply(ReplyFormDto replyFormDto){
         Reply reply = new Reply();
         reply.setReContent(replyFormDto.getReContent());
         reply.setBoard(replyFormDto.getBoard());
         return reply;
     }
+
 }
