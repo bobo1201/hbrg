@@ -48,12 +48,13 @@
     <form layout:fragment="@{'/' + ${boards.number}}" role="form" method="GET" th:object="${boards}" class="form-inline justify-content-center">
         <!-- 검색 기능 구현 -->
 <!--        <form action="/" method="GET" class="form-inline justify-content-center">-->
+        <!— 검색 기능 구현 —>
         <form>
             <div class="row justify-content-center">
-                <div class="col-md-8">
+                <div class="col-md-12">
                     <div class="input-group" th:object="${boardSearchDto}">
                         <div class="input-group-prepend ">
-                            <select th:field="*{searchDateType}" class="btn btn-outline-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <select th:field="*{searchDateType}" class="btn btn-outline-secondary dropdown-toggle search1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <option value="all"><a class="dropdown-item">전체기간</a></option>
                                 <option value="1d"><a class="dropdown-item">1일</a></option>
                                 <option value="1w"><a class="dropdown-item">1주</a></option>
@@ -61,16 +62,16 @@
                                 <option value="6m"><a class="dropdown-item">6개월</a></option>
 
                             </select>
-                            <select th:field="*{searchBy}" class="btn btn-outline-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <select th:field="*{searchBy}" class="btn btn-outline-secondary dropdown-toggle search2"  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <option value=""><a class="dropdown-item">전체</a></option>
                                 <option value="title"><a class="dropdown-item">제목</a></option>
                                 <option value="boardId"><a class="dropdown-item">번호</a></option>
                                 <option value="content"><a class="dropdown-item">본문</a></option>
-                                <!--                                <option value="blike">Blike</option>-->
+<!--                                <!—<option value="blike">Blike</option>—>-->
                             </select>
                         </div>
-                        <input th:field="*{searchQuery}" class="form-control mr-sm-2"
-                               type="text" placeholder="검색어를 입력하세요." aria-label="Search" style="width:250px;">
+                        <input th:field="*{searchQuery}" class="form-control sm-2"
+                               type="text" placeholder="검색어를 입력하세요." aria-label="Search" style="width:500px;">
                         <button class="btn btn-outline-success my-2 my-sm-0"
                                 id="dMB2" type="submit">검색</button>
                     </div>
@@ -144,7 +145,7 @@
                                 <td><a th:href="@{/hbrg/ex02/{boardId}(boardId=${boardDto.boardId})}" th:text="${boardDto.title}"></a></td>
                                 <td th:text="${boardDto.vc}"></td>
                                 <td th:text="${boardDto.bLike}"></td>
-                                <td th:text="${boardDto.regTime}"></td>
+                                <td th:text="${#temporals.format(boardDto.regTime, 'yyyy-MM-dd')}"></td>
                             </tr>
                             </tbody>
                         </table>

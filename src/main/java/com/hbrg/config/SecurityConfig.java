@@ -1,5 +1,7 @@
 package com.hbrg.config;
 
+//import com.hbrg.auth.PrincipalDetailService;
+
 import com.hbrg.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -12,10 +14,12 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.oauth2.config.annotation.web.configuration.EnableOAuth2Client;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 @Configuration
 @EnableWebSecurity
+@EnableOAuth2Client
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
@@ -42,15 +46,28 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .logoutSuccessUrl("/")
         ;
 
+
         http.authorizeRequests()
-                .mvcMatchers("/", "/hbrg/ex02/**", "/user/**", "img/**", "/search**", "/css/**", "/auth/**").permitAll()
+                .mvcMatchers("/", "/hbrg/ex02/{boardId}", "/user/**", "img/**", "/search**", "/css/**", "/auth/**").permitAll()
                 .mvcMatchers("/admin/**").hasRole("ADMIN")
                 .anyRequest().authenticated()
         ;
 
+
         http.exceptionHandling()
                 .authenticationEntryPoint(new CustomAuthenticationEntryPoint())
         ;
+//
+//        http.oauth2Login()
+//                .defaultSuccessUrl("/")
+//                .failureUrl("/user/login/error")
+//                .and()
+//                .logout()
+//                .logoutRequestMatcher(new AntPathRequestMatcher("/user/logout"))
+//                .logoutSuccessUrl("/")
+//                ;
+
+
 
         //Spring Security의 CSRF(Cross-Site Request Forgery) 토큰 저장소 구현에서 이 문제가 발생할 가능성이 있습니다.
         // 이 경우에는 웹 요청에서 CSRF 토큰을 저장하기 위해 Spring Security가 세션을 생성하는데,
@@ -61,9 +78,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 //        http.csrf().csrfTokenRepository(new LazyCsrfTokenRepository(new HttpSessionCsrfTokenRepository()));
     }
 
+
     @Override
     public void configure(WebSecurity web) throws Exception{
-        web.ignoring().antMatchers("/css/**", "js/**", "img/**", "/search**");
+        web.ignoring().antMatchers("/css/**", "js/**", "img/**");
     }
 
     @Bean
@@ -71,9 +89,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         return new BCryptPasswordEncoder();
     }
 
+
+
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception{
         auth.userDetailsService(userService)
                 .passwordEncoder(passwordEncoder());
     }
+
 }

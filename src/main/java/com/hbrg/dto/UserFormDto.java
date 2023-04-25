@@ -17,7 +17,7 @@ public class UserFormDto {
     @NotBlank(message="아이디는 필수 입력 값 입니다.")
     private  String id;
 
-    @NotBlank(message = "닉네임은 필수 입력 값입니다.")
+//    @NotBlank(message = "닉네임은 필수 입력 값입니다.")
     private String nic;
 
     @NotBlank(message = "이메일은 필수 입력 값입니다.")
@@ -28,10 +28,16 @@ public class UserFormDto {
     @Length(min=8, max=16, message = "비밀번호는 8자 이상, 16자 이하로 입력해주세요.")
     private String pw;
 
+//    @NotEmpty(message = "비밀번호는 필수 입력 값입니다.")
+//    private String pw2;
+
+
+    // 07:15 pw2 추가
     public UserFormDto(String id, String email, String pw, String nic) {
         this.id = id;
         this.email = email;
         this.pw = pw;
+//        this.pw2 = pw2;
         this.nic = nic;
     }
 }

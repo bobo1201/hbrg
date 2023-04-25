@@ -194,6 +194,48 @@ public class BoardController {
         return "redirect:/hbrg/ex02/"+ boardId;
     }
 
+//
+//    // 댓글 수정 페이지로 값 전달
+//    @GetMapping(value = "/ex02/{boardId}/{reId}")
+//    public String replyDtl(@PathVariable("boardId") Long boardId, Model model){
+//
+//        try{
+//            BoardFormDto boardFormDto = boardService.getBoardDtl(boardId);
+//            model.addAttribute("BoardFormDto", boardFormDto);
+//        } catch (EntityNotFoundException e){
+//            model.addAttribute("errorMessage", "존재하지 않습니다.");
+//            model.addAttribute("BoardFormDto", new BoardFormDto());
+//            return "redirect:/hbrg/ex01/{boardId}";
+//        }
+//        return "content";
+//    }
+//
+//
+//    // 상품 수정 페이지에서 dto로 값 전달
+//    @PostMapping(value = "/ex01/{boardId}")
+//    public String boardUpdate(@Valid BoardFormDto boardFormDto,BindingResult bindingResult, Model model,
+//                              @RequestParam("itemImgFile") List<MultipartFile> fileList){
+//
+//        if(bindingResult.hasErrors()){
+//            System.out.println("에러1");
+//            return "redirect:/hbrg/ex01/{boardId}";
+//        }
+//
+//        try {
+//            boardService.updateBoard(boardFormDto, fileList);
+//            System.out.println("실행");
+//        } catch (Exception e){
+//            System.out.println("에러2");
+//            e.printStackTrace();
+//            model.addAttribute("errorMessage", "수정 중 에러가 발생했습니다.");
+//            return "redirect:/hbrg/ex01/{boardId}";
+//        }
+//
+//        return "redirect:/";
+//    }
+
+
+
 
     // 대댓글 값 db로 전달
     @PostMapping("/{reId}/reReply")

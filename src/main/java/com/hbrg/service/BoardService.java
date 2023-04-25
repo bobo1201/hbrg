@@ -133,16 +133,19 @@ public class BoardService {
                 new IllegalArgumentException("해당 게시물이 존재하지 않습니다.");
             }
 
+            board.setBLike(board.getBLike()+1);
+
             /* 좋아요 엔티티 생성 */
 //            좋아요가 없으면 추가
             Likes like = new Likes(user, board);
             likesRepository.save(like);
-            board.setBLike(board.getBLike()+1);
             return 1;
         } else {
             /* 좋아요 한 게시물이면 좋아요 삭제, false 반환 */
-            likesRepository.deleteByUserAndBoard(user, board);
             board.setBLike(board.getBLike()-1);
+
+            likesRepository.deleteByUserAndBoard(user, board);
+
             return 0;
         }
     }

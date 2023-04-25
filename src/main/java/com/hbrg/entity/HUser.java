@@ -26,12 +26,14 @@ public class Huser  extends BaseEntity{
     @Column(name="pw", nullable = false)
     private String pw; // 로그인 PW
 
+//    @Column(name="pw2", nullable = false)
+//    private String pw2; // 로그인 PW
+
     @Column(name="email", nullable = false)
     private String email; // 회원가입 이메일
 
-    @Column(name="nic", nullable = false)
+    @Column(name="nic")
     private String nic; // 회원가입 닉네임
-
 
     @Enumerated(EnumType.STRING)
     private Role role;
@@ -44,6 +46,7 @@ public class Huser  extends BaseEntity{
         user.setId(userFormDto.getId());
         user.setEmail(userFormDto.getEmail());
         user.setNic(userFormDto.getNic());
+//        user.setPw2(userFormDto.getPw2());
         user.setRole(Role.USER);
 
         //SecurityConfig의 BCryptPasswordEncoder Bean을 파라미터로 넘겨서 비밀번호 암호화

@@ -5,36 +5,40 @@
 <head>
     <meta charset="UTF-8" />
     <title>게시판 상세페이지</title>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" />
     <link rel="stylesheet" href="/css/style.css" />
+
     <script>
-    $(document).ready(function () {
+        $(document).ready(function () {
 
-      let likeVal = document.getElementById("like_check").value;
+          let likeVal = document.getElementById("like_check").value;
 
-      console.log(likeVal);
+          console.log(likeVal);
 
-           const boardId = $("#BoardId").val();
-    const userId = $("#userId").val();
-    console.log(boardId);
-    console.log(userId);
-    $.ajax({
-      type: "POST",
-      contentType: "application/json",
-      url: "/hbrg/like/ex02/" + boardId + "?userId=" + userId,
-      dataType: 'json',
-      data: JSON.stringify({ users: {userId: userId}, boardId, boardId}),
-      cache: false,
-      timeout: 600000,
-      success: function (data) {
-        if (data != false) {
-          console.log("좋아요");
-        } else {
-          console.log("싫어요");
-        }
-      }
-    });
-  });
+               $("#like-icon").click(function () {
+                   const boardId = $("#BoardId").val();
+                    const userId = $("#userId").val();
+                    console.log(boardId);
+                    console.log(userId);
+                    $.ajax({
+                      type: "POST",
+                      contentType: "application/json",
+                      url: "/hbrg/like/ex02/" + boardId + "?userId=" + userId,
+                      dataType: 'json',
+                      data: JSON.stringify({ users: {userId: userId}, boardId, boardId}),
+                      cache: false,
+                      timeout: 600000,
+                      success: function (data) {
+                        if (data != false) {
+                          console.log("좋아요");
+                        } else {
+                          console.log("싫어요");
+                        }
+                      }
+                    });
+                  });
+               });
 
   function showReReplyForm(button) {
         // 대댓글 작성 버튼을 클릭한 댓글 요소
@@ -56,7 +60,7 @@
 
 
 </script>
-    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+
 </head>
 <body>
 <header th:insert="fragments/header.html"></header>
