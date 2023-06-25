@@ -38,10 +38,29 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" />
     <link rel="stylesheet" href="/css/style.css" />
 
+    <!-- Google Font: Source Sans Pro -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="plugins/fontawesome-free/css/all.min.css">
+    <!-- Ionicons -->
+    <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+    <!-- Tempusdominus Bootstrap 4 -->
+    <link rel="stylesheet" href="plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css">
+    <!-- iCheck -->
+    <link rel="stylesheet" href="plugins/icheck-bootstrap/icheck-bootstrap.min.css">
+    <!-- JQVMap -->
+    <link rel="stylesheet" href="plugins/jqvmap/jqvmap.min.css">
+    <!-- Theme style -->
+    <link rel="stylesheet" href="dist/css/adminlte.min.css">
+    <!-- overlayScrollbars -->
+    <link rel="stylesheet" href="plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
+    <!-- Daterange picker -->
+    <link rel="stylesheet" href="plugins/daterangepicker/daterangepicker.css">
+    <!-- summernote -->
+    <link rel="stylesheet" href="plugins/summernote/summernote-bs4.min.css">
 </head>
 <body>
 <header th:insert="fragments/header.html"></header>
-
 
 <!-- 검색창 부분 -->
 <div layout:fragment="content" class="text-center" style="margin-top: 100px;">
@@ -50,18 +69,17 @@
 <!--        <form action="/" method="GET" class="form-inline justify-content-center">-->
         <form>
             <div class="row justify-content-center">
-                <div class="col-md-8">
-                    <div class="input-group" th:object="${boardSearchDto}">
-                        <div class="input-group-prepend ">
-                            <select th:field="*{searchDateType}" class="btn btn-outline-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <div class="col-md-12">
+                    <div class="input-group border-warning" th:object="${boardSearchDto}">
+                        <div class="input-group-prepend border-warning">
+                            <select th:field="*{searchDateType}" class="dropdown-toggle p-2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <option value="all"><a class="dropdown-item">전체기간</a></option>
                                 <option value="1d"><a class="dropdown-item">1일</a></option>
                                 <option value="1w"><a class="dropdown-item">1주</a></option>
                                 <option value="1m"><a class="dropdown-item">1개월</a></option>
                                 <option value="6m"><a class="dropdown-item">6개월</a></option>
-
                             </select>
-                            <select th:field="*{searchBy}" class="btn btn-outline-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <select th:field="*{searchBy}" class="dropdown-toggle p-2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <option value=""><a class="dropdown-item">전체</a></option>
                                 <option value="title"><a class="dropdown-item">제목</a></option>
                                 <option value="boardId"><a class="dropdown-item">번호</a></option>
@@ -69,10 +87,9 @@
                                 <!--                                <option value="blike">Blike</option>-->
                             </select>
                         </div>
-                        <input th:field="*{searchQuery}" class="form-control mr-sm-2"
+                        <input th:field="*{searchQuery}" class="p-2 border-white"
                                type="text" placeholder="검색어를 입력하세요." aria-label="Search" style="width:250px;">
-                        <button class="btn btn-outline-success my-2 my-sm-0"
-                                id="dMB2" type="submit">검색</button>
+                        <button class="btn btn-outline-success p-2 border-warning" id="dMB2" type="submit">검색</button>
                     </div>
                 </div>
             </div>
@@ -181,5 +198,41 @@
 <div>
     <!--    <footer th:insert="fragments/footer.html"></footer>-->
 </div>
+
+
+<!-- jQuery -->
+<script src="plugins/jquery/jquery.min.js"></script>
+<!-- jQuery UI 1.11.4 -->
+<script src="plugins/jquery-ui/jquery-ui.min.js"></script>
+<!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
+<script>
+    $.widget.bridge('uibutton', $.ui.button)
+</script>
+<!-- Bootstrap 4 -->
+<script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<!-- ChartJS -->
+<script src="plugins/chart.js/Chart.min.js"></script>
+<!-- Sparkline -->
+<script src="plugins/sparklines/sparkline.js"></script>
+<!-- JQVMap -->
+<script src="plugins/jqvmap/jquery.vmap.min.js"></script>
+<script src="plugins/jqvmap/maps/jquery.vmap.usa.js"></script>
+<!-- jQuery Knob Chart -->
+<script src="plugins/jquery-knob/jquery.knob.min.js"></script>
+<!-- daterangepicker -->
+<script src="plugins/moment/moment.min.js"></script>
+<script src="plugins/daterangepicker/daterangepicker.js"></script>
+<!-- Tempusdominus Bootstrap 4 -->
+<script src="plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js"></script>
+<!-- Summernote -->
+<script src="plugins/summernote/summernote-bs4.min.js"></script>
+<!-- overlayScrollbars -->
+<script src="plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
+<!-- AdminLTE App -->
+<script src="dist/js/adminlte.js"></script>
+<!-- AdminLTE for demo purposes -->
+<script src="dist/js/demo.js"></script>
+<!-- AdminLTE dashboard demo (This is only for demo purposes) -->
+<script src="dist/js/pages/dashboard.js"></script>
 </body>
 </html>

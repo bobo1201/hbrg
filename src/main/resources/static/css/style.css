@@ -328,6 +328,18 @@ ul#commentList li {
       color: #fff9e4; /* 원하는 색상으로 변경 */
     }
 
+    select#searchDateType {       /* 버튼 검색 부분 */
+        background-color: #feec9e;
+        color: #7c6839;
+    }
+
+    select#searchBy {       /* 버튼 검색 부분 */
+        background-color: #feec9e;
+        color: #7c6839;
+    }
+
+
+
     button#dMB3 {       /*버튼 글쓰기 부분 */
         background-color: #feec9e;
         color: #7c6839;
